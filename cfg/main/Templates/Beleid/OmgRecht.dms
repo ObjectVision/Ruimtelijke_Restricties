@@ -1,0 +1,24 @@
+container OmgRecht
+{
+	#include<EU.dms>
+	#include<AMvB.dms>
+	#include<Structuurvisie.dms>
+	#include<Bevi.dms>
+	#include<PRV.dms>
+	#include<PMV.dms>
+	#include<Bestemmingsplan.dms>
+	
+	#include<NOVI.dms>
+	#include<MIRT.dms>
+	#include<NRMLMS.dms>
+
+    #include<BP.dms>
+	#include<Overigen.dms>
+
+	#include<SumOppT.dms>
+	#include<VergriddingT.dms>
+	#include<SelectieEnVergrid.dms>
+	#include<verwerk_NLIMRObestand.dms>
+	// #include<Restricties.dms>
+	// #include<stimuli.dms>
+}

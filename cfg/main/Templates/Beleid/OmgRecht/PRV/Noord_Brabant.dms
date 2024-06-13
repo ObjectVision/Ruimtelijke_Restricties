@@ -1,0 +1,14 @@
+container Noord_Brabant : url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/nb/doc/NL_IMRO_9930_InterimOvrgc_0823.mhtml"
+//%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/nb/doc/NL_IMRO_9930_TAMOvrNBrabant_va01.mhtml
+{
+	parameter<string> subpad:='prv_2024/nb';
+	
+	container NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P
+	:= verwerk_NLIMRObestand('NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P', 'prv_2024/nb')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9930.InterimOvrgc-0823/kaarten)?id=NL.IMRO.9930.InterimOvrgc-0823";
+	
+	container NL_IMRO_9930_TAMOvrNBrabant_va01_Besluitsubvlak_P
+	:= verwerk_NLIMRObestand('NL_IMRO_9930_TAMOvrNBrabant_va01_Besluitsubvlak_P', 'prv_2024/nb')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9930.TAMOvrNBrabant-va01/kaarten)?id=NL.IMRO.9930.TAMOvrNBrabant-va01";
+		//niet verder verwerken; NL_IMRO_9930_TAMOvrNBrabant_va01 lagen komen exact overeen met corresponderende lagen in NL_IMRO_9930_InterimOvrgc_0823 
+}

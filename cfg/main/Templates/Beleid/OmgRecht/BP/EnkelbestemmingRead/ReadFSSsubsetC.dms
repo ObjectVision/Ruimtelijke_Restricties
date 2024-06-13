@@ -1,0 +1,88 @@
+container ReadFSSsubsetC
+{
+	unit<uint32> ReadFSSsubset:=subset(ReadFSS/planstatus='vastgesteld')
+	{
+		attribute<rdc_meter> Geometry (poly)    :=ReadFSS/Geometry[Nr_OrgEntity];
+		attribute<string> gml_id                :=ReadFSS/gml_id[Nr_OrgEntity];
+		attribute<int32>  fid                   :=ReadFSS/fid[Nr_OrgEntity];
+		attribute<string> bestemmingshoofdgroep :=ReadFSS/bestemmingshoofdgroep[Nr_OrgEntity];
+		attribute<int32>  historisch            :=ReadFSS/historisch[Nr_OrgEntity];
+		attribute<string> identificatie         :=ReadFSS/identificatie[Nr_OrgEntity];
+		attribute<string> naam                  :=ReadFSS/naam[Nr_OrgEntity];
+		attribute<string> plangebied            :=ReadFSS/plangebied[Nr_OrgEntity];
+		attribute<string> planstatus            :=ReadFSS/planstatus[Nr_OrgEntity];
+		attribute<string> typePlan              :=ReadFSS/typePlan[Nr_OrgEntity];
+		attribute<string> versieIMRO            :=ReadFSS/versieIMRO[Nr_OrgEntity];
+		attribute<string> verwijzingNaarTekst   :=ReadFSS/verwijzingNaarTekst[Nr_OrgEntity];
+		attribute<string> dossierID             :=ReadFSS/dossierID[Nr_OrgEntity];
+		attribute<string> dossierStatus         :=ReadFSS/dossierStatus[Nr_OrgEntity];
+		attribute<string> Datum                 :=ReadFSS/Datum[Nr_OrgEntity];
+	
+		attribute<string> plangebied_gemcode    := ReadFSS/plangebied_gemcode[Nr_OrgEntity];
+		attribute<string> GemeenteNaam2021      := ReadFSS/GemeenteNaam2021[Nr_OrgEntity];
+		attribute<string> GemeenteCodeGM2021    := ReadFSS/GemeenteCodeGM2021[Nr_OrgEntity];
+		attribute<string> ProvincieNaam2021     := ReadFSS/ProvincieNaam2021[Nr_OrgEntity];
+		attribute<string> ProvincieCode2021     := ReadFSS/ProvincieCode2021[Nr_OrgEntity];
+	
+		attribute<naamunique>       naam_Rel       := ReadFSS/naam_Rel[Nr_OrgEntity];
+		attribute<bestemmingunique> bestemming_Rel := ReadFSS/bestemming_Rel[Nr_OrgEntity];
+		attribute<planstatusunique> planstatus_Rel := ReadFSS/planstatus_Rel[Nr_OrgEntity];
+	
+		attribute<meter2> oppm2                  := ReadFSS/oppm2[Nr_OrgEntity];
+		attribute<ha>     oppha                  := ReadFSS/oppha[Nr_OrgEntity];
+	
+		attribute<bestemmingKlasse/AggrVerstedelijking> AggrVerstedelijking_Rel := ReadFSS/AggrVerstedelijking_Rel[Nr_OrgEntity];
+		attribute<bestemmingKlasse/AggrGroenRood>       AggrGroenRood_Rel       := ReadFSS/AggrGroenRood_Rel[Nr_OrgEntity];
+	}
+	
+		attribute<ReadFSSsubset>          Gridsubset (domain)                := poly2grid(ReadFSSsubset/Geometry , domain);
+
+		attribute<bestemmingKlasse> Enkelbestemming_gridsubset(domain) := ReadFSSsubset/bestemming_Rel[uint32][Gridsubset][bestemmingKlasse];
+		attribute<planstatusunique> planstatus_gridsubset(domain)      := ReadFSSsubset/planstatus_Rel[uint32][Gridsubset];
+		
+		attribute<uint32> BP_AggrVerstedelijking_gridsubset(domain)      := ReadFSSsubset/AggrVerstedelijking_Rel[uint32][Gridsubset];
+		attribute<uint32> AggrGroenRood_gridsubset(domain)               := ReadFSSsubset/AggrGroenRood_Rel[uint32][Gridsubset];
+
+		attribute<uint32> CBS_AggrVerstedelijking_gridsubset(domain)      := Classifications/LandUsePreparation/CBSKlasse/Aggr4_rel[uint32][SourceData/Grondgebruik/BBG/Dominant/Per_rdc_25m/J2015];
+		attribute<uint32> CBS_AggrVerstedelijking_grid_NULLsubset(domain) := IsDefined(BP_AggrVerstedelijking_gridsubset) ? CBS_AggrVerstedelijking_grid : 0/0;
+		
+	container Gemeente
+	{
+		unit<uint32> Utrecht:=subset(substr(ReadFSS/plangebied,8,4)='0344')
+			,	DialogData = "geometry"
+			,	DialogType = "map"
+			{
+				attribute<rdc_meter> geometry (poly)       := ReadFSS/geometry[nr_OrgEntity];
+				attribute<string>    plangebied_gemcode    := ReadFSS/plangebied_gemcode[nr_OrgEntity];
+				attribute<string>    GemeenteNaam2021      := ReadFSS/GemeenteNaam2021[nr_OrgEntity];
+				attribute<string>    GemeenteCodeGM2021    := ReadFSS/GemeenteCodeGM2021[nr_OrgEntity];
+				attribute<string>    ProvincieNaam2021     := ReadFSS/ProvincieNaam2021[nr_OrgEntity];
+				attribute<string>    ProvincieCode2021     := ReadFSS/ProvincieCode2021[nr_OrgEntity];
+				attribute<uint32>    naam_Rel              := ReadFSS/naam_Rel[nr_OrgEntity];
+				attribute<uint32>    bestemming_Rel        := ReadFSS/bestemming_Rel[nr_OrgEntity];
+				attribute<uint32>    planstatus_Rel        := ReadFSS/planstatus_Rel[nr_OrgEntity];
+				attribute<float32>   oppm2                 := ReadFSS/oppm2[nr_OrgEntity];
+				attribute<float32>   oppha                 := ReadFSS/oppha[nr_OrgEntity];
+				attribute<string>    gml_id                := ReadFSS/gml_id[nr_OrgEntity];
+				attribute<int32>     fid                   := ReadFSS/fid[nr_OrgEntity];
+				attribute<string>    bestemmingshoofdgroep := ReadFSS/bestemmingshoofdgroep[nr_OrgEntity];
+				attribute<int32>     historisch            := ReadFSS/historisch[nr_OrgEntity];
+				attribute<string>    identificatie         := ReadFSS/identificatie[nr_OrgEntity];
+				attribute<string>    naam                  := ReadFSS/naam[nr_OrgEntity];
+				attribute<string>    plangebied            := ReadFSS/plangebied[nr_OrgEntity];
+				attribute<string>    planstatus            := ReadFSS/planstatus[nr_OrgEntity];
+				attribute<string>    typePlan              := ReadFSS/typePlan[nr_OrgEntity];
+				attribute<string>    versieIMRO            := ReadFSS/versieIMRO[nr_OrgEntity];
+				attribute<string>    verwijzingNaarTekst   := ReadFSS/verwijzingNaarTekst[nr_OrgEntity];
+				attribute<string>    dossierID             := ReadFSS/dossierID[nr_OrgEntity];
+				attribute<string>    dossierStatus         := ReadFSS/dossierStatus[nr_OrgEntity];
+				attribute<string>    Datum                 := ReadFSS/Datum[nr_OrgEntity];
+			}
+			
+			attribute<Utrecht>  Grid (domain)                := poly2grid(Utrecht/Geometry , domain);
+	
+			attribute<bestemmingKlasse> Enkelbestemming_grid(domain) := Utrecht/bestemming_Rel[uint32][Grid][bestemmingKlasse];
+			attribute<planstatusunique> planstatus_grid(domain)      := Utrecht/planstatus_Rel[uint32][Grid];
+		
+	}
+}

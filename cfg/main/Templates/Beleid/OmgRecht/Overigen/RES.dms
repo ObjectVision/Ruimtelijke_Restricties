@@ -1,0 +1,16 @@
+﻿container RES
+{
+	container Zon
+	{
+		attribute<bool> IsRestrictief_hard (domain) := IsDefined(poly2grid(/SourceData/Energie/RES/RES10_concept/Analysekaarten/RES_3_elektriciteit_aanbod_potentieel/Zon/merge_zon_restr_veld_nat_ana_v2/Geometry, domain));
+	}
+	
+	container Wind
+	{
+		//Dit wordt dynamisch en later in de analysis toegevoegd. Nu met const om de templates wel te laten werken.
+		attribute<bool> IsRestrictief_hard  (domain) := const(FALSE, domain);
+		attribute<bool> IsRestrictief_zacht (domain) := const(FALSE, domain);
+		// attribute<bool> IsRestrictief_hard  (domain) := IsDefined(poly2grid(/SourceData/Energie/RES/RES10_concept/Analysekaarten/RES_3_elektriciteit_aanbod_potentieel/Wind/merge_wnd_hard_wt56_nat_ana_v3/Geometry, domain));
+		// attribute<bool> IsRestrictief_zacht (domain) := IsDefined(poly2grid(/SourceData/Energie/RES/RES10_concept/Analysekaarten/RES_3_elektriciteit_aanbod_potentieel/Wind/merge_wnd_soft_wt56_prv_nat_ana_v2/Geometry, domain));
+	}
+}

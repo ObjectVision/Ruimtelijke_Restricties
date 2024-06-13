@@ -1,0 +1,120 @@
+container Drenthe := Templates/Restricties_Provincie_T('Drenthe', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	
+	container Verblijfsrecreatie
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+		
+	container Glastuinbouw
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (/rdc_25m) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (/rdc_25m) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (/rdc_25m) := const(false, domain);
+		}
+	}
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+}

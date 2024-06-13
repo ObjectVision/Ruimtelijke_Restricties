@@ -1,0 +1,79 @@
+container BP_vs_CBS
+{
+	unit<uint8> OverlayRegios: nrofrows = 2
+	{
+		attribute<string> namen: ['BP', 'CBS'];
+	}
+
+	container OverlayGrids
+	{
+		attribute<uint8> BP  (domain)      := EnkelbestemmingRead/AggrVerstedelijking_grid[uint8];
+		attribute<uint8> CBS (domain)      := EnkelbestemmingRead/CBS_AggrVerstedelijking_grid_NULL[uint8];
+	}
+	
+	container OverlayGridsWerken
+	{
+		attribute<uint8> BP  (domain)      := EnkelbestemmingRead/AggrWerken_grid [uint8];
+		attribute<uint8> CBS (domain)      := EnkelbestemmingRead/CBS_AggrWerken_grid_NULL[uint8];
+	}
+	
+	container OverlayGridsTransWerkenWonen
+	{
+		attribute<uint8> BP  (domain)      := EnkelbestemmingRead/AggrWonen_grid [uint8];
+		attribute<uint8> CBS (domain)      := EnkelbestemmingRead/CBS_AggrTransWerken_grid_NULL[uint8];
+	}
+	
+
+
+	unit<uint32> verstedelijkingcombine:= overlay32(OverlayRegios/namen, domain, OverlayGrids)
+	{
+		attribute<uint32> ID                         := ID(.);
+		attribute<string> BP_CBS                     := string(BP) + "_" + string(CBS);
+		attribute<string> BP_CBS_dm(domain)          := BP_CBS[UnionData];
+	}
+	
+	unit<uint32> Werkencombine:= overlay32(OverlayRegios/namen, domain, OverlayGridsWerken)
+	{
+		attribute<uint32> ID                         := ID(.);
+		attribute<string> BP_CBS                     := string(BP) + "_" + string(CBS);
+		attribute<string> BP_CBS_dm(domain)          := BP_CBS[UnionData];
+	}
+	
+	unit<uint32> TransWerkencombine:= overlay32(OverlayRegios/namen, domain, OverlayGridsTransWerkenWonen)
+	{
+		attribute<uint32> ID                         := ID(.);
+		attribute<string> BP_CBS                     := string(BP) + "_" + string(CBS);
+		attribute<string> BP_CBS_dm(domain)          := BP_CBS[UnionData];
+	}
+
+	attribute<uint8> BP_Verstedelijking(domain)  := verstedelijkingcombine/UnionData=1 ? 1b : 0b/0b;
+	attribute<uint8> BP_Werken(domain)           := Werkencombine/UnionData=1 ? 1b : 0b/0b;
+	attribute<uint8> BP_TransWerken(domain)      := TransWerkencombine/UnionData=1 ? 1b : 0b/0b;
+
+	
+	container CombineVerstedelijking  := TCombine(BP_Verstedelijking);
+	container CombineWerken           := TCombine(BP_Werken);
+	container CombineTransWerken      := TCombine(BP_TransWerken);
+
+
+	Template TCombine
+	{
+		//
+		attribute<uint8> sector(domain);
+		//
+		
+			unit<uint32> contiguous          := district(sector)
+			, DialogData     = "Districts"
+			, DialogType     = "Map"
+			{
+				attribute<ha>   Oppervlakte     := pcount(Districts)[float32] * Geography/rdc_25m/NrHaPerCell;
+				attribute<bool> Groot_Districts := Oppervlakte> 1f && Oppervlakte < 8.96552E+06f ;
+				
+				attribute<.>    contiguous_rel                 (domain):= /Geography/rdc_25m/IsNederland[uint32]  == 1 ? Districts : 0/0;
+				attribute<bool> Groot_Districts_domain (domain):= Groot_Districts[contiguous_rel];
+		
+				attribute<bestemmingKlasse>    Enkelbestemming_in_Districts       (domain) := IsDefined(contiguous_rel) ? EnkelbestemmingRead/Enkelbestemming_grid : (0/0)[bestemmingKlasse];
+				attribute<bestemmingKlasse>    Enkelbestemming_in_Groot_Districts (domain) := Groot_Districts_domain ? Enkelbestemming_in_Districts : (0/0)[bestemmingKlasse];
+			}
+	}
+}

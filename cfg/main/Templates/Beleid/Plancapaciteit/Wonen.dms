@@ -1,0 +1,86 @@
+container Wonen
+{
+	#include<NieuweNieuweKaart.dms>
+	#include<provincies.dms>
+	#include<gemeenten.dms>
+	#include<Bestemmingsplannen.dms>
+	#include<NOVEX.dms>
+	#include<Woondeals.dms>
+	
+	container NL
+	{
+		unit<uint8> SrcK: NrOfRows = 15
+		{
+			attribute<string> name:
+			[
+				'Provincies/Gelderland',
+				'Provincies/Noord_Holland',
+				'Provincies/Zuid_Holland',
+				'Provincies/Utrecht',
+				'Provincies/Overijssel',
+				'Provincies/Zeeland',
+				'Provincies/Limburg',
+				'Gemeenten/Leiden',
+				'Gemeenten/Den_Haag',
+				'Gemeenten/Tilburg',
+				'Gemeenten/Utrecht',
+				'Gemeenten/Groningen',
+				'Bestemmingsplannen/polydomain',
+				'NieuweNieuweKaart/Fijn',
+				'NOVEX/woningbouwlocaties'
+			];
+		}
+		
+		unit<uint32> SrcKXHardheidXDomainK := combine(SrcK, Classifications/HardheidXDomainK)
+		{
+			attribute<string> SrcK_name      := Srck/name[first_rel];
+			attribute<string> HardheidK_name := Classifications/HardheidXDomainK/HardheidK_name[second_rel];
+			attribute<string> domainK_name   := Classifications/HardheidXDomainK/domainK_name[second_rel];
+			attribute<string> name           := SrcK_name+'/'+HardheidK_name+'/'+domainK_name;
+		}
+		
+		container Per_SrcKXHardheidXDomainK := for_each_ne(SrcKXHardheidXDomainK/name, 'SrcKXHardheidXDomainT('+string(id(SrcKXHardheidXDomainK))+'[SrcKXHardheidXDomainK])');
+		container Per_HardheidXDomainK      := for_each_ne(Classifications/HardheidXDomainK/name, 'HardheidXDomainT('+string(id(Classifications/HardheidXDomainK))+'[Classifications/HardheidXDomainK])');
+		
+		Template SrcKXHardheidXDomainT
+		{
+			//
+			parameter<SrcKXHardheidXDomainK> id;
+			//
+			
+			unit<ipoint> domain := = SrcKXHardheidXDomainK/domainK_name[id];
+			
+			unit<uint32> Src := = SrcKXHardheidXDomainK/SrcK_name[id]
+			{
+				attribute<.> per_domain (domain) := poly2grid(Src/Geometry, domain);
+			}
+			
+			attribute<bool> IsHard        (domain) := Src/Hard[Src/per_domain];
+			attribute<bool> IsZacht       (domain) := Src/Zacht[Src/per_domain];
+			attribute<bool> IsHardOfZacht (domain) := IsHard || IsZacht;
+			attribute<bool> IsGeen        (domain):= !IsHardOfZacht;
+			attribute<bool> IsHardheidK   (domain) := = 'Is'+SrcKXHardheidXDomainK/HardheidK_name[id];
+		}
+		
+		Template HardheidXDomainT
+		{
+			//
+			parameter<Classifications/HardheidXDomainK> id;
+			//
+			
+			unit<ipoint> domain := = Classifications/HardheidXDomainK/domainK_name[id];
+			
+			parameter<string> CalcStr :=
+				replace(
+					'max_elem('+
+						AsItemList(
+							'Per_SrcKXHardheidXDomainK/'+SrcK/name+'/@H@/@D@/@V@'
+						)+
+					')',
+					'@H@', Classifications/HardheidXDomainK/HardheidK_name[id], '@D@', Classifications/HardheidXDomainK/domainK_name[id]
+				);
+			
+			attribute<bool> IsHardheidK (domain) := = replace(CalcStr, '@V@', 'IsHardheidK');
+		}
+	}
+}

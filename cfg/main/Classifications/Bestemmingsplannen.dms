@@ -1,0 +1,226 @@
+container Bestemmingsplannen
+{
+	unit<uint8> bestemmingKlasse: nrofrows =23
+	{
+		attribute<uint8> id:=id(.);
+		
+		parameter<uint32> nrAttr: [6], isHidden = "True";
+		
+		unit<UInt32> Elements := Range(uint32, 0, nrAttr * #bestemmingKlasse), isHidden = "True"
+		{
+			attribute<String> Text: [
+		           //       BrushColor,                  bestemming,IsWonen,IsVerst.,GroenRood,   IsWerken
+					'rgb(235,240,210)', 'agrarisch',               'Groen',   'Groen', 'Groen',    'Groen',
+					'rgb(210,225,165)', 'agrarisch met waarden',   'Groen',   'Groen', 'Groen',    'Groen',
+					'rgb(180, 95,210)', 'bedrijf',                 'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(200,160,215)', 'bedrijventerrein',        'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(100,170, 45)', 'bos',                     'Groen',   'Groen', 'Groen',    'Groen',
+					'rgb(255,200,190)', 'centrum',                 'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(255, 60,130)', 'cultuur en ontspanning',  'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(255,160,150)', 'detailhandel',            'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(240,145,190)', 'dienstverlening',         'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(255,190,135)', 'gemengd',                 'Groen',   'Groen', 'Rood',     'Groen',
+					'rgb( 40,200, 70)', 'groen',                   'Groen',   'Groen', 'Rood',     'Groen',
+					'rgb(255,105, 35)', 'horeca',                  'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(235,195,215)', 'kantoor',                 'Groen',   'Rood',  'Rood',     'Paars',
+					'rgb(220,155,120)', 'maatschappelijk',         'Groen',   'Groen', 'Rood',     'Paars',
+					'rgb(130,165,145)', 'natuur',                  'Groen',   'Groen', 'Groen',    'Groen',
+					'rgb(100,100,100)', 'overig',                  'Groen',   'Groen', 'Overig',   'Groen',
+					'rgb(185,215, 70)', 'recreatie',               'Groen',   'Groen', 'RoodGroen','Groen',
+					'rgb(130,200, 70)', 'sport',                   'Groen',   'Groen', 'RoodGroen','Groen',
+					'rgb(200,215,110)', 'tuin',                    'Rood',    'Rood',  'RoodGroen','Groen',
+					'rgb(205,205,205)', 'verkeer',                 'Groen',   'Rood',  'Rood',     'Groen',
+					'rgb(175,205,225)', 'water',                   'Groen',   'Groen', 'Blauw',    'Groen',
+					'rgb(255,  0,  0)', 'wonen',                   'Rood',    'Rood',  'Groen',    'Groen',//rgb was rgb(255,255,  0)
+					'rgb(255,  0,  0)', 'woongebied',              'Rood',    'Rood',  'Groen',    'Groen' //rgb was (255,255,108)
+			], DialogType = "BrushColor";
+		}
+		
+		attribute<uint32> BrushColor       := ='union_data(., '+AsItemList(Elements/Text[value(UInt32(ID(.))* nrAttr + 0, Elements)])+')', DialogType = "BrushColor";
+		attribute<string> name            := Elements/Text[value(UInt32(ID(.))* nrAttr +  1, Elements)];
+		
+		attribute<string>               name_underscore        := replace(name," ","_",";","_");
+		
+		attribute<string>               IsWonen                :=Elements/Text[value(UInt32(ID(.))* nrAttr +  2, Elements)];
+		attribute<AggrWonen>            IsWonen_rel            := rlookup(IsWonen, AggrWonen/name);
+
+		attribute<string>               IsVerstedelijking      :=Elements/Text[value(UInt32(ID(.))* nrAttr +  3, Elements)];
+		attribute<AggrVerstedelijking>  IsVerstedelijking_rel  := rlookup(IsVerstedelijking, AggrVerstedelijking/name);
+		
+		attribute<string>               AggrGroenRood_ref      := Elements/Text[value(UInt32(ID(.))* nrAttr +  4, Elements)];
+		attribute<AggrGroenRood>        AggrGroenRood_rel      := rlookup(AggrGroenRood_ref, AggrGroenRood/name);
+		
+		attribute<string>               IsWerken               := Elements/Text[value(UInt32(ID(.))* nrAttr +  5, Elements)];
+		attribute<AggrWerken>           IsWerken_rel           := rlookup(IsWerken, AggrWerken/name);
+		
+		attribute<string>         label               := name, DialogType = "LabelText";
+
+		
+		
+		unit<uint8> AggrWonen := unique(IsWonen)
+		{
+			attribute<string> name := values;
+			attribute<string> label := name, DialogType = "LabelText";
+			attribute<uint32> BrushColor:
+			[
+				rgb(  0,255,  0),
+				rgb(255,  0,  0)
+			], DialogType = "BrushColor";
+		}
+		
+		
+		unit<uint8> AggrVerstedelijking := unique(IsVerstedelijking)
+		{
+			//attribute<string> name : ['Groen','Rood'];
+			attribute<string> name := values;
+			attribute<string> label := name, DialogType = "LabelText";
+			attribute<uint32> BrushColor:
+			[
+				rgb(  0,255,  0),
+				rgb(255,  0,  0)
+			], DialogType = "BrushColor";
+		}
+	
+		
+		unit<uint8> AggrGroenRood := unique(AggrGroenRood_ref)
+		{
+			attribute<string> name := values;
+			attribute<string> label := name, DialogType = "LabelText";
+			attribute<uint32> BrushColor:
+			[
+				rgb(  0,148,255),
+				rgb(  0,255,  0),
+				rgb(127,127,127),
+				rgb(255,  0,  0),
+				rgb(255,216,  0)
+			], DialogType = "BrushColor";
+		}
+
+		unit<uint8> AggrWerken := unique(IsWerken)
+		{
+			attribute<string> name := values;
+			attribute<string> label := name, DialogType = "LabelText";
+			attribute<uint32> BrushColor:
+			[
+				rgb(  0,255,  0),
+				rgb(255,  0,220)
+			], DialogType = "BrushColor";
+		}
+		
+		
+		container V := for_each_nedv(name_underscore, string(ID(.))+'[..]', void, .);
+	}
+
+
+	unit<uint32> bestemming:NrOfRows=23// := unique(ReadFSS/bestemminghoofdgroep)-->23
+	{
+		attribute<uint32>   PenColor   := Brushcolor, DialogType = "PenColor";
+		attribute<uint32>   BrushColor :
+		[
+		//kleuren zie: https://ro-standaarden.geonovum.nl/2012/PRABPK/1.1/PRABPK2012-v1.1.pdf blz 7 en 8
+			rgb(235,240,210),//'agrarisch'
+			rgb(210,225,165),//''agrarisch met waarden'
+			rgb(180, 95,210),//''bedrijf'
+			rgb(200,160,215),//''bedrijventerrein'
+			rgb(100,170, 45),//''bos'
+			rgb(255,200,190),//''centrum'
+			rgb(255, 60,130),//''cultuur en ontspanning'
+			rgb(255,160,150),//''detailhandel'//eigen rgb
+			rgb(240,145,190),//''dienstverlening'
+			rgb(255,190,135),//''gemengd'
+			rgb( 40,200, 70),//''groen'
+			rgb(255,105, 35),//''horeca'
+			rgb(235,195,215),//''kantoor'
+			rgb(220,155,120),//''maatschappelijk'
+			rgb(130,165,145),//''natuur'
+			rgb(100,100,100),//''overig'//eigen rgb
+			rgb(185,215, 70),//''recreatie'
+			rgb(130,200, 70),//''sport'
+			rgb(200,215,110),//''tuin'
+			rgb(205,205,205),//''verkeer'
+			rgb(175,205,225),//''water'
+			rgb(255,255,  0),//''wonen'
+			rgb(255,255,108)//''woongebied'
+		], DialogType = "BrushColor";
+
+
+		attribute<string> name:
+		[
+			'agrarisch',
+			'agrarisch met waarden',
+			'bedrijf',
+			'bedrijventerrein',
+			'bos',
+			'centrum',
+			'cultuur en ontspanning',
+			'detailhandel',
+			'dienstverlening',
+			'gemengd',
+			'groen',
+			'horeca',
+			'kantoor',
+			'maatschappelijk',
+			'natuur',
+			'overig',
+			'recreatie',
+			'sport',
+			'tuin',
+			'verkeer',
+			'water',
+			'wonen',
+			'woongebied'
+		];
+
+		attribute<string> name_underscore:=replace(name," ","_",";","_");
+		
+		attribute<string> Label:= name, DialogType = "LabelText";
+		
+		attribute<string> sqlstring := 'SELECT * FROM Enkelbestemming WHERE bestemminghoofdgroep = ''' + name_underscore + '''';
+	}
+		
+		
+	unit<uint32> planstatusKlasse:NrOfRows=13// := unique(ReadFSS/planstatus)-->13
+	{
+		attribute<uint32>   PenColor   := Brushcolor, DialogType = "PenColor";
+		attribute<uint32>   BrushColor :
+		[
+			rgb(235,240,210),//'concept'
+			rgb(210,225,165),//''geconsolideerd'
+			rgb(180, 95,210),//''geconsolideerde versie'
+			rgb(200,160,215),//''goedgekeurd'
+			rgb(100,170, 45),//''goedgekeurd; geheel goedgekeurd'
+			rgb(255,200,190),//''goedgekeurd; goedgekeurd met uitzondering van onthoudingen'
+			rgb(255, 60,130),//''onherroepelijk'
+			rgb(255,216,  0),//''ontwerp'
+			rgb(240,145,190),//''uitspraak afdeling bestuursrechtspraak'
+			rgb(255,190,135),//''uitspraak afdeling bestuursrechtspraak; alsnog goedgekeurd'
+			rgb( 40,200, 70),//''vastgesteld'
+			rgb(255,105, 35),//''vigerend'
+			rgb(235,195,215)//''voorontwerp'
+		], DialogType = "BrushColor";
+
+
+		attribute<string> name:
+		[
+			'concept',
+			'geconsolideerd',
+			'geconsolideerde versie',
+			'goedgekeurd',
+			'goedgekeurd; geheel goedgekeurd',
+			'goedgekeurd; goedgekeurd met uitzondering van onthoudingen',
+			'onherroepelijk',
+			'ontwerp',
+			'uitspraak afdeling bestuursrechtspraak',
+			'uitspraak afdeling bestuursrechtspraak; alsnog goedgekeurd',
+			'vastgesteld',
+			'vigerend',
+			'voorontwerp'
+		];
+		
+		attribute<string> name_underscore:=replace(name," ","_",";","_");
+
+		attribute<string> Label:= name, DialogType = "LabelText";
+
+		attribute<string> sqlstring := 'SELECT * FROM Enkelbestemming WHERE planstatus = ''' + name + '''';
+	}
+}

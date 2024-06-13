@@ -1,0 +1,25 @@
+container Bestemmingsplannen: using = "Geography"
+{
+	unit<uint32> polydomain := select_uint32_with_org_rel(OmgRecht/BP/Verschil_EnkelbestemmingRead/verschil_naar_wonen)
+	{
+	   attribute<rdc_meter> point_rdc       := org_rel[rdc_meter];
+	   attribute<rdc_meter> geometry (poly) := points2polygon(pointset/point, pointset/sequence, pointset/ordinal);
+	   
+	   attribute<bool>      Hard  := IsDefined(geometry), DialogType = "Map", DialogData = "geometry";
+	   attribute<bool>      Zacht := const(false, .),     DialogType = "Map", DialogData = "geometry";
+
+	   unit<uint32> pointset := union_unit(.,.,.,.,.)
+	   {
+		   attribute<rdc_meter>    point    := union_data(.
+			  , point_rdc															// left top 
+			  , point_rdc + point(rdc_25m/gridsize, 0[meter], rdc_meter)			// right top 
+			  , point_rdc + point(rdc_25m/gridsize, -rdc_25m/gridsize, rdc_meter)	// right bottom 
+			  , point_rdc + point(0[meter], -rdc_25m/gridsize, rdc_meter)			// left bottom 
+			  , point_rdc															// left top 
+		   );
+		   attribute<..>     sequence := union_data(., id(..), id(..), id(..), id(..), id(..))[uint32];
+		   attribute<uint32> ordinal  := 
+			  union_data(., const(0,..), const(1,..), const(2,..), const(3,..), const(4,..));
+		}
+	}
+}

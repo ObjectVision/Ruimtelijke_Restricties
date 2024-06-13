@@ -1,0 +1,137 @@
+container Flevoland := Templates/Restricties_Provincie_T('Flevoland', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Wijziging_omgevingsverordening_Windplan_Groen (domain) := Src/NL_IMRO_9924_OVwindplangroen_VA01_Besluitvlak_P/Laag_namen_selectie/Wijziging_omgevingsverordening_Windplan_Groen/selectie/Result;
+		
+			attribute<bool> Totaal (domain) := Wijziging_omgevingsverordening_Windplan_Groen;
+		}
+		
+		container Hard
+		{
+			attribute<bool> NatuurnetwerkNederland                           (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Natuurnetwerk_Nederland/selectie/Result;
+			attribute<bool> Waterwingebied                                   (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  NatuurnetwerkNederland
+					, Waterwingebied
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Stiltegebieden             (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result;
+			attribute<bool> Beschermingsgebied         (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/beschermingsgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Stiltegebieden
+					, Beschermingsgebied
+				);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	container Glastuinbouw       :=woongebied_en_werk_bedrijventerrein;
+	
+	// container Verblijfsrecreatie
+	// {
+		// container Hard
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
+		// }
+		
+		// container Middel
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
+		// }
+		
+		// container Zacht
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
+		// }
+	// }
+	
+	// container Glastuinbouw
+	// {
+		// container Hard
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
+		// }
+		
+		// container Middel
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
+		// }
+		
+		// container Zacht
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
+		// }
+	// }
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> uitzondering_glastuinbouw_i_r_t_zonne_energie_in_het_landelijk_gebied (domain) := 
+					Src/NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P/Laag_namen_selectie/uitzondering_glastuinbouw_i_r_t_zonne_energie_in_het_landelijk_gebied/selectie/Result;
+			attribute<bool> uitzonderingsgebieden_agrarische_gronden (domain) :=
+					Src/NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P/Laag_namen_selectie/uitzonderingsgebieden_agrarische_gronden/selectie/Result;
+		
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  uitzondering_glastuinbouw_i_r_t_zonne_energie_in_het_landelijk_gebied
+					, uitzonderingsgebieden_agrarische_gronden
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+}

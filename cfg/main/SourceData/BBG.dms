@@ -1,0 +1,23 @@
+container BBG : using = "classifications"
+{
+	unit<uint32> BBG_Reeks
+	:	StorageName     = "%RestrictiesDataDir%/Grondgebruik/CBS_MutatiebestandBBG1996_2017_v1.gpkg"
+	,	StorageType     = "gdal.vect"
+	,	StorageReadOnly = "True"
+	{
+		attribute<rdc_meter> Geometry (poly);
+		
+		attribute<BBG_K> CBSKlasse_rel_2017 := BBG_K/CBS2010KlasseEK/BBG_K_Nr[value(BG17, BBG_K/CBS2010KlasseEK)];
+	}
+	
+	container Dominant
+	{
+		attribute<BBG_K>   per_10m         (rdc_10m) : StorageName = "=PropValue(Make_per_10m, 'StorageName')", StorageReadOnly = "true";
+		attribute<BBG_K>   per_25m_modus   (rdc_25m) : StorageName = "=PropValue(Make_per_25m_modus, 'StorageName')", StorageReadOnly = "true";
+		attribute<BBG_K>   per_100m_modus (rdc_100m) : StorageName = "=PropValue(Make_per_100m_modus, 'StorageName')", StorageReadOnly = "true";
+
+		attribute<BBG_K>   Make_per_10m          (rdc_10m) := ='BBG_Reeks/CBSKlasse_rel_'+string(ModelParameters/BBG_jaar)+'[poly2grid(BBG_Reeks/Geometry, rdc_10m)]', StorageName = "='%LocalDataProjDir%/BaseData/Grondgebruik/bbg'+string(ModelParameters/BBG_jaar)+'_10m.tif'";
+		attribute<BBG_K>   Make_per_25m_modus    (rdc_25m) := ='MakeDefined(modus(per_10m,  rdc_10m/rdc_25m_rel), 0[BBG_K])', StorageName = "='%LocalDataProjDir%/BaseData/Grondgebruik/bbg'+string(ModelParameters/BBG_jaar)+'_25m_modus.tif'";
+		attribute<BBG_K>   Make_per_100m_modus  (rdc_100m) := ='MakeDefined(modus(per_10m,  rdc_10m/rdc_100m_rel), 0[BBG_K])', StorageName = "='%LocalDataProjDir%/BaseData/Grondgebruik/bbg'+string(ModelParameters/BBG_jaar)+'_100m_modus.tif'";
+	}
+}

@@ -1,0 +1,111 @@
+container Templates : using = "units;classifications;geography"
+{
+	Template Beleid_T
+	{
+		parameter<string> domain_str;
+		unit<ipoint>      domain     := =domain_str;
+		//
+		
+		unit<uint32> Provincie := SourceData/RegioIndelingen/Provincie
+		{
+			attribute<.> Per_domain (domain):= poly2grid(Geometry, domain);
+		}
+		
+		#include<Beleid/OmgRecht.dms>
+		#include<Beleid/Plancapaciteit.dms>
+	}
+	
+	Template Restricties_T
+	{
+		//
+		container SrcSrc;
+		parameter<VariantK> Variant_id;
+		unit<uint8> VariantK;
+		//
+		
+		parameter<string> domain_str := SrcSrc/domain_str;
+		
+		unit<ipoint> domain := =domain_str;
+		unit<uint32> Provincie := SrcSrc/Provincie;
+		
+		container Totaal := 
+			for_each_nedva(
+				Actoren/Sector/name
+				,replace(
+					'max_elem('
+						'EU/@C@,'
+						'AMVB/@C@,'
+						'Bevi/@C@,'
+						+AsItemList('PRV/'+Provincie/name+'/@C@')+','+
+						+AsItemList('PMV/'+Provincie/name+'/@C@')+','+
+						'Overigen/@C@'
+					')',
+					'@C@', Actoren/Sector/ref+'/Combis/Variant'
+					)
+				, rdc_25m
+				, bool
+				,'%LocalDataProjDir%/VariantData/Restricties2024/'+VariantK/name[Variant_id]+'/'+Actoren/Sector/name+'.tif'
+		);
+		
+		#include<Restricties/EU.dms>
+		#include<Restricties/AMVB.dms>
+		#include<Restricties/Structuurvisie.dms>
+		#include<Restricties/Bevi.dms>
+		#include<Restricties/PRV.dms>
+		#include<Restricties/PMV.dms>
+		#include<Restricties/Overigen.dms>
+	}
+	
+	Template Combis_T
+	{
+		//
+		container Src;
+		unit<ipoint> domain;
+		parameter<VariantK> Variant_id;
+		//
+		
+		attribute<bool> Geen                    (domain) := const(false, domain);
+		attribute<bool> ZeerHard                (domain) := Src/ZeerHard/Totaal;
+		attribute<bool> ZeerHardHard            (domain) := Src/Hard/Totaal || ZeerHard;
+		attribute<bool> ZeerHardHardMiddel      (domain) := Src/Middel/Totaal || ZeerHardHard;
+		attribute<bool> ZeerHardHardMiddelZacht (domain) := Src/Zacht/Totaal || ZeerHardHardMiddel;
+		
+		attribute<bool> Variant (domain) := = VariantK/Restricties_ref[Variant_id];
+	}
+	
+	Template Restricties_Provincie_T
+	{
+		//
+		parameter<string> Prov;
+		container SrcSrc;
+		unit<ipoint> domain;
+		//
+		
+		attribute<bool> Provincie (domain) := = 'SourceData/RegioIndelingen/Provincie/per_rdc_25m == SourceData/RegioIndelingen/Provincie/V/'+Prov;
+		
+		container Src := = 'SrcSrc/'+Prov;
+		
+		container Woongebied_en_werk_bedrijventerrein
+		{
+			container Combis := Templates/Combis_T(., domain , Variant_id);
+		}
+		
+		container Verblijfsrecreatie
+		{
+			container Combis := Templates/Combis_T(., domain, Variant_id);
+		}
+		
+		container Woongebied       := Woongebied_en_werk_bedrijventerrein;
+		container Bedrijventerrein := Woongebied_en_werk_bedrijventerrein;
+		
+		container Wind
+		{
+			container Combis := Templates/Combis_T(., domain, Variant_id);
+		}
+		
+		container Zon
+		{
+			container Combis := Templates/Combis_T(., domain, Variant_id);
+		}
+	}
+}

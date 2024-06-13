@@ -1,0 +1,44 @@
+container Provincies
+{
+	unit<uint32> Gelderland := PrivData/Plancapaciteit_2024/Gelderland
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+
+	unit<uint32> Noord_Holland := PrivData/Plancapaciteit_2024/Noord_Holland
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+	
+	unit<uint32> Zuid_Holland := PrivData/Plancapaciteit_2022/Zuid_Holland
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+	
+	unit<uint32> Utrecht := PrivData/Plancapaciteit_2024/Utrecht
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+	
+	unit<uint32> Limburg := PrivData/Plancapaciteit_2024/Limburg
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+	
+	unit<uint32> Overijssel := PrivData/Plancapaciteit_2024/Overijssel
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+	
+	unit<uint32> Zeeland := PrivData/Plancapaciteit_2024/Zeeland
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+}

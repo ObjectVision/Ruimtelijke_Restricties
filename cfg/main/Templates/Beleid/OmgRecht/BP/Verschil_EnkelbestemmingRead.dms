@@ -1,0 +1,40 @@
+container Verschil_EnkelbestemmingRead: Using = "/Classifications/Bestemmingsplannen"
+{
+	attribute<bool> verschil      (domain) := /SourceData/Beleid/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse] <> /SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse];
+	attribute<bool> verschil_null (domain) := MakeDefined(SourceData/Beleid/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse],23[bestemmingKlasse]) <> MakeDefined(SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse],23[bestemmingKlasse]);
+	
+	attribute<bool> verschil_naar_wonen  (domain) := verschil && /SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/AggrWonen_grid=1b;
+	attribute<bool> verschil_naar_werken (domain) := verschil && /SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/AggrWerken_grid=1b;
+	
+	attribute<bool> verschil_van_groen_naar_wonen  (domain) := verschil_naar_wonen  && (/SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/AggrWonen_grid=1b && /SourceData/Beleid/OmgRecht/BP/EnkelbestemmingRead/AggrWonen_grid=0b);
+	attribute<bool> verschil_van_groen_naar_werken (domain) := verschil_naar_werken && (/SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/AggrWerken_grid=1b && /SourceData/Beleid/OmgRecht/BP/EnkelbestemmingRead/AggrWerken_grid=0b);
+	
+	//hoeveel zit al in bestaande modelleerresultaat enkel ter check
+	attribute<bool> Extra_door_BP_wonen  (domain) := verschil_van_groen_naar_wonen  && !/Analysis/Allocatie/Zichtjaren/Y2050/impl/ReadStand_Wonen/Is_Wonen;
+	attribute<bool> Extra_door_BP_werken (domain) := verschil_van_groen_naar_werken && !/Analysis/Allocatie/Zichtjaren/Y2050/impl/ReadStand_Werken/Is_Werken;
+
+	
+	unit<uint32> unit_district := district(Extra_door_BP_wonen);
+	
+	parameter<float32> gridsize := 25[meter];
+	
+	unit<uint32> polydomain := subset(IsDefined(unit_district/Districts) && unit_district/Districts<>0)
+	{
+	   attribute<rdc_meter> point_rdc       := Nr_OrgEntity[rdc_meter];
+	   attribute<rdc_meter> geometry (poly) := points2sequence(pointset/point, pointset/sequence, pointset/ordinal);
+
+	   unit<uint32> pointset := union_unit(.,.,.,.,.)
+	   {
+		   attribute<rdc_meter>    point    := union_data(.
+			  , point_rdc                                         // left top 
+			  , point_rdc + point(gridsize, 0[meter], rdc_meter)        // right top 
+			  , point_rdc + point(gridsize, -gridsize, rdc_meter)       // right bottom 
+			  , point_rdc + point(0[meter], -gridsize, rdc_meter)       // left bottom 
+			  , point_rdc                                         // left top 
+		   );
+		   attribute<..>     sequence := union_data(., id(..), id(..), id(..), id(..), id(..))[uint32];
+		   attribute<uint32> ordinal  := 
+			  union_data(., const(0,..), const(1,..), const(2,..), const(3,..), const(4,..));
+		}
+	}
+}

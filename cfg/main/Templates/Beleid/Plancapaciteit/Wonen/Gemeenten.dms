@@ -1,0 +1,86 @@
+container Gemeenten
+{
+	unit<uint32> Leiden := PrivData/Plancapaciteit/Leiden
+	{
+		attribute<bool> Hard := const(false, .); // allemaal zachte plannen: FASE: 'Initiatief'	22, 'Ontwerp'	17, 'Pre-Verkenning'	6, 'Verkenning'	34;
+		attribute<bool> Zacht := !Hard;
+		// attribute<float32> FractieOplNa2030 := float32(jarenBoven2030) / float32(jarenTotaal);
+		// attribute<int32> Aantal_netto_bij := KOOP + HUUR + SOCIAAL + MARKT + STUDENTEN + ONBEKEND - SLOOP;
+		// attribute<float32> AandeelEengezins := const(float32(0/0), .); // niet beschikbaar in dataset. checken bij prov of beschikbaar
+		// attribute<float32> AandeelMeergezins := const(float32(0/0), .); // niet beschikbaar in dataset. checken bij prov of beschikbaar
+		// attribute<float32> AandeelOnbekend := const(float32(1f), .); // niet beschikbaar in dataset. checken bij prov of beschikbaar
+		
+		// attribute<int32> jaar_laatst := EIND_BOUW == START_BOUW ? EIND_BOUW + 1[int32] : EIND_BOUW;
+		// attribute<int32> jarenTotaal := jaar_laatst - START_BOUW;
+		// attribute<int32> jarenBoven2030 := max_elem(jaar_laatst, 2030[int32]) - max_elem(START_BOUW, 2030[int32]);
+		
+		// attribute<float64> OperimetrischQuotient := (4d * pi() * Shape_Area) / (Shape_Length * Shape_Length); //\https://nl.wikipedia.org/wiki/Isoperimetrisch_quoti%C3%ABnt
+		// attribute<bool>  IsSymbool:= OperimetrischQuotient > 0.98;
+	}
+	
+	unit<uint32> Den_Haag0 := PrivData/Plancapaciteit/Den_Haag;
+	unit<uint32> Den_Haag := subset(Den_Haag0/TypeBouw <> 'Openbare ruimte' && Den_Haag0/TypeBouw <> 'Openbare Ruimte' && Den_Haag0/Tot_wonbw > 0[int32])
+	{
+		attribute<geography/rdc_meter> Geometry (poly) := Den_Haag0/Geometry[Nr_OrgEntity];
+		attribute<bool> Hard  := const(true, .); // bron: gem den haag
+		attribute<bool> Zacht := !Hard;
+		// attribute<float32> FractieOplNa2030 := const(1f,.); // bron: gem den haag
+		// attribute<int32> Aantal_netto_bij := App + Egw + Onb - Sloop;
+		// attribute<float32> AandeelEengezins  := Aantal_netto_bij > 0[int32] ? min_elem(float32(Egw) / float32(add(Egw, App, Onb)), 1f) : 0f/0f;
+		// attribute<float32> AandeelMeergezins := Aantal_netto_bij > 0[int32] ? min_elem(float32(App) / float32(add(Egw, App, Onb)), 1f) : 0f/0f;
+		// attribute<float32> AandeelOnbekend   := Aantal_netto_bij > 0[int32] ? min_elem(float32(Onb) / float32(add(Egw, App, Onb)), 1f) : 0f/0f;
+		
+		// attribute<int32> App := Den_Haag0/App[Nr_OrgEntity];
+		// attribute<int32> Egw := Den_Haag0/Egw[Nr_OrgEntity];
+		// attribute<int32> Onb := Totaal - App - Egw;
+		// attribute<int32> Sloop := Den_Haag0/Sloop_won[Nr_OrgEntity];
+		// attribute<int32> Totaal := Den_Haag0/Tot_wonbw[Nr_OrgEntity]; // dit lijkt bruto te zijn
+		
+		//	@Bas: kan jij de shape_area en shape length berekenen, zodat we onderstaande kunnen afleiden?
+		// attribute<float64> OperimetrischQuotient := (4d * pi() * Shape_Area) / (Shape_Length * Shape_Length); //\https://nl.wikipedia.org/wiki/Isoperimetrisch_quoti%C3%ABnt
+		// attribute<bool>  IsSymbool               := OperimetrischQuotient > 0.98;
+	}
+	
+	unit<uint32> Tilburg := PrivData/Plancapaciteit/Tilburg
+	{
+		attribute<bool> Hard  := IsOnherroepelijk || IsVastgesteld;
+		attribute<bool> Zacht := !Hard;
+		// attribute<float32> FractieOplNa2030 := float32(add(F2030,F2031, F2032)) / float32(add(F2017, F2018,F2019,F2020,F2021,F2022,F2023,F2024,F2025,F2026,F2027,F2028,F2029,F2030,F2031,F2032));
+		// attribute<int32> Aantal_netto_bij := Aantal_won;
+		// attribute<float32> AandeelEengezins  := Aantal_netto_bij > 0[int32] ? min_elem(float32(Grondgebon) / float32(add(Grondgebon, Gestapeld, Onb)), 1f) : 0f/0f;
+		// attribute<float32> AandeelMeergezins := Aantal_netto_bij > 0[int32] ? min_elem(float32(Gestapeld)  / float32(add(Grondgebon, Gestapeld, Onb)), 1f) : 0f/0f;
+		// attribute<float32> AandeelOnbekend   := Aantal_netto_bij > 0[int32] ? min_elem(float32(Onb)        / float32(add(Grondgebon, Gestapeld, Onb)), 1f) : 0f/0f;
+		
+		// attribute<int32> Onb := Aantal_won - Grondgebon - Gestapeld;
+		attribute<bool> IsOnherroepelijk := StatBestPl == 'onherroepelijk/ hard (ONH)';
+		attribute<bool> IsVastgesteld := StatBestPl == 'vastgesteld/ hard (VST)';
+		// attribute<float64> OperimetrischQuotient := (4d * pi() * Shape_Area) / (Shape_Length * Shape_Length); //\https://nl.wikipedia.org/wiki/Isoperimetrisch_quoti%C3%ABnt
+		// attribute<bool>  IsSymbool               := OperimetrischQuotient > 0.98;
+	}
+	
+	unit<uint32> Utrecht := PrivData/Plancapaciteit/Gemeente_Utrecht
+	{
+		attribute<bool> Hard  := (IsVoorbereiding || IsUitvoering) && geplande_o > 2023i;
+		attribute<bool> Zacht := const(false,.);
+		// attribute<float32> FractieOplNa2030 := float32(jarenBoven2030) / float32(jarenTotaal);
+		// attribute<int32> Aantal_netto_bij := Aantal_nie;
+		// attribute<float32> AandeelEengezins := const(float32(0/0), .); // niet beschikbaar in dataset. checken bij prov of beschikbaar
+		// attribute<float32> AandeelMeergezins := const(float32(0/0), .); // niet beschikbaar in dataset. checken bij prov of beschikbaar
+		// attribute<float32> AandeelOnbekend := const(float32(1f), .); // niet beschikbaar in dataset. checken bij prov of beschikbaar
+		
+		// attribute<int32> jaar_laatst := Geplande_o == Geplande_s ? Geplande_o + 1[int32] : Geplande_o;
+		// attribute<int32> jarenTotaal := jaar_laatst - Geplande_s;
+		// attribute<int32> jarenBoven2030 := max_elem(jaar_laatst, 2030[int32]) - max_elem(Geplande_s, 2030[int32]);
+		
+		attribute<bool> IsVoorbereiding := Actuele_Fa == 'Voorbereiding';
+		attribute<bool> IsUitvoering := Actuele_Fa == 'Uitvoering';
+		// attribute<float64> OperimetrischQuotient := (4d * pi() * Shape_Area) / (Shape_Length * Shape_Length); //\https://nl.wikipedia.org/wiki/Isoperimetrisch_quoti%C3%ABnt
+		// attribute<bool>  IsSymbool               := OperimetrischQuotient > 0.98;
+	}
+	
+	unit<uint32> Groningen := PrivData/Plancapaciteit_2022/Gemeente_Groningen
+	{
+		attribute<bool> Hard  := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+}

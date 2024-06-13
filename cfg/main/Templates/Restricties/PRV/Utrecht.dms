@@ -1,0 +1,175 @@
+container Utrecht := Templates/Restricties_Provincie_T('Utrecht', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Waterwingebied                                                           (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			attribute<bool> Beschermingszone_oppervlakte_waterwinning                                (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Beschermingszone_oppervlakte_waterwinning/selectie/Result;
+			attribute<bool> Voorlopige_lijst_UNESCO_Werelderfgoed_Neder_Germaanse_Limes_bufferzone   (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/_Voorlopige_lijst_UNESCO_Werelderfgoed_Neder_Germaanse_Limes_bufferzone_/selectie/Result;
+			attribute<bool> Voorlopige_lijst_UNESCO_Werelderfgoed_Hollandse_Waterlinies              (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/_Voorlopige_lijst_UNESCO_Werelderfgoed_Hollandse_Waterlinies/selectie/Result;
+			attribute<bool> Natuurnetwerk_Nederland                                                  (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Natuurnetwerk_Nederland/selectie/Result;
+			attribute<bool> Beperkingengebied_bouwwerken_provinciale_wegen                           (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Beperkingengebied_bouwwerken_provinciale_wegen/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Waterwingebied
+					, Beschermingszone_oppervlakte_waterwinning
+					, Voorlopige_lijst_UNESCO_Werelderfgoed_Neder_Germaanse_Limes_bufferzone
+					, Voorlopige_lijst_UNESCO_Werelderfgoed_Hollandse_Waterlinies
+					, Natuurnetwerk_Nederland
+					, Beperkingengebied_bouwwerken_provinciale_wegen
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Groene_contour                         (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Groene_contour/selectie/Result;
+			attribute<bool> Vrijwaringszone_regionale_waterkering  (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Vrijwaringszone_regionale_waterkering/selectie/Result;
+			attribute<bool> Waterbergingsgebied                    (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Waterbergingsgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Groene_contour
+					, Vrijwaringszone_regionale_waterkering
+					, Waterbergingsgebied
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Stille_kern                                 (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Stille_kern/selectie/Result;
+			attribute<bool> Stiltegebied                                (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Stiltegebied/selectie/Result;
+			attribute<bool> Bufferzone_stiltegebied                     (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Bufferzone_stiltegebied/selectie/Result;
+			attribute<bool> Aardkundige_waarden                         (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Aardkundige_waarden/selectie/Result;
+			attribute<bool> Ganzenrustgebied                            (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
+			attribute<bool> Weidevogelkerngebied                        (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Weidevogelkerngebied/selectie/Result;
+			attribute<bool> NNN_Agrarisch                               (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/NNN_Agrarisch/selectie/Result;
+			attribute<bool> Kwetsbare_strategische_grondwatervoorraad   (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Kwetsbare_strategische_grondwatervoorraad/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied                (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Stille_kern
+					, Stiltegebied
+					, Bufferzone_stiltegebied
+					, Aardkundige_waarden
+					, Ganzenrustgebied
+					, Weidevogelkerngebied
+					, NNN_Agrarisch
+					, Kwetsbare_strategische_grondwatervoorraad
+					, Grondwaterbeschermingsgebied
+				);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	
+	// container Verblijfsrecreatie
+	// {
+		// container Hard
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
+		// }
+		
+		// container Middel
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
+		// }
+		
+		// container Zacht
+		// {
+			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
+		// }
+	// }
+	
+	container Glastuinbouw
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Glastuinbouw_niet_toegestaan (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Glastuinbouw_niet_toegestaan/selectie/Result;
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Glastuinbouw_niet_toegestaan
+					, woongebied_en_werk_bedrijventerrein/Hard/Totaal
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
+		}
+	}
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Ganzenrustgebied        (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
+			attribute<bool> Weidevogelkerngebied    (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Weidevogelkerngebied/selectie/Result;
+			attribute<bool> NNN_Agrarisch           (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/NNN_Agrarisch/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Ganzenrustgebied
+					, Weidevogelkerngebied
+					, NNN_Agrarisch
+				);
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := Wind/Zacht/Totaal;
+		}
+	}
+}

@@ -1,0 +1,16 @@
+container Wind_restricties : using = "geography"
+{
+	unit<uint32> bestaande_turbines := SourceData/Energie/Wind/Veldsituatie_2024/Punten
+	{
+		attribute<rdc_meter> geometry_buffer (poly) := bg_buffer_point(geometry, 4d * diameter, const(16b,.));
+		attribute<bool>      IsNietToegestaan_basis (rdc_25m)   := IsDefined(poly2grid(geometry_buffer, rdc_25m));
+	}
+	
+	unit<uint32> windturbines_BP := SourceData/Beleid/OmgRecht/Bestemmingsplan/Gebiedsaanduiding/windturbine_vrijwaringszone
+	{
+		attribute<rdc_meter> geometry               := geometry_rd_centroid;
+		parameter<float64>   diameter               := 120d;
+		attribute<rdc_meter> geometry_buffer (poly) := bg_buffer_point(geometry, 4d * diameter, const(32b,.));
+		attribute<bool>      IsNietToegestaan_basis (rdc_25m)   := IsDefined(poly2grid(geometry_buffer, rdc_25m));
+	}		
+}

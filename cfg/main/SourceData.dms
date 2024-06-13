@@ -1,0 +1,65 @@
+container SourceData : using = "geography;units"
+{
+	#include<BBG.dms>
+	#include<Energie.dms>
+	
+	container RegioIndelingen
+	{
+		parameter<string> Regio_jaar          := ModelParameters/RegioIndelingen_jaar;
+	
+		container Read_Gebiedsindelingen_gpkg
+		:	StorageName     = "='%RestrictiesDataDir%/RegioIndelingen/cbsgebiedsindelingen'+Regio_jaar+'.gpkg'"
+		, 	StorageType     = "gdal.vect"
+		,	StorageReadOnly = "True"
+		,	SyncMode        = "alltables"
+		,	DialogData      = "rdc_meter"
+		,	URL             = "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/cbs-gebiedsindelingen";
+		
+		unit<uint32>  Provincie := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd
+		{
+			attribute<rdc_meter> geometry (poly)         := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd/geometry;
+			attribute<string>    statcode                := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd/statcode;
+			attribute<string>    statnaam                := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd/statnaam;
+			attribute<string>    name                    := AsItemName(statnaam);
+			attribute<string>    label                   := statnaam;
+			attribute<.>         per_rdc_25m   (rdc_25m) := poly2grid(Geometry, rdc_25m);
+			attribute<.>         per_rdc_100m (rdc_100m) := poly2grid(Geometry, rdc_100m);
+
+			container V := for_each_nedv(name, 'value('+string(id(.))+', ..)', void, .);
+		}
+		
+		unit<uint32> Bevolkingskern_2011
+		:	StorageName     = "%RestrictiesDataDir%/RegioIndelingen/bevolkingskern_2011.shp"
+		,	StorageType     = "gdal.vect"
+		,	StorageReadOnly = "True"
+		{
+			attribute<rdc_meter>    geometry (poly);
+			attribute<.>            per_rdc_25m      (rdc_25m) := poly2grid(geometry, rdc_25m);
+			attribute<.>            per_rdc_100m    (rdc_100m) := poly2grid(geometry, rdc_100m);
+			attribute<bool>         Is_bbg_rdc_25m   (rdc_25m) := IsDefined(per_rdc_25m);
+			attribute<bool>         Is_bbg_rdc_100m (rdc_100m) := IsDefined(per_rdc_100m);
+		}
+	}
+	
+	container Beleid := Templates/Beleid_T('rdc_25m');
+	
+	container Bodem
+	{
+		unit<uint32> Buisleiding 
+			:  StorageName     = "%RestrictiesDataDir%/Bodem/buisleidingen/bl_buisleidingreferentie/bl_buisleidingreferentieLine.gpkg"
+			,  StorageType     = "gdal.vect"
+			,  StorageReadOnly = "True"
+			,  Source          = "Ministerie IenW - register externe veiligheid 2023"
+			,  url             = "https://www.atlasleefomgeving.nl/kaarten" //referenties buisleiding
+		{
+			attribute<rdc_meter> geometry (arc);
+			unit<uint32> segments   := arc2segm(geometry);
+			unit<uint32> dyna_point := dyna_point_with_ends(segments/point, segments/nextpoint, 12.5f)    //hier doen we 12.5 omdat: use half the grid size of the grid domain(or less) [het grid domain is 25x25, dus helft is 12.5] if you want all cells passed through by the arc in the grid representation
+			{
+				attribute<rdc_25m> rdc_25m_rel := point[rdc_25m];
+			}
+			attribute<bool> Is_buisleiding_vergrid (rdc_25m) := has_any(dyna_point/rdc_25m_rel); //hier is de vergridding
+		}
+	}
+	
+}

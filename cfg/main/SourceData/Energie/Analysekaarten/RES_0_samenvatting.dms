@@ -1,0 +1,113 @@
+container RES_0_samenvatting // wat doet deze container? Kan dit niet weg?
+{
+	unit<uint32> Kaartlaag: NrOfRows = 2
+	{
+		attribute<string> naam:
+		[
+			'merge_sum_pot_we_mun_nat_ana_v3',
+			'merge_sum_pot_we_res_nat_ana_v3'
+		];
+		
+		attribute<string> sqlstring := 'SELECT * FROM '+naam;
+	}
+	
+	container Import := for_each_nxs(kaartlaag/naam, uint32, kaartlaag/sqlstring)
+	,	StorageName     = "%RestrictiesDataDir%/Energie/RES/Analysekaarten/0_samenvatting/RES_20201130_0_samenvatting.gdb"
+	,	StorageReadOnly = "True"
+	,	StorageReadOnly = "True"
+	,	DialogData      = "geometry_rd"
+	,	DialogType      = "Map"
+	,	Source          = "Cloud Generation Energy"
+	,	url             = "%RestrictiesDataDir%/Energie/RES/Analysekaarten/20201218 Verantwoording Analysekaarten NPRES versie 3.0.pdf"
+	,	SyncMode        = "Attr"
+	,	StorageType     = "gdal.vect"
+	{
+		container gemeente   := castToValuesUnit(merge_sum_pot_we_mun_nat_ana_v3);
+		container res_regio  := castToValuesUnit(merge_sum_pot_we_res_nat_ana_v3);
+	}
+	
+	template castToValuesUnit
+	{
+		// begin case parameters
+		unit<uint32> org_domain; // de verwijzing is nodig omdat anders de properties DialogType en DialogData wegvallen
+		// end case parameters
+		
+		unit<uint32> domain: = org_domain
+		,	DialogType = "map"
+		,	DialogData = "geometry_rd";
+		
+		attribute<rdc_meter> geometry_rd (poly, domain):= domain/geometry[rdc_meter];
+		
+		attribute<string>    Res_regio         (domain):= domain/Res_regio;					//Res-regio
+		attribute<string>    Rescode           (domain):= domain/Rescode;					//Rescode
+		attribute<string>    Gemnaam           (domain):= domain/Gemnaam;					//Gemeentenaam (2019)
+		attribute<string>    Gm_code           (domain):= domain/Gm_code;					//Gemeentecode
+		attribute<string>    Prv_naam          (domain):= domain/Prv_naam;					//Provincie
+		
+		attribute<TJoule>    e_vw_17_tj_TJ     (domain):= domain/e_vw_17_tj[TJoule];		//  Elektriciteitsvraag woningen per jaar in TJ (2017)
+		attribute<TJoule>    e_vu_17_tj_TJ     (domain):= domain/e_vu_17_tj[TJoule];		//  Elektriciteitsvraag utiliteit per jaar in TJ (2017)
+		attribute<TJoule>    e_vw_30_tj_TJ     (domain):= domain/e_vw_30_tj[TJoule];		//  Elektriciteitsvraag woningen per jaar in TJ (2030)
+		attribute<TJoule>    e_vu_30_tj_TJ     (domain):= domain/e_vu_30_tj[TJoule];		//  Elektriciteitsvraag utiliteit per jaar in TJ (2030)
+		//begin relevante velden?
+		attribute<TJoule>    e_ha_19_tj_TJ     (domain):= domain/e_ha_19_tj[TJoule];		//* Elektriciteit huidig opgesteld vermogen per jaar in TJ (zonne-energie (2017) en windenergie (2018))
+		attribute<TJoule>    e_pa_19_tj_TJ     (domain):= domain/e_pa_19_tj[TJoule];		//* Elektriciteit gepland vermogen zonne-energie per jaar in TJ ((beschikt SDE, 2017) en windenergie (pijplijn, 2018))
+		attribute<TJoule>    e_pot_w_tj_TJ     (domain):= domain/e_pot_w_tj[TJoule];		//  Elektriciteit theoretisch potentieel windenergie per jaar in TJ
+		attribute<TJoule>    e_pot_z_tj_TJ     (domain):= domain/e_pot_z_tj[TJoule];		//  Elektriciteit theoretisch potentieel zonne-energie kansrijk per jaar in TJ
+		//eind relevante velden?
+		attribute<TJoule>    w_ww_17_tj_TJ     (domain):= domain/w_ww_17_tj[TJoule];		//**Warmtevraag woningen per jaar in TJ (2017)
+		attribute<TJoule>    w_wu_17_tj_TJ     (domain):= domain/w_wu_17_tj[TJoule];		//**Warmtevraag woningen per jaar in TJ (2017)
+		attribute<TJoule>    w_vw_30_tj_TJ     (domain):= domain/w_vw_30_tj[TJoule];		//  Warmtevraag woningen per jaar in TJ (2030)
+		attribute<TJoule>    w_vu_30_tj_TJ     (domain):= domain/w_vu_30_tj[TJoule];		//  Warmtevraag utiliteit per jaar in TJ (2030)
+		attribute<TJoule>    w_ha_20_tj_TJ     (domain):= domain/w_ha_20_tj[TJoule];		//* Warmte huidig opgesteld vermogen per jaar in TJ (Geothermie (2018) en overige hernieuwbare bronnen (2017))
+		attribute<TJoule>    w_htpot_tj_TJ     (domain):= domain/w_htpot_tj[TJoule];		//  Warmte hoge temperatuur potentieel per jaar in TJ (diepe geothermie en biomassa)
+		attribute<TJoule>    w_ltpot_tj_TJ     (domain):= domain/w_ltpot_tj[TJoule];		//  Warmte lage temperatuur potentieel per jaar in TJ (thermische energie uit oppervlaktewater, ondiepe geothermie, thermische energie uit afvalwater (effluent, rioolgemalen en rioolleidingen))
+		attribute<TJoule>    bg_pot_tj_TJ      (domain):= domain/bg_pot_tj[TJoule];			//  Potentieel aan biogas in TJ
+	}
+	
+	container Per_kaartlaag := for_each_ne(kaartlaag/naam, 'grid_NL(import/'+kaartlaag/naam+','+Quote(kaartlaag/naam)+')')
+	{
+		parameter<String> GenerateAll := 'Ready', ExplicitSuppliers = "=AsList(kaartlaag/naam+'/MakeResult', ';')";
+	}
+	
+	Template grid_NL
+	{
+		//
+		unit<uint32> featureset;
+		parameter<string> Naam;
+		//
+		
+		attribute<rdc_mm_i32> geometry_i32(poly, featureset) := featureset/geometry[ rdc_mm_i32 ];
+		
+		unit<uint32> intersect     := overlay_polygon(grid_squares/geometry_i32, geometry_i32);
+		attribute<bool> MakeResult (rdc_100m) := IsDefined(invert(intersect/first_rel))[grid_squares/domain/per_rdc_100m], StorageName = "='%LocalDataProjDir%/SL/'+Naam+'_NL.tif'";
+		attribute<bool> ReadResult (rdc_100m): StorageName = "='%LocalDataProjDir%/SL/'+Naam+'_NL.tif'", StorageReadOnly = "True";
+		attribute<bool> Result1    (rdc_100m) := IsDefined(poly2grid(featureset/geometry[rdc_meter], rdc_100m));
+	}
+	
+	container grid_squares
+	{
+		unit<uint32> domain := subset(geography/RegioIndelingen/NL/IsNederland), DialogType = "Map", DialogData = "per_rdc_100m"
+		{
+			attribute<rdc_100m> rdc_100m_rel := nr_OrgEntity;
+			attribute<uint32> NL :=const(1,domain);
+			attribute<.> per_rdc_100m (rdc_100m) := invert(rdc_100m_rel);
+			attribute<rdc_meter> UL := value(rdc_100m_rel, rdc_meter);
+			attribute<rdc_meter> LR := value(rdc_100m_rel +point(1s,1s,domain_grid), rdc_meter);
+		}
+		
+		unit<uint32> sq_point := range(uint32, 0, 5);
+		unit<uint32> points := combine(sq_point, domain)
+		{
+			attribute<rdc_meter> all := union_data(.
+				,	point(PointRow(domain/UL), PointCol(domain/UL), rdc_meter)
+				,	point(PointRow(domain/UL), PointCol(domain/LR), rdc_meter)
+				,	point(PointRow(domain/LR), PointCol(domain/LR), rdc_meter)
+				,	point(PointRow(domain/LR), PointCol(domain/UL), rdc_meter)
+				,	point(PointRow(domain/UL), PointCol(domain/UL), rdc_meter)
+			);
+		}
+		
+		attribute<geography/rdc_meter>  geometry (poly, domain)     := points2sequence(points/all, points/second_rel, points/first_rel);
+		attribute<geography/rdc_mm_i32> geometry_i32 (poly, domain) := geometry[rdc_mm_i32];
+	}
+}

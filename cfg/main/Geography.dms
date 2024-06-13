@@ -1,0 +1,57 @@
+container Geography: Using = "Units"
+{
+	#include<ngr_layer.dms>
+	unit<fpoint> rdc_meter_base : DialogData = "ngr_layer", SpatialReference = "EPSG:28992";
+	unit<fpoint> rdc_meter      := range(rdc_meter_base, point_yx(y_min, x_min), point_yx(y_max, x_max));
+	
+	unit<uint32> Gridsizes : nrofrows = 3
+	{
+		attribute<string>  size_str : ['10', '25', '100'];
+		attribute<Meter>   size     := size_str[Meter];
+		attribute<string>  name     := 'size_'+string(size)+'m';
+	}
+	
+	unit<ipoint> rdc_10m   := perGridsize/size_10m/domain;
+	unit<ipoint> rdc_25m   := perGridsize/size_25m/domain;
+	unit<ipoint> rdc_100m  := perGridsize/size_100m/domain;
+
+	parameter<Meter> x_min := 0[Meter];
+	parameter<Meter> x_max := 280000[Meter];
+	parameter<Meter> y_min := 300000[Meter];
+	parameter<Meter> y_max := 625000[Meter];
+	
+	container perGridsize :=
+		for_each_ne(
+			Gridsizes/name
+			, 'Create_GridDomain_T('+string(Gridsizes/size)+'[Meter])'
+		);
+	
+	Template Create_GridDomain_T
+	{
+		parameter<Meter> gridsize;
+		parameter<int32> nr_cols := int32((x_max - x_min) / gridsize);
+		parameter<int32> nr_rows := int32((y_max - y_min) / gridsize);
+		
+		unit<ipoint> domain :=
+			range(
+				 gridset(
+					 rdc_meter
+					,point_xy(gridsize, -gridsize, rdc_meter)
+					,point_xy(x_min, y_max, rdc_meter)
+					,ipoint
+				)
+				,point_xy(0i, 0i)
+				,point_xy(nr_cols, nr_rows)
+			),	DialogData = "rdc_meter"
+		{
+			parameter<Meter>                gridsize        := ../gridsize;
+			parameter<int32>                nr_cols         := ../nr_cols;
+			attribute<rdc_meter>            point           := mapping(., rdc_meter) + point(-0.5f * gridsize, 0.5f * gridsize, rdc_meter);
+			unit<uint32>                    id_key          := range(uint32, 0, #domain);
+			attribute<uint32>               id_rel          := value(uint32(pointrow(id(.))) * uint32(nr_cols) + uint32(pointcol(id(.))), id_key);
+			
+			attribute<rdc_25m>              rdc_25m_rel     := mapping(., rdc_25m);
+			attribute<rdc_100m>             rdc_100m_rel    := mapping(., rdc_100m);
+		}
+	}
+}	

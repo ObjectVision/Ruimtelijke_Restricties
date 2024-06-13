@@ -1,0 +1,406 @@
+container Energie
+{ 
+	#include<hoogspanning.dms> //hoogspanningsleidingen
+	
+	container RES
+	{
+		#include<RES10.dms>
+		
+		container RES10_concept
+		{
+			#include<zoekgebieden.dms>  //bestuurlijk
+			#include<analysekaarten.dms>//technisch
+		}
+	}
+	
+	container Zon
+	{
+		unit<uint32> Zonnevelden_polygonen := SourceData/Grondgebruik/BRT/IsZonnepark
+		{
+			// attribute<rdc_meter> geometry (poly) := SourceData/Grondgebruik/BRT/FunctioneelGebied/MaakLosseCat/terrein_vlakken_zonnepark/combined_vlak/Geometry;
+			attribute<meter2>    oppervlak := area(geometry, meter2);
+			
+			//tbv vulling missing values
+			attribute<MW> Vermogen_obv_kengetal := oppervlak[ha] * Zonnevelden_polygonen_met_vermogen/Vermogen_ha_veld;
+			
+			attribute<uint32> veldsituatie_rel    (Veldsituatie_2020/Punten) := point_in_polygon(Veldsituatie_2020/Punten/geometry, geometry);
+			attribute<uint32> KTPlancapaciteit_rel (KTPlancapaciteit/Punten) := point_in_polygon(KTPlancapaciteit/Punten/geometry, geometry);
+			
+			attribute<MW> Vermogen_org := Veldsituatie_2020/Punten/vermogen[invert(veldsituatie_rel)];
+			attribute<MW> Vermogen_KT := KTPlancapaciteit/Punten/vermogen[invert(KTPlancapaciteit_rel)];
+			attribute<MW> Vermogen := (IsDefined(Vermogen_org) || IsDefined(Vermogen_KT)) ? Vermogen_org : Vermogen_obv_kengetal;
+			
+			attribute<.> per_AllocDomain  (AllocDomain) := poly2grid(geometry, AllocDomain);
+			attribute<.> per_AdminDomain  (AdminDomain) := poly2grid(geometry, AdminDomain);
+			
+			unit<ipoint> AdminDomain := /AdminDomain
+			{
+				attribute<MW>     VermogenProject    := ../Vermogen[../per_AdminDomain];
+				attribute<uint32> CountCellenProject := uint32(pcount(per_AdminDomain)[../per_AdminDomain]);
+				attribute<MW>     Vermogen           := MakeDefined(VermogenProject / CountCellenProject[float32], 0[MW]);
+			}
+			
+			unit<ipoint> AllocDomain := /AllocDomain
+			{
+				attribute<MW>     VermogenProject    := ../Vermogen[../per_AllocDomain];
+				attribute<uint32> CountCellenProject := pcount(per_AllocDomain)[../per_AllocDomain];
+				attribute<MW>     Vermogen           := MakeDefined( VermogenProject / CountCellenProject[float32], 0[MW]);
+			}
+		}
+		
+		unit<uint32> Zonnevelden_polygonen_met_vermogen := subset(IsDefined(Zonnevelden_polygonen/Vermogen_org))
+		{
+			//Bereken voor veldsituatie kengetal MW op basis van bekende vermogen en oppervlaktes tbv null-waarden
+			
+			attribute<MW>        Vermogen_org  := Zonnevelden_polygonen/Vermogen_org[nr_OrgEntity];
+			attribute<meter2>    Oppervlak     := Zonnevelden_polygonen/oppervlak[nr_OrgEntity];
+			
+			parameter<MW>        SomVermogen_org  := sum(Vermogen_org);
+			parameter<meter2>    SomOppervlak     := sum(Oppervlak);
+			
+			//0.931972  --> in lijn met range 0.8-1.2 uit literatuur
+			///ModelParameters/Zon/Vermogen_ha_laag /ModelParameters/Zon/Vermogen_ha_hoog
+			parameter<MW_ha>     Vermogen_ha_veld  := div(SomVermogen_org,SomOppervlak[ha]);
+		}
+
+		parameter<bool> GeoDMSVersionCheck := GeoDMSVersion() >= 8.044d;
+		
+		container Veldsituatie_2020
+		{
+			Unit<uint32> Punten:
+				StorageName     = "%RestrictiesDataDir%/Energie/Zon/Veldsituatie_2020/ROM3D_PBL_SDE_Zon_210430.csv"
+			,	StorageReadOnly = "True"
+			,	DialogData      = "geometry"
+			,	Source          = "De data in dit workbook is bestemd voor PBL De data is beschikbaar gesteld door ROM3D aan Martijn Spoon"
+									"ROM3D is eigenaar van de data Deze dataset vormt de basis voor de data weergegeven op www.zonopkaart.nl"
+									"De data bevat SDE+ ondersteunde zon projecten (drijvende en veld opstellingen), groter dan 1 MW"
+									"De data is voor het laatst bijgewerkt op 30 april 2021 met de SDE+ projecten in beheer, peildatum 2 april 2021, gepubliceerd door RVO."
+									"De zonneparken zijn zo goed als mogelijk gelokaliseerd op basis van luchtfotos en planvormingsdocumenten."
+									"In geval deze niet gevonden zijn is een locatie gekozen in of nabij de plaats opgegeven voor de SDE+ subsidie"
+			,	DialogType      = "Map"
+			,	StorageType     = "gdal.vect"
+			,	SqlString       = "SELECT * FROM ROM3D_PBL_SDE_Zon_210430 WHERE gerealiseerd ='Ja'"
+			{
+				attribute<float32> X_coord_float32   :=X_coord[float32];
+				attribute<float32> Y_coord_float32   :=Y_coord[float32];
+					
+				attribute<rdc_meter> Geometry   := point(Y_coord_float32, X_coord_float32, rdc_meter)
+				{
+					parameter<uint32>  SymbolColor     := rgb(255,0,0),DialogType = "SymbolColor";
+					parameter<int16>   SymbolIndex     := 169[int16],  DialogType = "SymbolIndex";
+					parameter<float32> SymbolWorldSize := 0.02f,       DialogType = "SymbolWorldSize";
+				}
+				
+				attribute<MW> Vermogen_8043   :=Vermogen__MW_[MW];
+				attribute<MW> Vermogen_8044   :=Vermogen_MW_[MW];
+				attribute<MW> Vermogen        := =GeoDMSVersionCheck ? 'Vermogen_8044' : 'Vermogen_8043';
+			}
+		}
+		
+		container KTPlancapaciteit//wordt voor 2030 opgeleverd, moet aangeroepen worden in /Analysis/Allocatie/StartState_metBAGnieuwbouw
+		{
+			Unit<uint32> Punten:
+				StorageName     = "%RestrictiesDataDir%/Energie/Zon/Veldsituatie_2020/ROM3D_PBL_SDE_Zon_210430.csv"
+			,	StorageReadOnly = "True"
+			,	DialogData      = "geometry"
+			,	DialogType      = "Map"
+			,	StorageType     = "gdal.vect"
+			,	SqlString       = "SELECT * FROM ROM3D_PBL_SDE_Zon_210430 WHERE gerealiseerd ='Nee'"
+			{
+				attribute<float32> X_coord_float32   :=X_coord[float32];
+				attribute<float32> Y_coord_float32   :=Y_coord[float32];
+					
+				attribute<rdc_meter> Geometry   := point(Y_coord_float32, X_coord_float32, rdc_meter)
+				{
+					parameter<uint32>  SymbolColor     := rgb(255,0,0),DialogType = "SymbolColor";
+					parameter<int16>   SymbolIndex     := 169[int16],  DialogType = "SymbolIndex";
+					parameter<float32> SymbolWorldSize := 0.02f,       DialogType = "SymbolWorldSize";
+				}
+				
+				attribute<MW> Vermogen_8043   :=Vermogen__MW_[MW];
+				attribute<MW> Vermogen_8044   :=Vermogen_MW_[MW];
+				attribute<MW> Vermogen        := =GeoDMSVersionCheck ? 'Vermogen_8044' : 'Vermogen_8043';
+			
+			}
+			
+			Unit<uint32> Vlakken:=subset(IsDefined(Zonnevelden_polygonen/Vermogen_KT))
+			{
+				attribute<rdc_meter> geometry (poly) := Zonnevelden_polygonen/Geometry[nr_OrgEntity];
+			}
+		}
+	}
+	
+	container Wind
+	{
+		container Veldsituatie_2024
+		{
+			Unit<uint32> Punten
+			:	StorageName     = "%RestrictiesDataDir%/Energie/Wind/2024/XYWindstat_from_pro_sanering_vrijwaringszone_BP.shp"
+			,	StorageReadOnly = "True"
+			,	Source          = "Windstats windturbines met veldsituatie van 2024 met gedeactiveerde turbines in status 1 in kolom IsGesloopt"
+			,	StorageType     = "gdal.vect"
+			, 	DialogData      = "rdc_meter"
+			,	SyncMode        = "Attr"
+			// RDx > 0 --> windpark Borselle I, II, II en IV vallen weg
+			// RDy < 625000 --> windpark Gemini vallen weg
+			// RDx > 65000 AND RDx < 93000 AND RDy > 485000 AND RDy < 520000 -- > windpark Egmond aan zee, Prinses Amalia en Luchterduinen
+			// ArcGIS Select by attributes sanering21=1 AND SDvoor2010 --> sanoud =1. sanering=1 op basis van select by location windturbines_20211015_WindstatsNL_sanering_vlak.gdb def query sanering=1.
+			// SDvoor2010 is StartDatum voor 2010. aannaame vervangingstijd 20 jaar, eerste modelleerjaar 2030 dus deze zijn dan niet van belang
+			// InPC10874: 1--> valt in harde plancap Beleid2024/Plancapaciteit/Wonen/NL/Per_HardheidXDomainK/Hard/AdminDomain/IsHardheidK PD1074. ArcGIS 10.8.1 footprint_in_niet_hard --> raster2vector. Select by location veld bijmaken
+			// merge met /SourceData/Beleid2024/OmgRecht/Bestemmingsplan/Gebiedsaanduiding/windturbine_vrijwaringszone (zet sommige velden uit) PD10877 in ArcGIS 10.8.1 rotor=120 mtr, ashoogte=120mtr, vermogen=4000k
+			,	SqlString       = "SELECT * FROM XYWindstat_from_pro_sanering_vrijwaringszone_BP WHERE (InPC10874=0) AND (sanoud2010=0) AND (IsGesloopt <>1 AND RDx > 0 AND RDy < 625000 AND NOT (RDx > 65000 AND RDx < 93000 AND RDy > 485000 AND RDy < 520000))"
+
+			{
+				attribute<rdc_meter>   geometry;
+				attribute<uint32>      jaartal_ingebruikname := left(Startdatum,4)[uint32];
+				attribute<AdminDomain> AdminDomain_rel       := geometry[AdminDomain];
+				
+				attribute<bool> footprint               (AdminDomain) := IsDefined(invert(AdminDomain_rel));
+				attribute<bool> footprint_in_niet_hard  (AdminDomain) := !Beleid2024/Plancapaciteit/Wonen/NL/Per_HardheidXDomainK/Hard/AdminDomain/IsHardheidK ? footprint : false;
+			}
+
+			container Punten_Buffer := Templates/PointBuffer(Punten, 50f);
+		
+			unit<ipoint> AdminDomain := /AdminDomain
+			{
+				attribute<Yr>          jaartal_ingebruikname := modus(punten/jaartal_ingebruikname, punten/AdminDomain_rel)[Yr];
+				attribute<MW>          Vermogen_enkelecellen := sum(convert(punten/Vermogen[kW],MW), punten/AdminDomain_rel) > 0[MW] ? sum(convert(punten/Vermogen[kW],MW), punten/AdminDomain_rel) : (0/0)[MW]; 
+			}
+
+		}
+		
+		container Veldsituatie_2022
+		{
+			Unit<uint32> Punten
+			:	StorageName     = "%RestrictiesDataDir%/Energie/Wind/rivm_20220101_windturbines_2021_vermogen/rivm_20220101_windturbines_2021_vermogen.shp"
+			,	StorageReadOnly = "True"
+			,	Source          = "TODO Jip beschrijven van de Bron"
+			,	StorageType     = "gdal.vect"
+			, 	DialogData      = "rdc_meter"
+			{
+			}
+		}
+		
+		container Veldsituatie_2021
+		{
+			Unit<uint32> Punten:
+				StorageName     = "%RestrictiesDataDir%/WindPotentie/Veldsituatie_2021/windturbines_20211015_WindstatsNL_sanering.gdb"
+			,	StorageReadOnly = "True"
+			,	Source          = "Y:\Project\M500567_Gesprekstools\M500567_RuimteScanner\Brondata\Windstats\Veldsituatie_2021"
+								  "Bas van Bemmel mei 2019 saneringsveld toegevoegd op basis van  Monitor Wind op land 2017 RVO"
+								  "Bas heeft saneringsveld uit 2018 hier ruimtelijk aangekopppeld met een marge van 1 meter" 
+			,	DialogData      = "geometry"
+			,	DialogType      = "Map"
+			,	StorageType     = "gdal.vect"
+			,	SyncMode        = "Attr"
+			,	SqlString  = "SELECT * FROM windturbines_20211015_WindstatsNL_sanering WHERE sanering =0"
+			{
+				attribute<rdc_meter>   geometry;
+				attribute<string>      name := Windpark;
+				attribute<Projecten>   Projecten_rel := rjoin(name, Projecten/name, id(Projecten));
+				
+				attribute<uint32>      jaartal_ingebruikname := left(Startdatum,4)[uint32];
+				
+				attribute<AdminDomain> AdminDomain_rel := geometry[AdminDomain];
+			}
+			
+			Unit<uint32> PuntenRecentExlZee:=subset(Punten/jaartal_ingebruikname > 2019 && (Punten/Windpark<>'Fryslan' && Punten/Windpark<>'Borssele I' && Punten/Windpark<>'Borssele II' && Punten/Windpark<>'Borssele III' && Punten/Windpark<>'Borssele IV' && Punten/Windpark<>'Borssele V'))
+			{
+				attribute<rdc_meter> geometry := Punten/geometry[nr_OrgEntity];
+				attribute<uint32>    jaartal_ingebruikname := Punten/jaartal_ingebruikname[nr_OrgEntity];
+				attribute<kW>        VermogenKW := Punten/Vermogen[nr_OrgEntity][kW];
+				attribute<MW>        VermogenMW := VermogenKW[MW];
+				attribute<meter>     ashoogte := Punten/ashoogte[nr_OrgEntity][meter];
+				attribute<meter>     Diameter := Punten/Diameter[nr_OrgEntity][meter];
+			}
+			
+			parameter<MW>    VermogenMW :=mean(PuntenRecentExlZee/VermogenMW);
+			parameter<meter> ashoogte   :=mean(PuntenRecentExlZee/ashoogte);
+			parameter<meter> Diameter   :=mean(PuntenRecentExlZee/Diameter);
+			
+			container Punten_Buffer := Templates/PointBuffer(Punten, 50f);
+			
+			// Unit<uint32> Vlakken:
+				// StorageName     = "%RestrictiesDataDir%/WindPotentie/Veldsituatie_2021/windturbines_20211015_WindstatsNL_sanering_vlak.gdb"
+			// ,	StorageReadOnly = "True"
+			// ,	Source          = "Table to ellipse op rotordiameter in ArcGIS 10.6.1, azimuth 45 graden, majorx: 12* rotor, minorx: 8 * rotor"
+								  // "conversie van lijn naar polygon in QGIS 3.22.3"
+								  // "Y:\Project\M500567_Gesprekstools\M500567_RuimteScanner\Brondata\Windstats\Veldsituatie_2021"
+			// ,	StorageType     = "gdal.vect"
+			// ,	SyncMode        = "Attr"
+			// ,	SqlString  = "SELECT * FROM windturbines_20211015_WindstatsNL_sanering_vlak WHERE sanering =0"
+			// {
+				// attribute<rdc_meter> geometry (poly);
+				// attribute<string> name := Windpark;
+				// attribute<Projecten> Projecten_rel := rjoin(name, Projecten/name, id(Projecten));
+			// }
+			
+			// unit<uint32> Projecten := unique(Vlakken/name), DialogData = "geometry", DialogType = "Map"
+			// {
+				// attribute<string>    name := values;
+				// attribute<rdc_meter> geometry (polygon) := partitioned_union_polygon(ipolygon(Vlakken/geometry), Vlakken/Projecten_rel)[rdc_meter];
+				// attribute<MW>        Vermogen := sum(punten/Vermogen[kW], punten/Projecten_rel)[MW];
+				// attribute<uint32>    NrCells := pcount(per_AdminDomain);
+				// attribute<MW_ha>     Vermogen_ha := Vermogen / (float32(NrCells) * float32(AdminDomain/NrHaPerCell))[ha];
+				// attribute<.>         per_AdminDomain (AdminDomain) := poly2grid(geometry, AdminDomain);
+				// attribute<.>         per_AllocDomain (AllocDomain) := poly2grid(geometry, AllocDomain);
+			// }
+			
+			unit<ipoint> AdminDomain := /AdminDomain
+			{
+				// attribute<MW> VermogenObvNrCells := Projecten/Vermogen_ha[Projecten/per_AdminDomain] * float32(NrHaPerCell);
+				// attribute<MW> Vermogen0 := MakeDefined(VermogenObvNrCells, 0[MW]);
+				// attribute<MW> Vermogen  := Vermogen0 ; // In NL
+				
+				//let op windparken Gemini en Borselle X vielen weg doordat deze buiten het domein lagen,windpark Egmond aan zee, Prinses Amalia en Luchterduinen niet! 
+				attribute<Yr>          jaartal_ingebruikname := modus(punten/jaartal_ingebruikname, punten/AdminDomain_rel)[Yr];
+				attribute<MW>          Vermogen_enkelecellen := sum(convert(punten/Vermogen[kW],MW), punten/AdminDomain_rel) > 0[MW] ? sum(convert(punten/Vermogen[kW],MW), punten/AdminDomain_rel) : (0/0)[MW]; 
+			}
+			
+			// unit<ipoint> AllocDomain := /AllocDomain
+			// {
+				// attribute<MW> VermogenObvNrCells := Projecten/Vermogen_ha[Projecten/per_AllocDomain] * float32(NrHaPerCell);
+				// attribute<MW> Vermogen := MakeDefined(VermogenObvNrCells, 0[MW]);
+			// }
+		}
+
+		// attribute<MW>  Erbij(AllocDomain) := Veldsituatie_2021/AllocDomain/Vermogen - Veldsituatie_2018/AllocDomain/Vermogen;
+		
+		container KTPlancapaciteit//wordt voor 2030 opgeleverd, moet aangeroepen worden in /Analysis/Allocatie/StartState_metBAGnieuwbouw
+		{
+			Unit<uint32> Punten_src:
+				StorageName     = "%RestrictiesDataDir%/Windpotentie/KTPlancapaciteit/MWoL_2017.gdb"
+			,	StorageReadOnly = "True"
+			,	Source          = "Bas van Bemmel PBL mei 2019: Monitor Wind op land 2017 RVO ruimtelijk gemaakt mbv o.a. ruimtelijke plannen"
+			,	DialogData      = "geometry"
+			,	DialogType      = "Map"
+			,	StorageType     = "gdal.vect"
+			,	SyncMode        = "Attr"
+			{
+				attribute<rdc_meter>     geometry;
+				attribute<string>        name_org := MWoL2017_project;
+				attribute<string>        name := replace(name_org," ","_",";","_","(","_",")","_","-","_","/","_",",","_","__","_","__","_");
+				
+				attribute<Projecten>     Projecten_rel := rjoin(name, Projecten/name, id(Projecten));
+				attribute<bool>          AlGerealiseerd := IsDefined(point_in_polygon(geometry, Veldsituatie_2021/Punten_Buffer/geometry));
+			}
+			
+			Unit<uint32> Punten := subset(!Punten_src/AlGerealiseerd)
+			{
+				attribute<rdc_meter>     geometry      := punten_src/geometry[nr_OrgEntity];
+				attribute<string>        name          := punten_src/name[nr_OrgEntity];
+				attribute<Projecten>     Projecten_rel := rjoin(name, Projecten/name, id(Projecten));
+				attribute<float32>       MW            := punten_src/MW[nr_OrgEntity][float32];
+			
+			}
+			Unit<uint32> Vlakken_src :
+				StorageName     = "%RestrictiesDataDir%/Windpotentie/KTPlancapaciteit/MWoL_vlak_2017.gdb"
+			,	StorageReadOnly = "True"
+			,	Source          = "GIS-analyse op punt bestand dmv Table to Ellipse in ArcGIS 10.3.1, conversie naar vlak in QGIS 2.2"
+			,	StorageType     = "gdal.vect"
+			,	SyncMode        = "Attr"
+			{
+				attribute<rdc_meter>     geometry (poly);
+				attribute<string>        name           := MWoL2017_p;
+				attribute<Projecten>     Projecten_rel  := rjoin(name, Projecten/name, id(Projecten));
+				attribute<bool>          AlGerealiseerd := IsDefined(point_in_polygon(centroid_or_mid(geometry), Veldsituatie_2021/Punten_Buffer/geometry));
+			}
+			
+			Unit<uint32> Vlakken := subset(!Vlakken_src/AlGerealiseerd)
+			{
+				attribute<rdc_meter>     geometry (poly) := Vlakken_src/geometry[nr_OrgEntity];
+				attribute<string>        name            := Vlakken_src/name[nr_OrgEntity];
+				attribute<Projecten>     Projecten_rel   := rjoin(name, Projecten/name, id(Projecten));
+			}
+			
+			unit<uint32> Projecten := unique(Punten/name)
+			{
+				attribute<string>    name               := values;
+				attribute<rdc_meter> geometry (polygon) := partitioned_union_polygon(ipolygon(Vlakken/geometry), Vlakken/Projecten_rel)[rdc_meter];
+				attribute<MW>        Vermogen           := sum(punten/MW, punten/Projecten_rel)[MW];
+				attribute<uint32>    NrCells            := pcount(per_AdminDomain);
+				attribute<MW_ha>     Vermogen_ha        := Vermogen / (float32(NrCells) * float32(AdminDomain/NrHaPerCell))[ha];
+				attribute<.>         per_AdminDomain (AdminDomain) := poly2grid(geometry, AdminDomain);
+				attribute<.>         per_AllocDomain (AllocDomain) := poly2grid(geometry, AllocDomain);
+			}
+			
+			unit<ipoint> AdminDomain := /AdminDomain
+			{
+				attribute<MW> VermogenObvNrCells := Projecten/Vermogen_ha[Projecten/per_AdminDomain] * float32(NrHaPerCell);
+				attribute<MW> Vermogen           := MakeDefined(VermogenObvNrCells, 0[MW]);
+			}
+			
+			unit<ipoint> AllocDomain := /AllocDomain
+			{
+				attribute<MW> VermogenObvNrCells := Projecten/Vermogen_ha[Projecten/per_AllocDomain] * float32(NrHaPerCell);
+				attribute<MW> Vermogen := MakeDefined(VermogenObvNrCells, 0[MW]);
+			}
+		}
+		
+		Unit<uint32> LTPlancapaciteit //aanroepen in Tredes Wind /VariantParameters/Tredes/Wind
+		: StorageName     = "%RestrictiesDataDir%/Windpotentie/LTPlancapaciteit/NL_IMRO_0000_IMsvWindOpLand_3000/NL_IMRO_0000_IMsvWindOpLand_3000.gdb"
+		, StorageReadOnly = "True"
+		, Source          = "download gml van ruimtelijkeplannen.nl 16 januari 2019 https://www.ruimtelijkeplannen.nl/viewer#!/idn/NL.IMRO.0000.IMsvWindOpLand-3000"
+							"conversie naar shp met ogr2ogr, conversie naar gdb in ArcGIS 10.3.1"
+		, url             ="%RestrictiesDataDir%/Windpotentie/LTPlancapaciteit/NL_IMRO_0000_IMsvWindOpLand_3000/structuurvisie-windenergie-op-land.pdf"
+		, url             = "https://www.rijksoverheid.nl/documenten/rapporten/2014/03/31/bijlage-1-structuurvisie-windenergie-op-land"
+		, StorageType     = "gdal.vect"
+		, SyncMode        = "Attr"
+		, 	DialogData      = "rdc_meter"
+		{
+			// attribute<rdc_meter> Polygons (poly);
+			attribute<.>         per_AdminDomain (AdminDomain) := poly2grid(geometry, AdminDomain);
+			attribute<.>         per_AllocDomain (AllocDomain) := poly2grid(geometry, AllocDomain);
+		}
+		
+		Unit<uint32> Windsnelheid
+		:	StorageName     = "%RestrictiesDataDir%/Energie/Wind/windkaart.shp"
+		,	StorageReadOnly = "True"
+		,	StorageType     = "gdal.vect"
+		, 	DialogData      = "rdc_meter"
+		{
+			attribute<float32> ondergrens : [5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0];
+			attribute<float32> bovengrens : [6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5];
+			attribute<float32> midden     := ondergrens + (bovengrens - ondergrens);
+			attribute<string>  label      := Label_kl;
+			attribute<float32> per_AdminDomain (AdminDomain) := midden[poly2grid(geometry, AdminDomain)];
+			attribute<float32> per_AllocDomain (AllocDomain) := midden[poly2grid(geometry, AllocDomain)];
+		}
+		
+		attribute<float64> Windsnelheid_oud (rdc_100m)//nog van belang?
+		:	Label       = "windsnelheden op 100 meter hoogte continue waarde inclusief boven zee"
+		,	Source      = "KNMI domain_1979-2013_stats.nc f100-veld, puntbestand --> grid 2600 mtr point to Raster MOST_FREQUENT RS-extent"
+		,	StorageName = "%RestrictiesDataDir%/WindPotentie/Geschiktheid/Windsnelheid.tif"
+		{
+			attribute<float32>         per_AdminDomain (AdminDomain) := .[AdminDomain/rdc_100m_rel][float32];
+			attribute<float32>         per_AllocDomain (AllocDomain) := .[AllocDomain/rdc_100m_rel][float32];
+		}
+		
+// 		Unit<uint32> aangewezen_windenergiegebieden__nwp_II_
+// 		:	StorageName     = "%RestrictiesDataDir%/Energie/Wind/aangewezen_windenergiegebieden__nwp_II__RDC.shp"
+// 		,	StorageReadOnly = "True"
+// 		,	StorageType     = "gdal.vect"
+// 		, 	DialogData      = "rdc_meter"
+// 		{
+// 			attribute<string> label := id(.) <= 1 ? windgebied : opmerking;
+// 			attribute<float32> MW    := switch(
+// 										 case(windgebied == 'Borssele',1502.5f)
+// 										,case(windgebied == 'IJmuiden Ver',4000f)
+// 										,case(windgebied == 'HK-N',700f)
+// 										,case(windgebied == 'HK-W',1400f)
+// 										,case(windgebied == 'HK-Z',1649f)
+// 										,case(windgebied == 'TNW',700f)
+// 										, 0f/0f
+// 										);
+// 			attribute<uint32> Ingebruikname := switch(
+// 													 case(windgebied == 'Borssele',2020)
+// 													,case(windgebied == 'IJmuiden Ver',2029)
+// 													,case(windgebied == 'HK-N',2023)
+// 													,case(windgebied == 'HK-W',2026)
+// 													,case(windgebied == 'HK-Z',2022)
+// 													,case(windgebied == 'TNW',2027)
+// 													, 0/0
+// 												);
+// 		}
+	}
+}

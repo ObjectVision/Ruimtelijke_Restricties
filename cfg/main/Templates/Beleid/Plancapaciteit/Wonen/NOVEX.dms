@@ -1,0 +1,180 @@
+container NOVEX
+{
+	container Read_NOVEXWonen
+	{
+		unit<uint32> woningbouwlocaties
+		:	StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/NOVEX_Woningbouwlocaties/20231123/NOVEX_Woningbouwlocaties_v2.gpkg"
+		,	StorageType     = "gdal.vect"
+		,	StorageReadOnly = "True"
+		,	SyncMode        = "Attr"
+		,	Source          = "https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7f5574ec-3858-45ee-9f8e-e44d9cafb5f6?tab=general"
+							 "PBL bewerking: Brabanste stedenrij--> single part van gemaakt, behalve Breda"
+		,	SqlString       = "SELECT * FROM merged WHERE Plannaam <> 'MRA West' AND Plannaam <> 'MRA Oost'"// Rienk Kuiper 20240206 MRA contour plancap 2024 meer detail, uitsluiten van deze 2 records 						 
+		{
+			attribute<rdc_meter> Geometry(poly);
+			attribute<ha>        area_ha       :=area(Geometry, meter2)[ha];
+			attribute<uint8>     id_plan_Uint8 :=id_plan[uint8];
+			
+			attribute<Woning>    woningbouwaantal2030     := rjoin(id_plan_Uint8,woningbouwaantallen_20231017/ID_plan_gpkg_Uint8,woningbouwaantallen_20231017/Realisatie2030_Uint32)[Woning];
+			//Brabanste stedenrij door 3 delen, eigen aanname gelijk verdeeld!
+			attribute<Woning>    woningbouwaantal2030_cor := Plannaam =="Brabanste stedenrij" ? (div(woningbouwaantal2030[float32],3f)[Woning]) : woningbouwaantal2030;
+			
+			attribute<NrWoningenHaFloat32>   woningdichtheid := div(woningbouwaantal2030_cor[Woning],area_ha)[NrWoningenHaFloat32];
+			
+			parameter<ipoint> Utrecht (poly) := ipolygon(Geometry[3]);
+			
+			attribute<.>         per_rdc_25m                   (rdc_25m) := poly2grid(geometry, rdc_25m);
+		}
+		
+		unit<uint32> woningbouwaantallen_20231017
+		:	StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/NOVEX_Woningbouwlocaties/20231123/meer-grootschalige-woningbouwlocaties-nodig-om-toekomstig-woningtekort-op-te-lossen.csv"
+		,	StorageType     = "gdal.vect"
+		,	StorageReadOnly = "True"
+		,	SyncMode        = "Attr"
+		,	Source          = "https://www.volkshuisvestingnederland.nl/actueel/nieuws/2023/10/17/meer-grootschalige-woningbouwlocaties-nodig-om-toekomstig-woningtekort-op-te-lossen"
+		{
+			attribute<rdc_meter> Geometry;
+			
+			attribute<uint8>  LocatieNr_Uint8       :=LocatieNr[uint8];
+			attribute<uint32> Realisatie2030_Uint32 :=Realisatie2030[uint32];
+			attribute<uint8>  ID_plan_gpkg_Uint8    :=ID_plan_gpkg[uint8];
+		}
+					
+		unit<uint32> intersect := overlay_polygon(woningbouwlocaties/Utrecht, ipolygon(SourceData/Grondgebruik/BBG/BBG_Reeks_1996_2017/geometry))
+		,	DialogType = "Map"
+		,	DialogData = "Geometry_rd"
+		{
+			attribute<rdc_meter>                     Geometry_rd(poly)          := Geometry[rdc_meter];
+			attribute<LandUsePreparation/CBSKlasse>  CBSKlasse_rel_2017_Utrecht := Grondgebruik/BBG/BBG_Reeks_1996_2017/CBSKlasse_rel_2017[second_rel];
+			attribute<bool>                          bebouwbaar                 := CBSKlasse_rel_2017_Utrecht == LandUsePreparation/CBSKlasse/V/overige_agrarisch_gebruik || CBSKlasse_rel_2017_Utrecht == LandUsePreparation/CBSKlasse/V/bouwterrein;           
+		}
+		
+		
+		// unit<uint32> intersect2 := overlay_polygon(bebouwbaar/Geometry, ipolygon(SourceData/Beleid2024/OmgRecht/BP/Enkelbestemming/NL_IMRO_0344_BPRIJNENBURGUTRECH_VA01/geometry))
+		// ,	DialogType = "Map"
+		// ,	DialogData = "Geometry_rd"
+		// {
+			// attribute<rdc_meter>                     Geometry_rd(poly)          := Geometry[rdc_meter];
+			//attribute<LandUsePreparation/CBSKlasse>  CBSKlasse_rel_2017_Utrecht := Grondgebruik/BBG/BBG_Reeks_1996_2017/CBSKlasse_rel_2017[second_rel];
+			//attribute<bool>                          bebouwbaar                 := CBSKlasse_rel_2017_Utrecht == LandUsePreparation/CBSKlasse/V/overige_agrarisch_gebruik || CBSKlasse_rel_2017_Utrecht == LandUsePreparation/CBSKlasse/V/bouwterrein;           
+		// }			
+		
+			
+		unit<uint32> bebouwbaar_org := select_with_attr_by_cond(intersect, intersect/bebouwbaar)
+		,	DialogType = "Map"
+		,	DialogData = "Geometry_rd"
+		{
+			parameter<rdc_meter> bebouwbaar_union (poly) := union_polygon(ipolygon(geometry))[rdc_meter];
+			attribute<string> label :=string(second_rel);
+			
+		}
+		
+		//hack sluit rijnenburg uit (behalve zuidelijk deel)
+		unit<uint32> bebouwbaar := select_with_attr_by_cond(bebouwbaar_org,bebouwbaar_org/second_rel <> 33024 
+					&& bebouwbaar_org/second_rel <> 33029
+					&& bebouwbaar_org/second_rel <> 33038
+					&& bebouwbaar_org/second_rel <>  39751
+					&& bebouwbaar_org/second_rel <>  94476
+					&& bebouwbaar_org/second_rel <>  94477
+					&& bebouwbaar_org/second_rel <>  207773
+					&& bebouwbaar_org/second_rel <>  207848
+					&& bebouwbaar_org/second_rel <>  207850
+					&& bebouwbaar_org/second_rel <>  207851
+					&& bebouwbaar_org/second_rel <>  208127
+					&& bebouwbaar_org/second_rel <>  300273
+					&& bebouwbaar_org/second_rel <>  301283
+					&& bebouwbaar_org/second_rel <>  344537
+					&& bebouwbaar_org/second_rel <>  344538
+					&& bebouwbaar_org/second_rel <>  420121
+					&& bebouwbaar_org/second_rel <>  420122
+					&& bebouwbaar_org/second_rel <>  456213
+					&& bebouwbaar_org/second_rel <>  483772
+					&& bebouwbaar_org/second_rel <>  483775
+					&& bebouwbaar_org/second_rel <>  483782
+					&& bebouwbaar_org/second_rel <>  483789
+					&& bebouwbaar_org/second_rel <>  483938
+					&& bebouwbaar_org/second_rel <>  483954
+					&& bebouwbaar_org/second_rel <>  483955
+					&& bebouwbaar_org/second_rel <>  483957
+					&& bebouwbaar_org/second_rel <>  483959
+					&& bebouwbaar_org/second_rel <>  483966
+					&& bebouwbaar_org/second_rel <>  483974
+					&& bebouwbaar_org/second_rel <>  483976
+					&& bebouwbaar_org/second_rel <>  483982
+					&& bebouwbaar_org/second_rel <>  483990
+					&& bebouwbaar_org/second_rel <>  483991
+					&& bebouwbaar_org/second_rel <>  483992
+					&& bebouwbaar_org/second_rel <>  483994
+					&& bebouwbaar_org/second_rel <>  577261
+					&& bebouwbaar_org/second_rel <>  577290
+					&& bebouwbaar_org/second_rel <>  718156
+					&& bebouwbaar_org/second_rel <>  723365
+					&& bebouwbaar_org/second_rel <>  723366
+					&& bebouwbaar_org/second_rel <>  733046
+					&& bebouwbaar_org/second_rel <>  733047
+					&& bebouwbaar_org/second_rel <>  733048
+					&& bebouwbaar_org/second_rel <>  733136	
+					)					
+
+		,	DialogType = "Map"
+		,	DialogData = "Geometry_rd"
+		{
+			parameter<rdc_meter> bebouwbaar_union (poly)  := union_polygon(ipolygon(geometry))[rdc_meter];
+			parameter<float32>   woningbouwaantal2030_cor := 25500f;
+			parameter<string>    Plannaam                 := 'Utrecht ZuidWest';
+		}		
+	
+		
+		unit<uint32> woningbouwlocaties_excl_Utrecht := select_with_attr_by_cond(woningbouwlocaties,  woningbouwlocaties/Plannaam <> 'Utrecht ZuidWest' )
+		{
+		}
+		
+		unit<uint32> woningbouwlocaties_incl_Utrecht := union_unit(woningbouwlocaties_excl_Utrecht, void)
+		{
+		   attribute<rdc_meter> Geometry(poly)           := union_data(., woningbouwlocaties_excl_Utrecht/geometry, bebouwbaar/bebouwbaar_union);
+		   attribute<string>    Plannaam                 := union_data(., woningbouwlocaties_excl_Utrecht/Plannaam, bebouwbaar/Plannaam);
+		   attribute<float32>   woningbouwaantal2030_cor := union_data(., woningbouwlocaties_excl_Utrecht/woningbouwaantal2030_cor, bebouwbaar/woningbouwaantal2030_cor);
+		   attribute<.>         per_rdc_25m                   (rdc_25m) := poly2grid(geometry, rdc_25m);
+		}
+	}
+
+	unit<uint32> Make_NOVEXWonen := Read_NOVEXWonen/woningbouwlocaties_incl_Utrecht
+	, StorageName     = "%LocalDataProjDir%/Basedata/Beleid/Ruimte/NOVEX/NOVEX_woningbouwlocaties_v2.fss"
+	{
+		attribute<rdc_meter> Geometry (poly) := Read_NOVEXWonen/woningbouwlocaties_incl_Utrecht/Geometry;
+		attribute<bool>      IsHard            := IsDefined(Geometry);
+		attribute<bool>      IsZacht           := !IsHard;
+	}
+	
+	unit<uint32> woningbouwlocaties_fss
+	: StorageName     = "%RestrictiesDataDir%/Beleid/Plancapaciteit_2024/NOVEX/NOVEX_woningbouwlocaties_v2.fss"
+	, StorageReadOnly = "True"
+	, url             = "Make_NOVEXWonen GeoDMS 14.14.0 PD10763"
+	{
+		attribute<rdc_meter> Geometry (poly);
+		attribute<bool>      IsHard;
+		attribute<bool>      IsZacht;
+	}
+	
+	unit<uint32> woningbouwlocaties := woningbouwlocaties_fss
+	{
+		attribute<bool> Hard := IsHard;
+		attribute<bool> Zacht := IsZacht;
+	}
+	
+	
+	container Verschil_Model_NOVEX
+	{
+		//Actiepunt Rienk verschil NOVEX-model
+		//let op verandering tussen basisjaar en Y2050, afhankelijk van instelling allejaren
+		unit<uint32>  woningbouwlocaties_incl_Utrecht := Read_NOVEXWonen/woningbouwlocaties_incl_Utrecht//, StorageType = "gdalwrite.vect", StorageReadOnly = "False", StorageName  = '%LocalDataProjDir%/Planmonitor/NOVEX/NOVEX_versus_BAU_Y2030.gpkg'//gpkg werkt niet
+		{
+			attribute<string>  Plannaam                   := Read_NOVEXWonen/woningbouwlocaties_incl_Utrecht/Plannaam;
+			attribute<float32> woningbouwaantal2030_cor   := Read_NOVEXWonen/woningbouwlocaties_incl_Utrecht/woningbouwaantal2030_cor;
+			attribute<uint32>  AantalWoningenNieuwbouw    := sum(CaseIndicatoren/Y2030/Vastgoed/Verandering/Aantal_Woningen_Totaal, Read_NOVEXWonen/woningbouwlocaties_incl_Utrecht/per_rdc_25m)[uint32];
+			
+			attribute<int32>   VerschilAantalWoningen  := AantalWoningenNieuwbouw[int32] - woningbouwaantal2030_cor[int32];
+			attribute<float32> FractieAantalWoningen   := div(AantalWoningenNieuwbouw[float32],woningbouwaantal2030_cor[float32]);
+		}
+	}
+}

@@ -1,0 +1,104 @@
+container Woondeals
+{
+	unit<uint32> Woondeal
+	:	StorageName     = "%RestrictiesDataDir%/Beleid/Plancapaciteit_2024/WoonDeals/Woondeals_20240417.csv"
+	,	StorageType     = "gdal.vect"
+	,	StorageReadOnly = "True"
+	,	SyncMode        = "Attr"
+	,	Source          = "Tabellen locaties regionale woondeals.pdf https://converter.app/pdf-to-xlsx/result.php?lang=nl + regionale docs woondeals"
+	{
+	
+		attribute<uint32> AantalWoningen;
+		attribute<uint32> AantalWoningenMax;
+		attribute<uint32> EIGENNR;
+	}
+	
+	unit<uint32> WoondealGem2023
+	:	StorageName     = "%RestrictiesDataDir%/Beleid/Plancapaciteit_2024/WoonDeals/Woondeals_pivot_GEM2023_20240417.csv"
+	,	StorageType     = "gdal.vect"
+	,	StorageReadOnly = "True"
+	,	SyncMode        = "Attr"
+	,	Source          = "draaitabel Woondeals_20240417.xlsx tabblad woondeals, pivot op GEM2023"
+	{
+		attribute<string> GEM2023;
+		attribute<uint32> SumOFAantalWoningen;
+		attribute<uint32> CountOFAantalWoningen;
+		attribute<uint32> SumOFAantalWoningenMax;
+		attribute<uint32> CountOFAantalWoningenMax;
+		attribute<uint32> EIGENNR;
+		attribute<string> GEM2023NAAM := rjoin(GEM2023,RegioIndelingen/Gemeente2023/GM_CODE,RegioIndelingen/Gemeente2023/GM_NAAM);
+	}
+	
+	
+	attribute<uint32> WoningenGemeente (RegioIndelingen/Gemeente2023) := rjoin(RegioIndelingen/Gemeente2023/GM_CODE,WoondealGem2023/GEM2023,WoondealGem2023/SumOFAantalWoningen);
+	
+	unit<uint32> WoondealWoondealRegio
+	:	StorageName     = "%RestrictiesDataDir%/Beleid/Plancapaciteit_2024/WoonDeals/Woondeals_pivot_WDR_20240408.csv"
+	,	StorageType     = "gdal.vect"
+	,	StorageReadOnly = "True"
+	,	SyncMode        = "Attr"
+	,	Source          = "draaitabel Woondeals_20240417.xlsx tabblad woondeals, pivot op WDR"
+	{
+		attribute<uint32> WDR;
+		attribute<uint32> SumOFAantalWoningen;
+		attribute<uint32> CountOFAantalWoningen;
+		attribute<uint32> SumOFAantalWoningenMax;
+		attribute<uint32> CountOFAantalWoningenMax;
+	}
+	
+	attribute<uint32> WoningenWDR (RegioIndelingen/Woondeals) := rjoin(RegioIndelingen/Woondeals/EIGENNR,WoondealWoondealRegio/WDR,WoondealWoondealRegio/SumOFAantalWoningen);
+	
+	container Verschil_Model_Woondeals
+	{
+		//Actiepunt Rienk verschil NOVEX-model
+		//let op verandering tussen basisjaar en Y2050, afhankelijk van instelling allejaren
+		unit<uint32>  Gemeente2023 := RegioIndelingen/Gemeente2023//, StorageType = "gdalwrite.vect", StorageReadOnly = "False", StorageName  = '%LocalDataProjDir%/Planmonitor/Woondeals/Woondeals_versus_BAU_Y2030.gpkg'//gpkg werkt niet
+		{
+			attribute<string> GM_CODE           := RegioIndelingen/Gemeente2023/GM_CODE;
+			attribute<string> GM_NAAM           := RegioIndelingen/Gemeente2023/GM_NAAM;
+			attribute<uint32> WoondealRegio     := RegioIndelingen/Gemeente2023/WoondealRegio;
+
+			attribute<uint32> AantalWoningenMin           := rjoin(RegioIndelingen/Gemeente2023/GM_CODE,WoondealGem2023/GEM2023,WoondealGem2023/SumOFAantalWoningen);
+			attribute<uint32> AantalWoningenMax_org       := rjoin(RegioIndelingen/Gemeente2023/GM_CODE,WoondealGem2023/GEM2023,WoondealGem2023/SumOFAantalWoningenMax);
+			attribute<uint32> AantalWoningenMax           := MakeDefined(AantalWoningenMax_org,AantalWoningenMin);
+
+			//attribute<uint32> AantalWoningenNieuwbouw   := sum(CaseIndicatoren/Y2050/Vastgoed/Verandering/Aantal_Woningen_Totaal,RegioIndelingen/Gemeente2023/per_rdc_25m)[uint32];
+			//Y2030
+			attribute<uint32>  AantalWoningenNieuwbouw    := sum(CaseIndicatoren/Y2030/Vastgoed/Verandering/Aantal_Woningen_Totaal,RegioIndelingen/Gemeente2023/per_rdc_25m)[uint32];
+			attribute<int32>   VerschilAantalWoningenMin  := AantalWoningenNieuwbouw[int32] - AantalWoningenMin[int32];
+			attribute<float32> FractieAantalWoningenMin   := div(AantalWoningenNieuwbouw[float32],AantalWoningenMin[float32]);
+			
+			attribute<int32>   VerschilAantalWoningenMax  := AantalWoningenNieuwbouw[int32] - AantalWoningenMax[int32];
+			attribute<float32> FractieAantalWoningenMax   := div(AantalWoningenNieuwbouw[float32],AantalWoningenMax[float32]);			
+		}
+	}
+	
+	container Verschil_Model_Woondeals_WoondealWoondealRegio
+	{
+		//Actiepunt Rienk verschil NOVEX-model
+		//let op verandering tussen basisjaar en Y2050, afhankelijk van instelling allejaren
+		unit<uint32>  WDR := RegioIndelingen/Woondeals//, StorageType = "gdalwrite.vect", StorageReadOnly = "False", StorageName  = '%LocalDataProjDir%/Planmonitor/Woondeals/Woondeals_versus_BAU_Y2030.gpkg'//gpkg werkt niet
+		{
+			attribute<uint32> EIGENNR       := RegioIndelingen/Woondeals/EIGENNR;
+			attribute<string> WoondealRegio := RegioIndelingen/Woondeals/regionale_woondeals;
+
+			attribute<uint32> AantalWoningenMin           := rjoin(RegioIndelingen/Woondeals/EIGENNR,WoondealWoondealRegio/WDR,WoondealWoondealRegio/SumOFAantalWoningen);
+			attribute<uint32> AantalWoningenMax_org       := rjoin(RegioIndelingen/Woondeals/EIGENNR,WoondealWoondealRegio/WDR,WoondealWoondealRegio/SumOFAantalWoningenMax);
+			attribute<uint32> AantalWoningenMax           := MakeDefined(AantalWoningenMax_org,AantalWoningenMin);
+
+			//attribute<uint32> AantalWoningenNieuwbouw   := sum(CaseIndicatoren/Y2050/Vastgoed/Verandering/Aantal_Woningen_Totaal,RegioIndelingen/Gemeente2023/per_rdc_25m)[uint32];
+			//Y2030
+			attribute<uint32>  AantalWoningenVerandering  := sum(CaseIndicatoren/Y2030/Vastgoed/Verandering/Aantal_Woningen_Totaal,RegioIndelingen/Woondeals/per_rdc_25m)[uint32];
+			attribute<uint32>  AantalWoningenToevoeging   := sum(/CaseIndicatoren/Y2030/Vastgoed/toevoeging/Aantal_Woningen_Totaal,RegioIndelingen/Woondeals/per_rdc_25m)[uint32];
+			
+			attribute<uint32>  AantalWoningenVerschil      := AantalWoningenVerandering - AantalWoningenToevoeging;
+			
+			
+			attribute<int32>   VerschilAantalWoningenMin  := AantalWoningenToevoeging[int32] - AantalWoningenMin[int32];
+			attribute<float32> FractieAantalWoningenMin   := div(AantalWoningenMin[float32],AantalWoningenToevoeging[float32]);
+			
+			attribute<int32>   VerschilAantalWoningenMax  := AantalWoningenToevoeging[int32] - AantalWoningenMax[int32];
+			attribute<float32> FractieAantalWoningenMax   := div(AantalWoningenMax[float32],AantalWoningenToevoeging[float32]);			
+		}
+	}
+}

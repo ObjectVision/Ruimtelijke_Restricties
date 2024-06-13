@@ -1,0 +1,8 @@
+container ConfigSettings: isHidden = "True"
+{
+	container Overridable
+	{
+		parameter<String> RestrictiesDataDir  := '%sourceDataDir%/Ruimtelijke_Restricties';
+		parameter<String> PrivDataDir         := '%sourceDataDir%/RSL_Priv';
+	}
+}

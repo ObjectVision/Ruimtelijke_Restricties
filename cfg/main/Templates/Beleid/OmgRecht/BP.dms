@@ -1,0 +1,18 @@
+container BP //Bestemmingsplannen
+{
+	unit<uint32> Gemeente2021
+	: StorageName     = "%RestrictiesDataDir%/RegioIndelingen/gemeenten-alfabetisch-2021.csv"
+	, StorageType     = "gdal.vect"
+	, StorageReadOnly = "True"
+	, SyncMode        = "Attr"
+	, Source          = "https://www.cbs.nl/nl-nl/onze-diensten/methoden/classificaties/overig/gemeentelijke-indelingen-per-jaar/indeling-per-jaar/gemeentelijke-indeling-op-1-januari-2021"
+	{
+		//attribute<string>   gemeente;
+	}
+	#include<Enkelbestemming.dms>
+	#include<EnkelbestemmingMake.dms>
+	#include<EnkelbestemmingRead.dms>
+	#include<Verschil_EnkelbestemmingRead.dms>
+	#include<Zeewolde_datacenter.dms>
+	#include<IJburg.dms>
+}

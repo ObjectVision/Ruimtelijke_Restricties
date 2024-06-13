@@ -1,0 +1,35 @@
+template SelectieEnVergrid
+{
+	// template parameters
+	unit<uint32> NLIMRObestand;
+	parameter<String> laag_naam;
+	// end case parameters
+
+	unit<uint32> selectie := Subset(NLIMRObestand/naam == laag_naam)
+	{
+		attribute<rdc_meter> Geometry (poly):= NLIMRObestand/geometry[nr_OrgEntity];
+		//mogelijk lange rekentijden bij groot aantal geometrieën en lange afstanden
+		// attribute<rdc_meter> Geometry_inflated_4D100(poly) := polygon_i4D(ipolygon(Geometry), 100d)[rdc_meter]; 
+		attribute<rdc_meter> Geometry_inflated_4D100 (poly) := bg_buffer_multi_polygon(ipolygon(geometry), 100d, 8b)[rdc_meter];
+		//attribute<rdc_meter> Geometry_inflated_4D1000(poly) := bg_buffer_multi_polygon(ipolygon(geometry), 1000d, 8b)[rdc_meter];
+		
+		
+		//attribute<rdc_meter> Geometry_inflated_multi_4D1000(poly) := bg_buffer_multi_polygon(ipolygon(geometry), 1000d, 8b)[rdc_meter];
+
+		attribute<meter2>    oppm2      := area(Geometry, meter2);
+		attribute<ha>        oppha      := oppm2[ha];
+		attribute<float32>   aandeelprc := (oppha / totoppha) *100f;
+		
+		attribute<.>    Result_geom (domain) := poly2grid(Geometry, domain);
+		
+
+		attribute<bool>      Result    (domain)      := Result_geom >= 0;
+		attribute<ha>        Result_ha (domain)      := (Result[float32] * Geography/rdc_25m/NrHaPerCell)[ha];
+		
+		attribute<uint32>    Result_geom_inflated (domain) := poly2grid(Geometry_inflated_4D100, domain);
+		attribute<bool>      Result_inflated (domain)      := Result_geom_inflated >= 0;
+	}
+	
+	parameter<ha> totoppha      := sum(selectie/oppha);
+	parameter<ha> totoppha_grid := (sum(selectie/Result[float32])*Geography/rdc_25m/NrHaPerCell)[ha];
+}

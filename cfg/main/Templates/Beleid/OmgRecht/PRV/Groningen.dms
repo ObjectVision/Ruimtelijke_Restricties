@@ -1,0 +1,8 @@
+container Groningen : url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/gr/doc/NL_IMRO_9920_POVgeconsolideerd_GV07.pdf"
+{
+	parameter<string> subpad:='prv_2024/gr';
+	
+	container NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P 
+	:= verwerk_NLIMRObestand('NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P', 'prv_2024/gr')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9920.POVgeconsolideerd-GV07/kaarten)?id=NL.IMRO.9920.POVgeconsolideerd-GV07";
+}

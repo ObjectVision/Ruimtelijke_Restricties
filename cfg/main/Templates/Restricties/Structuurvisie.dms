@@ -1,0 +1,140 @@
+container Structuurvisie
+{
+	container Src := SrcSrc/OmgRecht/Structuurvisie;
+	
+	container woongebied_en_werk_bedrijventerrein
+	{
+		
+		container ZeerHard
+		{
+			attribute<bool> BuisleidingenSV (domain) := /Src/NL_IMRO_0000_BZKsvGCBuisleiding_5000/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem(
+				  BuisleidingenSV
+			);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Combis := Templates/Combis_T(., domain, Variant_id);
+	}
+	
+	container Woongebied
+	{
+		
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := Woongebied_en_werk_bedrijventerrein/ZeerHard/Totaal;
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Combis := Templates/Combis_T(., domain, Variant_id);
+	}
+	
+	container Bedrijventerrein := Woongebied_en_werk_bedrijventerrein;
+	
+	container Verblijfsrecreatie := Woongebied_en_werk_bedrijventerrein;
+	
+	container Glastuinbouw
+	{
+		
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := Woongebied_en_werk_bedrijventerrein/ZeerHard/Totaal;
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Combis := Templates/Combis_T(., domain, Variant_id);
+	}
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Combis := Templates/Combis_T(., domain, Variant_id);
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Combis := Templates/Combis_T(., domain, Variant_id);
+	}
+}
