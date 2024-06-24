@@ -15,11 +15,11 @@ container SourceData : using = "geography;units"
 		,	DialogData      = "rdc_meter"
 		,	URL             = "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/cbs-gebiedsindelingen";
 		
-		unit<uint32>  Provincie := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd
+		unit<uint32>  Provincie := Read_Gebiedsindelingen_gpkg/cbs_provincie_2022_gegeneraliseerd
 		{
-			attribute<rdc_meter> geometry (poly)         := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd/geometry;
-			attribute<string>    statcode                := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd/statcode;
-			attribute<string>    statnaam                := Read_Gebiedsindelingen_gpkg/provincie_gegeneraliseerd/statnaam;
+			attribute<rdc_meter> geometry (poly)         := Read_Gebiedsindelingen_gpkg/cbs_provincie_2022_gegeneraliseerd/geometry;
+			attribute<string>    statcode                := Read_Gebiedsindelingen_gpkg/cbs_provincie_2022_gegeneraliseerd/statcode;
+			attribute<string>    statnaam                := Read_Gebiedsindelingen_gpkg/cbs_provincie_2022_gegeneraliseerd/statnaam;
 			attribute<string>    name                    := AsItemName(statnaam);
 			attribute<string>    label                   := statnaam;
 			attribute<.>         per_rdc_25m   (rdc_25m) := poly2grid(Geometry, rdc_25m);
