@@ -65,44 +65,6 @@ container Noord_Holland := Templates/Restricties_Provincie_T('Noord_Holland', Sr
 	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
 	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
 	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
-	container Glastuinbouw       :=woongebied_en_werk_bedrijventerrein;
-	
-	// container Verblijfsrecreatie
-	// {
-		// container Hard
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		// }
-		
-		// container Middel
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		// }
-		
-		// container Zacht
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
-		// }
-	// }
-	
-	// container Glastuinbouw
-	// {
-		// container Hard
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
-		// }
-		
-		// container Middel
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		// }
-		
-		// container Zacht
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
-		// }
-	// }
-	
 	container Wind
 	{
 		container ZeerHard

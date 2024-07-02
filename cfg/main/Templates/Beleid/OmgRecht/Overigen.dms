@@ -1,59 +1,9 @@
 ﻿container Overigen
 {
-	// #include <Schiphol.dms>
-	// #include <Geluid_Nationaal.dms>
 	#include <RES.dms>
-	
-	// unit<uint32> NNN
-	// :	StorageName     = "%RestrictiesDataDir%/Pronitor/NNN/inspire_pv_ps_nlps_nnn_RD.shp"
-	// ,	StorageType     = "gdal.vect"
-	// ,	StorageReadOnly = "True"
-	// ,	Source          = "ogr2ogr -f \"ESRI Shapefile\" inspire_pv_ps_nlps_nnn.shp  inspire-pv-ps.nlps-nnn.gml -skipfailures -overwrite"
-						  // "convert ETRS_1989_LAEA -->RD_NEW with data frame"
-	// ,	url             = "https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search;jsessionid=2B1C9EE2369044F7E4D198EEF9662B5A#/metadata/c7d8d77b-8c47-4309-8c58-9b12b086407f"
-	// {
-		// attribute<rdc_meter> geometry (poly);
-		// attribute<bool> IsRestrictief (domain) := IsDefined(poly2grid(geometry, domain));
-	// }
-	
-	// unit<uint32> Werelderfgoed
-	// :	StorageName     = "%RestrictiesDataDir%/Beleid/Werelderfgoederen/Inspire_RCE_nlps_werelderfgoed_RD.shp"
-	// ,	StorageType     = "gdal.vect"
-	// ,	StorageReadOnly = "True"
-	// ,	Source          = "https://service.pdok.nl/rce/ps-ch/wfs/v1_0?request=GetCapabilities&service=WFS conversie in ArcGIS 10.6.1 naar shp formaat"
-						  // "convert ETRS_1989_LAEA -->RD_NEW with data frame"
-	// ,	url             = "https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/45eaae76-874a-4fe1-88f4-820517e3de73?tab=relations"
-	// {
-		// attribute<rdc_meter> geometry (poly);
-		// attribute<bool>  IsRestrictief (domain) := IsDefined(poly2grid(geometry, domain));
-	// }
-	
-	// unit<uint32> Landschap_van_de_kolonien_van_Weldadigheid
-	// :	StorageName     = "%RestrictiesDataDir%/Beleid/Werelderfgoederen/Landschap_van_de_kolonien_van_Weldadigheid/GBI_AOV_K1_K2B_K4_UNESCO_V.shp"
-	// ,	StorageType     = "gdal.vect"
-	// ,	StorageReadOnly = "True"
-	// ,	Source          = "https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search;jsessionid=7581688DAFF2C6F287B205A22E038E2A#/metadata/FEB44D94AC0E3D26E0441CC1DE40A734"
-	// ,	url             = "%RestrictiesDataDir%/Beleid/Werelderfgoederen/Landschap_van_de_kolonien_van_Weldadigheid/Beschrijving_Landschap_van_de_kolonien_van_Weldadigheid.mhtml"
-	// {
-	// attribute<rdc_meter> geometry (poly);
-	// attribute<bool>  IsRestrictief (domain) := IsDefined(poly2grid(geometry, domain));
-	// }
-	
-	// unit<uint32> Buitenplaatsen
-	// :	StorageName     = "%RestrictiesDataDir%/Pronitor/buitenplaatsen/RCE_Buitenplaatsen_vlakken.shp"
-	// ,	StorageType     = "gdal.vect"
-	// ,	StorageReadOnly = "True"
-	// ,	Source          = "%RestrictiesDataDir%/Pronitor/buitenplaatsen/RCE_Buitenplaatsen_metadata.pdf"
-	// ,	url             = "https://www.cultureelerfgoed.nl/publicaties/publicaties/2019/01/01/buitenplaatsen-vlakken"
-						  // "https://ontwerpnovi.mett.nl/oud/nationale+belangen+en+opgaven+fysieke+leefomg+oud/nationale+belangen+en+opgaven+in+de+leefomg+oud/beschrijving+nationale+belangen+landschap+en+oud/l2+op+cultureel+erfgoed+landschap+en+natuur+oud/default.aspx"
-	// {
-		// attribute<rdc_meter> geometry (poly);
-		// attribute<bool>  IsRestrictief (domain) := IsDefined(poly2grid(geometry, domain));
-	// }
 	
 	container Regionale_luchthavens: Source = "Y:\data\Leefomgeving\Data\Luchtvaart\01_Beleidscontouren en woningbestanden\Regionale luchthavens\Geluidcontouren",
 									 url = "%RestrictiesDataDir%/Beleid/Overigen/Regionale_luchthavens/metadata_regionale_luchthavens.txt"
-	
 	{
 		container Maastricht_Aachen_Airport: url = "http://wetten.overheid.nl/BWBR0026525/2017-10-21"
 		{
@@ -213,5 +163,4 @@
 	}
 	
 	#include<Monumenten.dms>
-	// #include<AtelierZuidHolland.dms>
 }

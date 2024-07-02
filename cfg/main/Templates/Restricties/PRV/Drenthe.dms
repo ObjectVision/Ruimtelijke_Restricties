@@ -58,52 +58,6 @@ container Drenthe := Templates/Restricties_Provincie_T('Drenthe', Src, domain)
 	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
 	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
 	
-	// container Verblijfsrecreatie
-	// {
-		// container Hard
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
-		// }
-		
-		// container Middel
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		// }
-		
-		// container Zacht
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
-		// }
-	// }
-	
-	container Glastuinbouw
-	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, .);
-		}
-		
-		container Hard
-		{
-			attribute<bool> Glastuinbouw (domain): = Provincie && !Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Glastuinbouw/selectie/Result;
-			attribute<bool> Totaal (domain):= Max_elem
-				(
-					  Glastuinbouw
-					, woongebied_en_werk_bedrijventerrein/Hard/Totaal
-				);
-		}
-		
-		container Middel
-		{
-			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		}
-		
-		container Zacht
-		{
-			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
-		}
-	}
-	
 	container Wind
 	{
 		container ZeerHard

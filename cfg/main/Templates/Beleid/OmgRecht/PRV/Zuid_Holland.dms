@@ -3,6 +3,6 @@ container Zuid_Holland : url=""
 	parameter<string> subpad:='prv_2024/zh';
 
 	container NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P
-	:= verwerk_NLIMRObestand('NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P', 'prv_2024/zh')
+	:= verwerk_NLIMRObestand_T('NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P', 'prv_2024/zh')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9928.OVerordening2019-GC10/kaarten)?id=NL.IMRO.9928.OVerordening2019-GC10";
 }

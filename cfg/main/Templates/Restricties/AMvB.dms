@@ -8,8 +8,6 @@ container AMVB
 		{
 			attribute<bool> kustfundament                                                               (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart3/kustfundament/Multi/Result;
 			attribute<bool> Waddenzee                                                                   (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart5/Waddenzee/Multi/Result;
-			//attribute<bool> Reservering_parallelle_Kaagbaan                                             (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart16/Reservering_parallelle_Kaagbaan/Multi/Result;
-			
 			attribute<bool> militair_terrein                                                            (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart1/militair_terrein/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart2/militair_terrein/Multi/Result;
 			attribute<bool> militair_luchtvaartterrein                                                  (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart1/militair_luchtvaartterrein/Multi/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart2/militair_luchtvaartterrein/Multi/Result;
 			attribute<bool> A_zone_munitieopslagplaats                                                  (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart8/A_zone_munitieopslagplaats/Multi/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart8/A_zone_munitieopslagplaats/Multi/Result;
@@ -27,7 +25,6 @@ container AMVB
 			attribute<bool> Totaal (domain):= Max_elem(
 				  kustfundament
 				, Waddenzee
-				//, Reservering_parallelle_Kaagbaan
 				, militair_terrein
 				, militair_luchtvaartterrein
 				, A_zone_munitieopslagplaats

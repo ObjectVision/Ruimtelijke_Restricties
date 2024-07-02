@@ -1,7 +1,19 @@
 container Analysekaarten
 {
-	// #include<RES_0_samenvatting.dms>
-	#include<RES_3_elektriciteit_aanbod_potentieel.dms>
+	container RES_3_elektriciteit_aanbod_potentieel
+	{
+		container Zon
+		{
+			unit<uint32> merge_zon_restr_veld_nat_ana_v2 //restrictief. Is er geen onderscheid bij zon tussen hard en zacht?
+			: StorageName     = "%RestrictiesDataDir%/Energie/RES/Analysekaarten/3_elektriciteit_aanbod_potentieel/zon/merge_zon_restr_veld_nat_ana_v2.gdb"
+			, StorageType     = "gdal.vect"
+			, StorageReadOnly = "True"
+			, Source          = "Cloud Generation Energy"
+			{
+				attribute<rdc_meter> Geometry (polygon);
+			}
+		}
+	}
+
 	#include<RES_4_elektriciteit_infrastructuur.dms>
-	// #include<RES_9_grenzen.dms>
 }

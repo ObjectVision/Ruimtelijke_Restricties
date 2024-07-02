@@ -3,13 +3,10 @@ container Ruimtelijke_Restricties
 	container ModelParameters
 	{
 		parameter<string> RegioIndelingen_jaar := '2022';
-		// parameter<string> BBG_jaar             := '2017';
 	}
 	
 	container Units
 	{
-		// unit<string>  string_t;
-		// unit<bool>    bool_t;
 		unit<Float32> Meter := BaseUnit('m', float32);
 	}
 	
@@ -20,9 +17,18 @@ container Ruimtelijke_Restricties
 			attribute<string> name : ['ZeerHard','Hard','Middel','Zacht'];
 		}
 	
-		// #include<Classifications/Bestemmingsplannen.dms>
-		#include<Classifications/Actoren.dms>
-		// #include<Classifications/BBG.dms>
+		container Actoren
+		{
+			unit<uint8> Sector : NrOfRows = 5
+			{
+				attribute<string> name               : ['Wonen', 'Werken', 'Verblijfsrecreatie', 'Wind', 'Zon'];
+				attribute<string> ref                : ['Woongebied', 'Bedrijventerrein', 'Verblijfsrecreatie', 'Wind', 'Zon'];
+				attribute<string> Label              := name;
+				attribute<uint32> BrushColor         : [rgb(255,60,60), rgb(255,149,255),rgb(255,150,150), rgb(127,127,127), rgb(255,255,0)];
+				
+				container V := for_each_nedv(name, String(id(.))+'[..]', void, .);
+			}
+		}	
 	}
 	
 	#include<Geography.dms>
@@ -36,13 +42,13 @@ container Ruimtelijke_Restricties
 		), using = "units;Classifications;Geography"
 	{
 		parameter<string> Generate_All  := 'Ready', ExplicitSuppliers = "=Aslist(Classifications/HardheidK/name+'/Totaal',';')";
-		attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/HardheidK/name+'/Totaal/Any',' || ');
+		// attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/HardheidK/name+'/Totaal/Any',' || ');
 	}
 		
 	#include<Templates.dms>
 	
 	// Settings
 	#include <ConfigSettings.dms>
-	// #include <ExportSettings.dms>
+	#include <ExportSettings.dms>
 	
 }

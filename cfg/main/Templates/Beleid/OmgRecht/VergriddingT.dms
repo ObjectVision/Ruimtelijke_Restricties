@@ -1,17 +1,11 @@
 template VergriddingT
 {
-	// template parameters
 	parameter<String> NameFile;
 	parameter<String> SqlStatement;
 	parameter<String> MetadataFile := '';
 	parameter<String> SourceInfo :=  '';
-	
-	
-	//unit <uint32>     data;
-	//parameter<String> data;
 	// end case parameters
 
-	
 	unit<uint32> Multi:
 		StorageName     = "=NameFile"
 	,	StorageType     = "gdal.vect"
@@ -23,22 +17,10 @@ template VergriddingT
 	,	SqlString       = "=SqlStatement" //comment out if you want to see all the layers
 	{
 		attribute<rdc_meter> Geometry (poly);
-		//mogelijk lange rekentijden bij groot aantal geometrieën en lange afstanden
-		// attribute<rdc_meter> Geometry_inflated_4D100(poly) := polygon_i4D(ipolygon(Geometry), 100d)[rdc_meter]; 
 		attribute<rdc_meter> Geometry_inflated_4D100(poly) := bg_buffer_multi_polygon(ipolygon(geometry), 100d, 8b)[rdc_meter];
-
-		// attribute<meter2>    oppm2      := area(Geometry, meter2);
-		// attribute<ha>        oppha      := oppm2[ha];
-		// attribute<float32>   aandeelprc := (oppha / totoppha) *100f;
-		
 		attribute<.>    Result_geom (domain) := poly2grid(Geometry, domain);
-		
-
 		attribute<bool>      Result (domain)      := Result_geom >= 0;
-		
 		attribute<uint32>    Result_geom_inflated (domain) := poly2grid(Geometry_inflated_4D100, domain);
 		attribute<bool>      Result_inflated (domain)      := Result_geom_inflated >= 0;
 	}
-	
-		// parameter<ha> totoppha := sum(Multi/oppha);
 }

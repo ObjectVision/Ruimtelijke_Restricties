@@ -81,26 +81,6 @@ container Zeeland := Templates/Restricties_Provincie_T('Zeeland', Src, domain)
 		}
 	}
 	
-	container Glastuinbouw       :=woongebied_en_werk_bedrijventerrein;
-	
-	// container Glastuinbouw
-	// {
-		// container Hard
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
-		// }
-		
-		// container Middel
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		// }
-		
-		// container Zacht
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
-		// }
-	// }
-	
 	container Wind
 	{
 		container ZeerHard

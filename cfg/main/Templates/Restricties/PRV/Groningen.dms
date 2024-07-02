@@ -2,24 +2,14 @@ container Groningen := Templates/Restricties_Provincie_T('Groningen', Src, domai
 {
 	container woongebied_en_werk_bedrijventerrein
 	{
-			container ZeerHard
+		container ZeerHard
 		{
-			// attribute<bool> Waterwingebieden                             (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebieden/selectie/Result;
-			// attribute<bool> pro_NNN_beheer_aanpassingsgebied             (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/NNN_beheer_aanpassingsgebied_/selectie/Result;
-			// attribute<bool> NNN_beheergebieden                           (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/NNN_beheergebieden/selectie/Result;
-			// attribute<bool> NNN_natuur_aanpassingsgebied                 (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/NNN_natuur_aanpassingsgebied/selectie/Result;
-			// attribute<bool> NNN_natuurgebieden                           (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/NNN_natuurgebieden/selectie/Result;
 			attribute<bool> Gereserveerd_trace_spoorverbinding           (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Gereserveerd_tracé_spoorverbinding/selectie/Result;
 			attribute<bool> Gereserveerd_trace_wegverbinding             (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Gereserveerd_tracé_wegverbinding/selectie/Result;
 			attribute<bool> Zoekgebied_spoorverbinding                   (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Zoekgebied_spoorverbinding/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  // Waterwingebieden
-					// , pro_NNN_beheer_aanpassingsgebied
-					// , NNN_beheergebieden
-					// , NNN_natuur_aanpassingsgebied
-					// , NNN_natuurgebieden
 					  Gereserveerd_trace_spoorverbinding
 					, Gereserveerd_trace_wegverbinding
 					, Zoekgebied_spoorverbinding
@@ -33,9 +23,6 @@ container Groningen := Templates/Restricties_Provincie_T('Groningen', Src, domai
 			attribute<bool> NNN_beheergebieden                           (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/NNN_beheergebieden/selectie/Result;
 			attribute<bool> NNN_natuur_aanpassingsgebied                 (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/NNN_natuur_aanpassingsgebied/selectie/Result;
 			attribute<bool> NNN_natuurgebieden                           (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/NNN_natuurgebieden/selectie/Result;
-			// attribute<bool> Gereserveerd_trace_spoorverbinding           (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Gereserveerd_tracé_spoorverbinding/selectie/Result;
-			// attribute<bool> Gereserveerd_trace_wegverbinding             (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Gereserveerd_tracé_wegverbinding/selectie/Result;
-			// attribute<bool> Zoekgebied_spoorverbinding                   (domain): = Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Zoekgebied_spoorverbinding/selectie/Result;
 
 			attribute<bool> Totaal (domain):= Max_elem
 				(
@@ -44,9 +31,6 @@ container Groningen := Templates/Restricties_Provincie_T('Groningen', Src, domai
 					, NNN_beheergebieden
 					, NNN_natuur_aanpassingsgebied
 					, NNN_natuurgebieden
-					// , Gereserveerd_trace_spoorverbinding
-					// , Gereserveerd_trace_wegverbinding
-					// , Zoekgebied_spoorverbinding
 				);
 		}
 		
@@ -94,41 +78,6 @@ container Groningen := Templates/Restricties_Provincie_T('Groningen', Src, domai
 	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
 	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
 	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
-	container Glastuinbouw       :=woongebied_en_werk_bedrijventerrein;
-	// {
-		// container Hard
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
-		// }
-		
-		// container Middel
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		// }
-		
-		// container Zacht
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
-		// }
-	// }
-	
-	// container Glastuinbouw
-	// {
-		// container Hard
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Hard/Totaal;
-		// }
-		
-		// container Middel
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
-		// }
-		
-		// container Zacht
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
-		// }
-	// }
 	
 	container Wind
 	{

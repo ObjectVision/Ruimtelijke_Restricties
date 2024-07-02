@@ -1,9 +1,6 @@
-//http://geodata.nationaalgeoregister.nl/plu/atom/plu.xml
 container AMvB : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showManifest?organizationId=vrom&striVersion=STRI2008"
-//link niet meer geldig na overgang op omgevingswet 01-01-2024
 {
 	parameter<string> subpad:='Ruimtelijkeplannen/amvb_2024';
-	//enkel stroomvoerend_deel_rivierbed verschil met NL_IMRO_0000_IMamGCBarro_5021
 	
 	container NL_IMRO_0000_BZKamGCBarro_5025 : url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.0000.BZKamGCBarro-5025/plekinfo)?id=NL.IMRO.0000.BZKamGCBarro-5025"
 	{
@@ -41,11 +38,6 @@ container AMvB : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showManifes
 		//,'SELECT * FROM NL_IMRO_0000_BZKamGCBarro_5025_Besluitsubvlak_A'
 		
 		parameter<string> NLIMRObestand:='NL_IMRO_0000_BZKamGCBarro_5025_Besluitsubvlak_A';
-
-		// container Besluitsubvlak
-		// {
-			// container Besluitsubvlak_P :=='SumOppT(''' + subpad + ''',''' + NLIMRObestand + ''')';
-		// }
 
 		parameter<string> Bestandsloc: = '%RestrictiesDataDir%/Beleid/Ruimte/ruimtelijkeplannen/Amvb_2024/'+ NLIMRObestand + '.shp';
 		parameter<string> OGRQuery:    = 'ogr2ogr -f ""ESRI Shapefile"" N:\SD\LUMOS\Beleid\Ruimte\ruimtelijkeplannen\Amvb_2017\NL_IMRO_0000_IMamGCBarro_50211_Besluitsubvlak_A.shp  Y:\data\Leefomgeving\RS\brondata\BASIS2012\Beleid\Ruimte\Prv_2017\Besluitsubvlak_A.gml -where ""besluitgebied=""NL.IMRO.0000.IMamGCBarro-5021"" -skipfailures -overwrite';
@@ -200,60 +192,11 @@ container AMvB : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showManifes
 				'=OGRQuery'
 			);
 		}
+	}
 
-/* 		container Kaart14 : url="%RestrictiesDataDir%/Beleid/Ruimte/ruimtelijkeplannen/Amvb_2017/IMamGCBarro-5021_Besluit algemene regels ruimtelijke ordening Besluit algemene regels ruimtelijke ordening.mht"
-		{
-			//vestigingsplaats voor grootschalige electriciteitsopwekking
-
-			container vestigingsplaats_voor_grootschalige_electriciteitsopwekking : = VergriddingT
-			(
-				'=Bestandsloc'
-				,'SELECT * FROM ' + NLIMRObestand + ' WHERE SUBSTR(naam,1,59) =''vestigingsplaats voor grootschalige electriciteitsopwekking'''
-				,''
-				'=OGRQuery'
-			);
-		}
- */
-
-/*		container Kaart15 : url="%RestrictiesDataDir%/Beleid/Ruimte/ruimtelijkeplannen/Amvb_2017/IMamGCBarro-5021_Besluit algemene regels ruimtelijke ordening Besluit algemene regels ruimtelijke ordening.mht"
-		{
-			//Buisleidingen van nationaal belang voor het vervoer van gevaarlijke stoffen. Lagen
-			//Buisleidingen van nationaal belang voor het vervoer van gevaarlijke stoffen
-
-			container Buisleidingen_van_nationaal_belang_voor_het_vervoer_van_gevaarlijke_stoffen : = VergriddingT
-			(
-				'=Bestandsloc'
-				,'SELECT * FROM ' + NLIMRObestand + ' WHERE naam =''Buisleidingen van nationaal belang voor het vervoer van gevaarlijke stoffen'''
-				,'https://www.ruimtelijkeplannen.nl/documents/NL.IMRO.0000.BZKamGCBarro-5025/r_NL.IMRO.0000.BZKamGCBarro-5025.html#TITEL2_8'
-				'=OGRQuery'
-			);
-		}
-*/
-		
-/* 		container Kaart16 : url="%RestrictiesDataDir%/Beleid/Ruimte/ruimtelijkeplannen/Amvb_2017/IMamGCBarro-5021_Besluit algemene regels ruimtelijke ordening Besluit algemene regels ruimtelijke ordening.mht"
-		{
-			//Ruimtereservering parallelle Kaagbaan. Lagen
-			//Reservering parallelle Kaagbaan 
-
-			container Reservering_parallelle_Kaagbaan : = VergriddingT
-			(
-				'=Bestandsloc'
-				,'SELECT * FROM ' + NLIMRObestand + ' WHERE naam =''Reservering parallelle Kaagbaan'''
-				,''
-				'=OGRQuery'
-			);
-		}
- */	}
-
-	
 	container  NL_IMRO_0000_BZKmr11Rarro_3055 : url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.0000.BZKmr11Rarro-3055/kaarten)?id=NL.IMRO.0000.BZKmr11Rarro-3055"
 	{
 		parameter<string> NLIMRObestand:='NL_IMRO_0000_BZKmr11Rarro_3055_Besluitsubvlak_A';
-
-		// container Besluitsubvlak
-		// {
-			// container Besluitsubvlak_P :=='SumOppT(''' + subpad + ''',''' + NLIMRObestand + ''')';
-		// }
 
 		//wijziging van de Regeling algemene regels ruimtelijke ordening en Omgevingsregeling in verband met de actualisatie en het laten vervallen van geometrische kaarten
 		//Type plan:regeling

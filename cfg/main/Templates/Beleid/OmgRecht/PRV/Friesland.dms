@@ -3,6 +3,6 @@ container Fryslân : url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/fr/doc/NL_
 	parameter<string> subpad:='prv_2024/fr';
 
 	container NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P 
-	:= verwerk_NLIMRObestand('NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P', 'prv_2024/fr')
+	:= verwerk_NLIMRObestand_T('NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P', 'prv_2024/fr')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9921.PVR2014FryslanGC-GC03/kaarten)?id=NL.IMRO.9921.PVR2014FryslanGC-GC03";
 }

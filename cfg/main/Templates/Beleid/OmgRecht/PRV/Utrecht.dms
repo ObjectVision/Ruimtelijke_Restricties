@@ -3,6 +3,6 @@ container Utrecht : url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/ut/doc/NL_I
 	parameter<string> subpad:='prv_2024/ut';
 	
 	container NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P 
-	:= verwerk_NLIMRObestand('NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P', 'prv_2024/ut')
+	:= verwerk_NLIMRObestand_T('NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P', 'prv_2024/ut')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9926.2020InterimVerord-VA02/kaarten)?id=NL.IMRO.9926.2020InterimVerord-VA02";
 }

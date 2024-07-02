@@ -12,15 +12,12 @@ container Templates : using = "units;classifications;geography"
 		}
 		
 		#include<Beleid/OmgRecht.dms>
-		// #include<Beleid/Plancapaciteit.dms>
 	}
 	
 	Template Restricties_T
 	{
-		//
 		container SrcSrc;
 		parameter<string> HardheidK;
-		// unit<uint8> VariantK;
 		//
 		
 		parameter<string> domain_str := SrcSrc/domain_str;
@@ -53,33 +50,15 @@ container Templates : using = "units;classifications;geography"
 		
 		#include<Restricties/EU.dms>
 		#include<Restricties/AMVB.dms>
-		// #include<Restricties/Structuurvisie.dms>
 		#include<Restricties/Bevi.dms>
 		#include<Restricties/PRV.dms>
 		#include<Restricties/PMV.dms>
 		#include<Restricties/Overigen.dms>
 	}
 	
-	Template Combis_T
-	{
-		//
-		container Src;
-		unit<ipoint> domain;
-		parameter<VariantK> Variant_id;
-		//
-		
-		attribute<bool> Geen                    (domain) := const(false, domain);
-		attribute<bool> ZeerHard                (domain) := Src/ZeerHard/Totaal;
-		attribute<bool> ZeerHardHard            (domain) := Src/Hard/Totaal || ZeerHard;
-		attribute<bool> ZeerHardHardMiddel      (domain) := Src/Middel/Totaal || ZeerHardHard;
-		attribute<bool> ZeerHardHardMiddelZacht (domain) := Src/Zacht/Totaal || ZeerHardHardMiddel;
-		
-		attribute<bool> Variant (domain) := = VariantK/Restricties_ref[Variant_id];
-	}
 	
 	Template Restricties_Provincie_T
 	{
-		//
 		parameter<string> Prov;
 		container SrcSrc;
 		unit<ipoint> domain;
@@ -88,28 +67,5 @@ container Templates : using = "units;classifications;geography"
 		attribute<bool> Provincie (domain) := = 'SourceData/RegioIndelingen/Provincie/per_rdc_25m == SourceData/RegioIndelingen/Provincie/V/'+Prov;
 		
 		container Src := = 'SrcSrc/'+Prov;
-		
-		container Woongebied_en_werk_bedrijventerrein
-		{
-			container Combis := Templates/Combis_T(., domain , Variant_id);
-		}
-		
-		container Verblijfsrecreatie
-		{
-			container Combis := Templates/Combis_T(., domain, Variant_id);
-		}
-		
-		container Woongebied       := Woongebied_en_werk_bedrijventerrein;
-		container Bedrijventerrein := Woongebied_en_werk_bedrijventerrein;
-		
-		container Wind
-		{
-			container Combis := Templates/Combis_T(., domain, Variant_id);
-		}
-		
-		container Zon
-		{
-			container Combis := Templates/Combis_T(., domain, Variant_id);
-		}
 	}
 }

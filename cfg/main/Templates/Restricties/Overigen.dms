@@ -31,8 +31,6 @@ container Overigen
 		{
 			attribute<bool> Totaal (rdc_25m) := const(false, rdc_25m);
 		}
-		
-		container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
 	}
 	
 	container woongebied
@@ -91,8 +89,6 @@ container Overigen
 				Rotterdam
 			);
 		}
-		
-		container Combis := Templates/Combis_T(., domain, Variant_id);
 	}
 	
 	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein;
@@ -118,32 +114,6 @@ container Overigen
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
-		container Combis := Templates/Combis_T(., domain, Variant_id);
-	}
-	
-	container Glastuinbouw
-	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
-		container Hard
-		{
-			attribute<bool> Totaal (domain) := Woongebied_en_werk_bedrijventerrein/Hard/Totaal;
-		}
-		
-		container Middel
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
-		container Zacht
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
-		container Combis := Templates/Combis_T(., domain, Variant_id);
 	}
 	
 	container Wind
@@ -167,8 +137,6 @@ container Overigen
 		{
 			attribute<bool> Totaal (rdc_25m) := Src/RES/Wind/IsRestrictief_zacht;
 		}
-		
-		container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
 	}
 	
 	container Zon
@@ -192,7 +160,5 @@ container Overigen
 		{
 			attribute<bool> Totaal (rdc_25m) := const(false, rdc_25m);
 		}
-		
-		container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
 	}
 }

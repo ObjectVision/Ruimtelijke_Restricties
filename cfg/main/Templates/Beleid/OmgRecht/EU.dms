@@ -16,11 +16,5 @@ container EU
 		attribute<rdc_meter> Geometry (poly);
 		attribute<uint32> Result_geom (domain) := poly2grid(Geometry, domain);
 		attribute<bool> Result (domain) := Result_geom >= 0;
-		
-		
-		// attribute<bool> ResultVerstedelijking (domain) := Result && Analysis/Allocatie/Zichtjaren/Y2050/Impl/ReadStandVerstedelijking/IsVerstedelijking;
-		
-		//voorbeeld buffer
-		//attribute<rdc_meter> Natura2000_buffer (poly) := bg_buffer_multi_polygon(Natura2000/geometry, 1000.0, 16b)[rdc_meter];
 	}
 }
