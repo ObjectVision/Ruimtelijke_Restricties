@@ -1,4 +1,4 @@
-container EnkelbestemmingRead: Using = "Classifications/Bestemmingsplannen"
+container EnkelbestemmingRead
 {
 	//test overlap
 	// unit<uint32> ReadFSS_Kersenweide := select_with_attr_by_cond(ReadFSS, ReadFSS/plangebied="NL.IMRO.0312.Kersenweide-ON01")

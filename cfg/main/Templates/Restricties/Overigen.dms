@@ -39,11 +39,11 @@ container Overigen
 	{
 		container ZeerHard
 		{
-			attribute<bool> Maastricht        (rdc_25m) := = VariantParameters/VariantK/LuchthavenMaastrichtOpen[Variant_id] ? 'Src/Regionale_luchthavens/Maastricht_lden_70_hoger' : 'const(false, rdc_25m)';
-			attribute<bool> Groningen         (rdc_25m) := = VariantParameters/VariantK/LuchthavenGroningenOpen[Variant_id] ? 'Src/Regionale_luchthavens/Groningen_lden_70_hoger' : 'const(false, rdc_25m)';
-			attribute<bool> Lelystad          (rdc_25m) := = VariantParameters/VariantK/LuchthavenLelystadOpen[Variant_id] ? 'Src/Regionale_luchthavens/Lelystad_lden_70_hoger' : 'const(false, rdc_25m)';
-			attribute<bool> Rotterdam         (rdc_25m) := = VariantParameters/VariantK/LuchthavenRotterdamOpen[Variant_id] ? 'Src/Regionale_luchthavens/Rotterdam_lden_70_hoger' : 'const(false, rdc_25m)';
-			attribute<bool> Eindhoven_Airport (rdc_25m) := = VariantParameters/VariantK/LuchthavenEindhovenOpen[Variant_id] ? 'Src/Regionale_luchthavens/Eindhoven_Airport/ke_35_40/Multi/Result' : 'const(false, rdc_25m)';
+			attribute<bool> Maastricht        (rdc_25m) := Src/Regionale_luchthavens/Maastricht_lden_70_hoger;
+			attribute<bool> Groningen         (rdc_25m) := Src/Regionale_luchthavens/Groningen_lden_70_hoger;
+			attribute<bool> Lelystad          (rdc_25m) := Src/Regionale_luchthavens/Lelystad_lden_70_hoger;
+			attribute<bool> Rotterdam         (rdc_25m) := Src/Regionale_luchthavens/Rotterdam_lden_70_hoger;
+			attribute<bool> Eindhoven_Airport (rdc_25m) := Src/Regionale_luchthavens/Eindhoven_Airport/ke_35_40/Multi/Result;
 			
 			attribute<bool> Totaal (rdc_25m) := Max_elem(
 				woongebied_en_werk_bedrijventerrein/ZeerHard/totaal,
@@ -62,11 +62,11 @@ container Overigen
 		
 		container Middel
 		{
-			attribute<bool> Maastricht (rdc_25m) := = VariantParameters/VariantK/LuchthavenMaastrichtOpen[Variant_id] ? 'Src/Regionale_luchthavens/Maastricht_lden_56_70' : 'const(false, rdc_25m)';
-			attribute<bool> Groningen  (rdc_25m) := = VariantParameters/VariantK/LuchthavenGroningenOpen[Variant_id] ? 'Src/Regionale_luchthavens/Groningen_lden_56_70' : 'const(false, rdc_25m)';
-			attribute<bool> Lelystad   (rdc_25m) := = VariantParameters/VariantK/LuchthavenLelystadOpen[Variant_id] ? 'Src/Regionale_luchthavens/Lelystad_lden_56_70' : 'const(false, rdc_25m)';
-			attribute<bool> Rotterdam  (rdc_25m) := = VariantParameters/VariantK/LuchthavenRotterdamOpen[Variant_id] ? 'Src/Regionale_luchthavens/Rotterdam_lden_56_70' : 'const(false, rdc_25m)';
-			
+			attribute<bool> Maastricht        (rdc_25m) := Src/Regionale_luchthavens/Maastricht_lden_56_70;
+			attribute<bool> Groningen         (rdc_25m) := Src/Regionale_luchthavens/Groningen_lden_56_70;
+			attribute<bool> Lelystad          (rdc_25m) := Src/Regionale_luchthavens/Lelystad_lden_56_70;
+			attribute<bool> Rotterdam         (rdc_25m) := Src/Regionale_luchthavens/Rotterdam_lden_56_70;
+
 			attribute<bool> Totaal (rdc_25m) := Max_elem(
 				woongebied_en_werk_bedrijventerrein/middel/totaal,
 				Maastricht,
@@ -78,11 +78,11 @@ container Overigen
 		
 		container Zacht
 		{
-			attribute<bool> Maastricht (rdc_25m) := = VariantParameters/VariantK/LuchthavenMaastrichtOpen[Variant_id] ? 'Src/Regionale_luchthavens/Maastricht_lden_48_56' : 'const(false, rdc_25m)';
-			attribute<bool> Groningen  (rdc_25m) := = VariantParameters/VariantK/LuchthavenGroningenOpen[Variant_id] ? 'Src/Regionale_luchthavens/Groningen_lden_48_56' : 'const(false, rdc_25m)';
-			attribute<bool> Lelystad   (rdc_25m) := = VariantParameters/VariantK/LuchthavenLelystadOpen[Variant_id] ? 'Src/Regionale_luchthavens/Lelystad_lden_48_56' : 'const(false, rdc_25m)';
-			attribute<bool> Rotterdam  (rdc_25m) := = VariantParameters/VariantK/LuchthavenRotterdamOpen[Variant_id] ? 'Src/Regionale_luchthavens/Rotterdam_lden_48_56' : 'const(false, rdc_25m)';
-			
+			attribute<bool> Maastricht        (rdc_25m) := Src/Regionale_luchthavens/Maastricht_lden_48_56;
+			attribute<bool> Groningen         (rdc_25m) := Src/Regionale_luchthavens/Groningen_lden_48_56;
+			attribute<bool> Lelystad          (rdc_25m) := Src/Regionale_luchthavens/Lelystad_lden_48_56;
+			attribute<bool> Rotterdam         (rdc_25m) := Src/Regionale_luchthavens/Rotterdam_lden_48_56;
+		
 			attribute<bool> Totaal (domain) := Max_elem(
 				woongebied_en_werk_bedrijventerrein/zacht/totaal,
 				Maastricht,
@@ -96,26 +96,6 @@ container Overigen
 	}
 	
 	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein;
-	// {
-		// container hard
-		// {
-			// attribute<bool> Totaal (domain) := Max_elem(
-				// woongebied_en_werk_bedrijventerrein/hard/totaal
-			// );
-		// }
-		
-		// container Middel
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/middel/totaal;
-		// }
-		
-		// container Zacht
-		// {
-			// attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/zacht/totaal;
-		// }
-		
-		// container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
-	// }
 	
 	container Verblijfsrecreatie
 	{

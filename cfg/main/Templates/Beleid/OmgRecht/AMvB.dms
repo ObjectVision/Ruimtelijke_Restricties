@@ -230,7 +230,7 @@ container AMvB : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showManifes
 		}
 */
 		
-		container Kaart16 : url="%RestrictiesDataDir%/Beleid/Ruimte/ruimtelijkeplannen/Amvb_2017/IMamGCBarro-5021_Besluit algemene regels ruimtelijke ordening Besluit algemene regels ruimtelijke ordening.mht"
+/* 		container Kaart16 : url="%RestrictiesDataDir%/Beleid/Ruimte/ruimtelijkeplannen/Amvb_2017/IMamGCBarro-5021_Besluit algemene regels ruimtelijke ordening Besluit algemene regels ruimtelijke ordening.mht"
 		{
 			//Ruimtereservering parallelle Kaagbaan. Lagen
 			//Reservering parallelle Kaagbaan 
@@ -243,7 +243,7 @@ container AMvB : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showManifes
 				'=OGRQuery'
 			);
 		}
-	}
+ */	}
 
 	
 	container  NL_IMRO_0000_BZKmr11Rarro_3055 : url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.0000.BZKmr11Rarro-3055/kaarten)?id=NL.IMRO.0000.BZKmr11Rarro-3055"

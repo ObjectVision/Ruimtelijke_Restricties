@@ -1,4 +1,4 @@
-container Verschil_EnkelbestemmingRead: Using = "/Classifications/Bestemmingsplannen"
+container Verschil_EnkelbestemmingRead
 {
 	attribute<bool> verschil      (domain) := /SourceData/Beleid/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse] <> /SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse];
 	attribute<bool> verschil_null (domain) := MakeDefined(SourceData/Beleid/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse],23[bestemmingKlasse]) <> MakeDefined(SourceData/Beleid2024/OmgRecht/BP/EnkelbestemmingRead/Enkelbestemming_grid[bestemmingKlasse],23[bestemmingKlasse]);

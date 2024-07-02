@@ -25,7 +25,7 @@ container EU
 			attribute<bool> Totaal (rdc_25m) := const(false, rdc_25m);
 		}
 		
-		container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
+		// container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
 	}
 	
 	container Woongebied       := Woongebied_en_werk_bedrijventerrein;
@@ -53,7 +53,7 @@ container EU
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
-		container Combis := Templates/Combis_T(., domain, Variant_id);
+		// container Combis := Templates/Combis_T(., domain, Variant_id);
 	}
 	
 	container Wind
@@ -78,7 +78,7 @@ container EU
 			attribute<bool> Totaal (rdc_25m) := const(false, rdc_25m);
 		}
 		
-		container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
+		// container Combis := Templates/Combis_T(., rdc_25m, Variant_id);
 	}
 	
 	container Zon := Wind;

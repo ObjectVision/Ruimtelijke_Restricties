@@ -4,9 +4,6 @@ container Gebiedsaanduiding
 	: StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/BP_2024/Gebiedsaanduiding20240201.gpkg"
 	, StorageType     = "gdal.vect"
 	, StorageReadOnly = "True"
-	//, DialogType      = "map"
-	//, DialogData      = "geometry_rd"
-	//, SyncMode        = "Attr"
 	, Source          = ""
 	, SqlString       = "SELECT * FROM Gebiedsaanduiding20240201 WHERE naam='vrijwaringszone - windturbine'"	
 
@@ -22,15 +19,15 @@ container Gebiedsaanduiding
 			attribute<rdc_meter> geometry_rd_centroid := centroid_or_mid(geometry_rd);
 			
 			
-			parameter<float64>   diameter               := 120d;
-			attribute<rdc_meter> geometry_buffer (poly) := bg_buffer_point(geometry_rd_centroid, 4d * diameter, const(32b,.));
+			// parameter<float64>   diameter               := 120d;
+			// attribute<rdc_meter> geometry_buffer (poly) := bg_buffer_point(geometry_rd_centroid, 4d * diameter, const(32b,.));
 			//attribute<rdc_meter> Geom (poly) := windturbine/geometry_rd[rdc_meter];	
-			attribute<bool>      IsNietToegestaan_basis (AllocDomain)   := IsDefined(poly2grid(geometry_buffer, AllocDomain ));
+			// attribute<bool>      IsNietToegestaan_basis (AllocDomain)   := IsDefined(poly2grid(geometry_buffer, AllocDomain ));
 	}
 	
 	
 	
-	unit<uint32> snelweg
+/* 	unit<uint32> snelweg
 	: StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/BP_2024/Gebiedsaanduiding20240201.gpkg"
 	, StorageType     = "gdal.vect"
 	, StorageReadOnly = "True"
@@ -43,5 +40,5 @@ container Gebiedsaanduiding
 	{
 		attribute<rdc_meter> geometry_rd (poly):=geometry[rdc_meter];
 	}
-}
+ */}
 

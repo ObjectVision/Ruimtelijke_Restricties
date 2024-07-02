@@ -12,15 +12,15 @@ container Templates : using = "units;classifications;geography"
 		}
 		
 		#include<Beleid/OmgRecht.dms>
-		#include<Beleid/Plancapaciteit.dms>
+		// #include<Beleid/Plancapaciteit.dms>
 	}
 	
 	Template Restricties_T
 	{
 		//
 		container SrcSrc;
-		parameter<VariantK> Variant_id;
-		unit<uint8> VariantK;
+		parameter<string> HardheidK;
+		// unit<uint8> VariantK;
 		//
 		
 		parameter<string> domain_str := SrcSrc/domain_str;
@@ -40,16 +40,20 @@ container Templates : using = "units;classifications;geography"
 						+AsItemList('PMV/'+Provincie/name+'/@C@')+','+
 						'Overigen/@C@'
 					')',
-					'@C@', Actoren/Sector/ref+'/Combis/Variant'
+					'@C@', Actoren/Sector/ref+'/'+HardheidK+'/Totaal'
 					)
 				, rdc_25m
 				, bool
-				,'%LocalDataProjDir%/VariantData/Restricties2024/'+VariantK/name[Variant_id]+'/'+Actoren/Sector/name+'.tif'
-		);
+				,'%LocalDataProjDir%/Output/Restricties_'+HardheidK+'_'+Actoren/Sector/name+'.tif'
+			)
+		{
+			//adhoc
+			attribute<bool> any (rdc_25m) := =AsList(Actoren/Sector/name, ' || ');
+		}
 		
 		#include<Restricties/EU.dms>
 		#include<Restricties/AMVB.dms>
-		#include<Restricties/Structuurvisie.dms>
+		// #include<Restricties/Structuurvisie.dms>
 		#include<Restricties/Bevi.dms>
 		#include<Restricties/PRV.dms>
 		#include<Restricties/PMV.dms>

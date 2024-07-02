@@ -1,44 +1,28 @@
 container Ruimtelijke_Restricties
 {
-	//Test
 	container ModelParameters
 	{
 		parameter<string> RegioIndelingen_jaar := '2022';
-		parameter<string> BBG_jaar             := '2017';
-	}
-
-	container VariantParameters
-	{
-		unit<uint8> VariantK : NrOfRows = 4, using = "Units"
-		{                                                                       // Business As Usual    , BAUZP                , RUIM                , RUIMER
-			attribute<string_t> name:                                            ['BAU'                 ,'BAUZP'               ,'RUIM'               ,'RUIMER'     ];
-			attribute<string_t> label := union_data                              (.,'BusinessAsUsual'   ,'BAUZP'               ,'RUIM'               ,'RUIMER'     ), DialogType = "LabelText";
-			
-			attribute<string_t>  Restricties_ref:                                ['ZeerHardHardMiddel'  ,'ZeerHardHardMiddel'  ,'ZeerHardHard'           ,'ZeerHard'         ];
-			attribute<bool_t>    LuchthavenEindhovenOpen:                        [ true                 , true                 , true                    , true              ];
-			attribute<bool_t>    LuchthavenRotterdamOpen:                        [ true                 , true                 , true                    , true              ];
-			attribute<bool_t>    LuchthavenLelystadOpen:                         [ true                 , true                 , true                    , true              ];
-			attribute<bool_t>    LuchthavenMaastrichtOpen:                       [ true                 , true                 , true                    , true              ];
-			attribute<bool_t>    LuchthavenGroningenOpen:                        [ true                 , true                 , true                    , true              ];
-			
-			container V := for_each_nedv(name, String(ID(.))+'[..]', void, .);
-		}	
+		// parameter<string> BBG_jaar             := '2017';
 	}
 	
 	container Units
 	{
-		unit<string>  string_t;
-		unit<bool>    bool_t;
+		// unit<string>  string_t;
+		// unit<bool>    bool_t;
 		unit<Float32> Meter := BaseUnit('m', float32);
-		
-		
 	}
 	
 	container Classifications
 	{
-		#include<Classifications/Bestemmingsplannen.dms>
+		unit<uint8> HardheidK : NrOfRows = 4
+		{
+			attribute<string> name : ['ZeerHard','Hard','Middel','Zacht'];
+		}
+	
+		// #include<Classifications/Bestemmingsplannen.dms>
 		#include<Classifications/Actoren.dms>
-		#include<Classifications/BBG.dms>
+		// #include<Classifications/BBG.dms>
 	}
 	
 	#include<Geography.dms>
@@ -47,9 +31,13 @@ container Ruimtelijke_Restricties
 	
 	container Restricties := 
 		for_each_ne(
-			VariantParameters/VariantK/name
-			, 'Templates/Restricties_T(SourceData/Beleid, '+string(id(VariantParameters/VariantK))+'[VariantParameters/VariantK], VariantParameters/VariantK)'
-		), using = "units;Classifications;Geography";
+			Classifications/HardheidK/name
+			, 'Templates/Restricties_T(SourceData/Beleid,'+quote(Classifications/HardheidK/name)+')'
+		), using = "units;Classifications;Geography"
+	{
+		parameter<string> Generate_All  := 'Ready', ExplicitSuppliers = "=Aslist(Classifications/HardheidK/name+'/Totaal',';')";
+		attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/HardheidK/name+'/Totaal/Any',' || ');
+	}
 		
 	#include<Templates.dms>
 	

@@ -20,20 +20,19 @@ container Enkelbestemming
 	
 	//https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documenten/gemeente//rechter-paneel:document/NL.IMRO.0312.Kersenweide-ON01/plekinfo)?regelsandere=regels&locatie-stelsel=RD&locatie-x=143444&locatie-y=451670&geodocId=NL-IMRO-0312-Kersenweide-ON01-1&session=6e8ab7ee-69ee-4a49-a182-4087928da585
 	//https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documenten/gemeente//rechter-paneel:document/NL.IMRO.0312.bpBNKvinkenburg-va01/plekinfo)?regelsandere=regels&locatie-stelsel=RD&locatie-x=143444&locatie-y=451670&geodocId=NL-IMRO-0312-bpBNKvinkenburg-va01-2&session=6e8ab7ee-69ee-4a49-a182-4087928da585
-	unit<uint32> Data
-	: StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/BP_2024/Enkelbestemming.gpkg"
-	, StorageType     = "gdal.vect"
-	, DialogType      = "Map"
-	, StorageReadOnly = "True"
+	// unit<uint32> Data
+	// : StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/BP_2024/Enkelbestemming.gpkg"
+	// , StorageType     = "gdal.vect"
+	// , DialogType      = "Map"
+	// , StorageReadOnly = "True"
 	//, SqlString       = "SELECT * FROM Enkelbestemming WHERE plangebied='NL.IMRO.0312.bpBNKvinkenburg-va01' OR plangebied='NL.IMRO.0312.Kersenweide-ON01'"//Gemeente Bunnik overlap vinkenburg eerst
 	//, SqlString       = "SELECT * FROM Enkelbestemming WHERE plangebied='NL.IMRO.0312.bpBNKvinkenburg-va01' OR plangebied='NL.IMRO.0312.Kersenweide-ON01' ORDER BY planstatus DESC"//DESC vinkenburg eerst, ascending Kersenweide eerst
 	//, SqlString       = "SELECT * FROM Enkelbestemming WHERE plangebied='NL.IMRO.0344.BPRIJNENBURGUTRECH-VA01'"//DESC vinkenburg eerst, ascending Kersenweide eerst
 	
 	
-	{
-		attribute<rdc_meter>  Geometry (poly);
-		//attribute<string> naamA := sort_str(naam);
-	}
+	// {
+		// attribute<rdc_meter>  Geometry (poly);
+	// }
 	
 	
 	// unit<uint32> NL_IMRO_0344_BPRIJNENBURGUTRECH_VA01
