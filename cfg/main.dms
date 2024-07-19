@@ -8,13 +8,18 @@ container Ruimtelijke_Restricties
 	container Units
 	{
 		unit<Float32> Meter := BaseUnit('m', float32);
+		unit<Float32> Meter2 := Meter * Meter;
 	}
 	
 	container Classifications
 	{
-		unit<uint8> HardheidK : NrOfRows = 4
+		unit<uint8> Restrictie_HardheidK : NrOfRows = 4
 		{
 			attribute<string> name : ['ZeerHard','Hard','Middel','Zacht'];
+		}
+		unit<uint8> Stimuli_HardheidK : NrOfRows = 3
+		{
+			attribute<string> name : ['Hard','Middel','Zacht'];
 		}
 	
 		container Actoren
@@ -37,14 +42,24 @@ container Ruimtelijke_Restricties
 	
 	container Restricties := 
 		for_each_ne(
-			Classifications/HardheidK/name
-			, 'Templates/Restricties_T(SourceData/Beleid,'+quote(Classifications/HardheidK/name)+')'
+			Classifications/Restrictie_HardheidK/name
+			, 'Templates/Restricties_T(SourceData/Beleid,'+quote(Classifications/Restrictie_HardheidK/name)+')'
 		), using = "units;Classifications;Geography"
 	{
-		parameter<string> Generate_All  := 'Ready', ExplicitSuppliers = "=Aslist(Classifications/HardheidK/name+'/Totaal',';')";
-		// attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/HardheidK/name+'/Totaal/Any',' || ');
+		parameter<string> Generate_All  := 'Ready', ExplicitSuppliers = "=Aslist(Classifications/Restrictie_HardheidK/name+'/Totaal',';')";
+		// attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/Restrictie_HardheidK/name+'/Totaal/Any',' || ');
 	}
-		
+	
+	container Stimuli := 
+		for_each_ne(
+			Classifications/Stimuli_HardheidK/name
+			, 'Templates/Stimuli_T(SourceData/Beleid,'+quote(Classifications/Stimuli_HardheidK/name)+')'
+		), using = "units;Classifications;Geography"
+	{
+		parameter<string> Generate_All  := 'Ready', ExplicitSuppliers = "=Aslist(Classifications/Stimuli_HardheidK/name+'/Totaal',';')";
+		// attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/Stimuli_HardheidK/name+'/Totaal/Any',' || ');
+	}
+	
 	#include<Templates.dms>
 	
 	// Settings

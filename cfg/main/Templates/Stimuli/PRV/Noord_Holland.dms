@@ -1,12 +1,7 @@
 container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domain)
 {
-	container woongebied_en_werk_bedrijventerrein
+	container Woongebied
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -23,16 +18,27 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Datacenter_clustering_toegestaan (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Datacenter_clustering_toegestaan/selectie/Result;
+			attribute<bool> Totaal (domain):= Datacenter_clustering_toegestaan;
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
 	
 	container Verblijfsrecreatie
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -48,17 +54,13 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
-		
+	
 	container Glastuinbouw
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Glastuinbouwconcentratiegebied (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Glastuinbouwconcentratiegebied/selectie/Result;
+			attribute<bool> Totaal (domain):= Glastuinbouwconcentratiegebied;
 		}
 		
 		container Middel
@@ -74,14 +76,10 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 	
 	container Wind
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Zoekgebieden_wind_en_wind_zon_RES_1_0 (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Zoekgebieden_wind_en_wind_zon_RES_1_0/selectie/Result;
+			attribute<bool> Totaal (domain) := Zoekgebieden_wind_en_wind_zon_RES_1_0;
 		}
 		
 		container Middel
@@ -97,14 +95,10 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 	
 	container Zon
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Zoekgebieden_wind_en_wind_zon_RES_1_0 (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Zoekgebieden_wind_en_wind_zon_RES_1_0/selectie/Result;
+			attribute<bool> Totaal (domain) := Zoekgebieden_wind_en_wind_zon_RES_1_0;
 		}
 		
 		container Middel

@@ -1,12 +1,9 @@
-container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
+container Structuurvisie
 {
+	container Src := SrcSrc/OmgRecht/Structuurvisie;
+	
 	container woongebied_en_werk_bedrijventerrein
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -21,23 +18,17 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
+		
+		container Combis := Templates/Stimuli_Combis(., domain, Variant_id);
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
-	
-	container Verblijfsrecreatie
+	container Woongebied
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
-		
+
 		container Middel
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -47,15 +38,14 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
-	}
 		
+		container Combis := Templates/Stimuli_Combis(., domain, Variant_id);
+	}
+	
+	container Bedrijventerrein := Woongebied_en_werk_bedrijventerrein;
+	
 	container Glastuinbouw
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -70,18 +60,16 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
+		
+		container Combis := Templates/Stimuli_Combis(., domain, Variant_id);
 	}
 	
 	container Wind
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Afsluitdijk_IJssselmeer          (domain):= Src/NL_IMRO_0000_IMsvWindOpLand_3000/Afsluitdijk_IJssselmeer/Afsluitdijk_IJssselmeer/Multi/Result;
+			attribute<bool> Totaal                           (domain):= Afsluitdijk_IJssselmeer;
 		}
 		
 		container Middel
@@ -93,15 +81,12 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
+		
+		container Combis := Templates/Stimuli_Combis(., domain, Variant_id);
 	}
 	
 	container Zon
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -116,5 +101,7 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
+		
+		container Combis := Templates/Stimuli_Combis(., domain, Variant_id);
 	}
 }

@@ -1,0 +1,51 @@
+container Structuurvisie : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showManifest?organizationId=vrom&striVersion=STRI2008", using = "units"
+{
+	container NL_IMRO_0000_IMsvWindOpLand_3000 : url="https://www.ruimtelijkeplannen.nl/viewer/view?planidn=NL.IMRO.0000.IMsvWindOpLand-3000"
+	{
+		//Structuurvisie Windenergie op land
+		
+		//Type plan:structuurvisie
+		//Eigenaar:Ministerie van Infrastructuur en Milieu, Ministerie van Economische Zaken
+		//Status:vastgesteld (2014-03-28)
+		//Uitgebreide status:vastgesteld (plan); geheel onherroepelijk in werking (dossier)
+		//Identificatie:NL.IMRO.0000.IMsvWindOpLand-3000
+		//IMRO Versie:IMRO2012
+		//Besluitnr.:IENM/BSK-2014/58455
+		//Ondergrond:other: Ondergrond Structuurvisie Infrastructuur en Ruimte 2012 (2013-03-28)
+
+		//Kaarten (4)
+		//1: Gebieden voor grootschalige windenergie
+		//2: Noordoost Nederland
+		//3: IJsselmeergebied
+		//4: Zuidwest Nederland
+
+		parameter<string> Bestandsloc := '%RestrictiesDataDir%/Beleid/Ruimte/Ruimtelijkeplannen/Structuurvisie_2020/NL_IMRO_0000_IMsvWindOpLand_3000/GeometrieStructuurvisieObject.shp';
+		parameter<string> OGRQuery: = '';
+
+		container Afsluitdijk_IJssselmeer : url ="%RestrictiesDataDir%/Beleid/Ruimte/ruimtelijkeplannen/Amvb_2017/IMamGCBarro-5021_Besluit algemene regels ruimtelijke ordening Besluit algemene regels ruimtelijke ordening.mht"
+		{
+			container Afsluitdijk_IJssselmeer : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM GeometrieStructuurvisieObject WHERE gml_id =''NL.IMRO.geom_id_62'''
+				,''
+				'=OGRQuery'
+			);
+		}
+
+	}
+	
+	unit<uint32> NL_IMRO_0000_BZKsvGCBuisleiding_5000 
+		:  StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/Ruimtelijkeplannen/Structuurvisie_2024/NL_IMRO_0000_BZKsvGCBuisleiding_5000_Structuurvisiegebied_R.gpkg"
+		,  StorageType     = "gdal.vect"
+		,  StorageReadOnly = "True"
+		,  Source          = "https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.0000.BZKsvGCBuisleiding-5000/overzicht)?id=NL.IMRO.0000.BZKsvGCBuisleiding-5000"
+		,  sqlstring       = "SELECT * FROM structuurvisiegebied_r WHERE gml_id <> 'SVGR_10729' AND gml_id <> 'SVGR_10730' AND gml_id <> 'SVGR_10731'"
+	{
+		attribute<rdc_meter>	geometry (poly); //originele id's 0, 1 en 2 zijn Nederland opvulling, geen buisleiding specifiek, via sqlstring deze lagen eruit gefilterd
+		
+		attribute<meter2>	oppervlakte          := area(geometry,meter2);
+		attribute<.>    	Result_geom (domain) := poly2grid(Geometry, domain);
+		attribute<bool>     Result      (domain) := Result_geom >= 0;
+	}
+}

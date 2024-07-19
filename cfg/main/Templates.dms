@@ -41,7 +41,7 @@ container Templates : using = "units;classifications;geography"
 					)
 				, rdc_25m
 				, bool
-				,'%LocalDataProjDir%/Output/Restricties_'+HardheidK+'_'+Actoren/Sector/name+'.tif'
+				,'%LocalDataProjDir%/Output/Restricties_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
 			)
 		{
 			//adhoc
@@ -56,8 +56,39 @@ container Templates : using = "units;classifications;geography"
 		#include<Restricties/Overigen.dms>
 	}
 	
+	Template Stimuli_T
+	{
+		container SrcSrc;
+		parameter<string> HardheidK;
+		//
+		
+		parameter<string> domain_str := SrcSrc/domain_str;
+		
+		unit<ipoint> domain := =domain_str;
+		unit<uint32> Provincie := SrcSrc/Provincie;
+		
+		container Totaal := 
+			for_each_nedva(
+				Actoren/Sector/name
+				,replace(
+					'max_elem('+AsItemList('PRV/'+Provincie/name+'/@C@')+')'
+					,'@C@', Actoren/Sector/ref+'/'+HardheidK+'/Totaal'
+					)
+				, rdc_25m
+				, bool
+				,'%LocalDataProjDir%/Output/Stimuli_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
+			)
+		{
+			//adhoc
+			attribute<bool> any (rdc_25m) := =AsList(Actoren/Sector/name, ' || ');
+		}
+		
+		#include<Stimuli/AMVB.dms>
+		#include<Stimuli/Structuurvisie.dms>
+		#include<Stimuli/PRV.dms>
+	}
 	
-	Template Restricties_Provincie_T
+	Template Per_Provincie_T
 	{
 		parameter<string> Prov;
 		container SrcSrc;
@@ -68,4 +99,6 @@ container Templates : using = "units;classifications;geography"
 		
 		container Src := = 'SrcSrc/'+Prov;
 	}
+	
+	
 }

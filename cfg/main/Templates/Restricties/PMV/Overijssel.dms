@@ -1,4 +1,4 @@
-container Overijssel := Templates/Restricties_Provincie_T('Overijssel', Src, domain)
+container Overijssel := Templates/Per_Provincie_T('Overijssel', Src, domain)
 {
 	container woongebied_en_werk_bedrijventerrein
 	{

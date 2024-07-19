@@ -22,7 +22,7 @@ container SourceData : using = "geography;units"
 			attribute<string>    name                    := AsItemName(statnaam);
 			attribute<string>    label                   := statnaam;
 			attribute<.>         per_rdc_25m   (rdc_25m) := poly2grid(Geometry, rdc_25m);
-			attribute<.>         per_rdc_100m (rdc_100m) := poly2grid(Geometry, rdc_100m);
+			// attribute<.>         per_rdc_100m (rdc_100m) := poly2grid(Geometry, rdc_100m);
 
 			container V := for_each_nedv(name, 'value('+string(id(.))+', ..)', void, .);
 		}
@@ -36,7 +36,7 @@ container SourceData : using = "geography;units"
 			attribute<.>            per_rdc_25m      (rdc_25m) := poly2grid(geometry, rdc_25m);
 			attribute<.>            per_rdc_100m    (rdc_100m) := poly2grid(geometry, rdc_100m);
 			attribute<bool>         Is_bbg_rdc_25m   (rdc_25m) := IsDefined(per_rdc_25m);
-			attribute<bool>         Is_bbg_rdc_100m (rdc_100m) := IsDefined(per_rdc_100m);
+			// attribute<bool>         Is_bbg_rdc_100m (rdc_100m) := IsDefined(per_rdc_100m);
 		}
 	}
 	

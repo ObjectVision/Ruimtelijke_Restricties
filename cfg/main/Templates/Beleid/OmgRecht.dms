@@ -6,6 +6,7 @@ container OmgRecht
 	#include<PRV.dms>
 	#include<PMV.dms>
 	#include<Bestemmingsplan.dms>
+	#include<StructuurVisie.dms>
 	#include<Overigen.dms>
 	#include<SumOppT.dms>
 	#include<VergriddingT.dms>

@@ -1,12 +1,7 @@
-container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
+container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 {
-	container woongebied_en_werk_bedrijventerrein
+	container woongebied
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -23,16 +18,33 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Grootschalige_bedrijventerreinen (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Grootschalige_bedrijventerreinen/selectie/Result;
+			attribute<bool> Detailhandelsvoorzieningen       (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Detailhandelsvoorzieningen/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Grootschalige_bedrijventerreinen
+					, Detailhandelsvoorzieningen
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
 	
 	container Verblijfsrecreatie
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -40,7 +52,8 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		
 		container Middel
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Verblijfsrecreatie_begrenzing_badplaatsen (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Verblijfsrecreatie_begrenzing_badplaatsen_/selectie/Result;
+			attribute<bool> Totaal (domain):= Verblijfsrecreatie_begrenzing_badplaatsen;
 		}
 		
 		container Zacht
@@ -48,17 +61,13 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
-		
+	
 	container Glastuinbouw
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Glastuinbouw (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Glastuinbouw/selectie/Result;
+			attribute<bool> Totaal (domain) := Glastuinbouw;
 		}
 		
 		container Middel
@@ -74,11 +83,6 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	
 	container Wind
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -97,11 +101,6 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	
 	container Zon
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);

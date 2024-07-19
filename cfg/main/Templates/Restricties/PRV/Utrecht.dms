@@ -1,4 +1,4 @@
-container Utrecht := Templates/Restricties_Provincie_T('Utrecht', Src, domain)
+container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 {
 	container woongebied_en_werk_bedrijventerrein
 	{

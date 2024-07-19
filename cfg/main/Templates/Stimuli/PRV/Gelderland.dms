@@ -1,12 +1,7 @@
-container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
+container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
 {
-	container woongebied_en_werk_bedrijventerrein
+	container Woongebied
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -23,39 +18,26 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
 	
 	container Verblijfsrecreatie
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
-		container Hard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
-		container Middel
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
-		container Zacht
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-	}
-		
-	container Glastuinbouw
-	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -72,13 +54,28 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		}
 	}
 	
-	container Wind
+	container Glastuinbouw
 	{
-		container ZeerHard
+		container Hard
+		{
+			attribute<bool> glastuinbouwontwikkelingsgebied (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/glastuinbouwontwikkelingsgebied/selectie/Result;
+			attribute<bool> Totaal (domain):= glastuinbouwontwikkelingsgebied;
+		}
+		
+		container Middel
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+
+	
+	container Wind
+	{
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -97,11 +94,6 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	
 	container Zon
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);

@@ -1,12 +1,26 @@
-container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
+container Fryslân := Templates/Per_Provincie_T('Fryslân', Src, domain)
 {
-	container woongebied_en_werk_bedrijventerrein
+	container Woongebied
 	{
-		container ZeerHard
+		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
+		container Middel
+		{
+			attribute<bool> Opeinde_De_Peinder_Mieden   (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Opeinde_De_Peinder_Mieden/selectie/Result;
+			attribute<bool> Totaal (domain):= Opeinde_De_Peinder_Mieden;
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Bedrijventerrein
+	{
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -22,17 +36,9 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
-	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
 	
 	container Verblijfsrecreatie
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -40,7 +46,15 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		
 		container Middel
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+
+			attribute<bool> Driezum_Bungalowpark     (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Driezum_Bungalowpark/selectie/Result;
+			attribute<bool> Westergeest_Ljeppershiem (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Westergeest_Ljeppershiem/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Driezum_Bungalowpark
+					, Westergeest_Ljeppershiem
+				);
 		}
 		
 		container Zacht
@@ -48,17 +62,13 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
-		
+	
 	container Glastuinbouw
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> glastuinbouwlocaties_Noordwest_Fryslân  (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/glastuinbouwlocaties_Noordwest_Fryslân/selectie/Result;
+			attribute<bool> Totaal (domain) := glastuinbouwlocaties_Noordwest_Fryslân;
 		}
 		
 		container Middel
@@ -74,11 +84,6 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	
 	container Wind
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -97,11 +102,6 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	
 	container Zon
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);

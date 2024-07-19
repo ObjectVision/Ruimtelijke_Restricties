@@ -1,93 +1,26 @@
 heads/main
 On branch main
-Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
+Your branch is up to date with 'origin/main'.
 
 Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
+  (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
 	modified:   cfg/main.dms
-	deleted:    cfg/main/Classifications/Actoren.dms
-	deleted:    cfg/main/Classifications/BBG.dms
-	deleted:    cfg/main/Classifications/Bestemmingsplannen.dms
-	modified:   cfg/main/Geography.dms
 	modified:   cfg/main/SourceData.dms
-	deleted:    cfg/main/SourceData/BBG.dms
-	deleted:    cfg/main/SourceData/BBG/Avg_shr_LUtype_neigh.dms
-	deleted:    cfg/main/SourceData/BBG/DiscreteAllocation100m_T.dms
-	deleted:    cfg/main/SourceData/BBG/DiscreteAllocation25m_T.dms
-	deleted:    cfg/main/SourceData/BBG/impl.dms
-	modified:   cfg/main/SourceData/Energie.dms
-	modified:   cfg/main/SourceData/Energie/Analysekaarten.dms
-	deleted:    cfg/main/SourceData/Energie/Analysekaarten/RES_0_samenvatting.dms
-	deleted:    cfg/main/SourceData/Energie/Analysekaarten/RES_3_elektriciteit_aanbod_potentieel.dms
-	deleted:    cfg/main/SourceData/Energie/Analysekaarten/RES_9_grenzen.dms
-	deleted:    cfg/main/SourceData/Energie/Hoogspanning.dms
-	deleted:    cfg/main/SourceData/Energie/RES10.dms
-	deleted:    cfg/main/SourceData/Energie/Zoekgebieden.dms
 	modified:   cfg/main/Templates.dms
 	modified:   cfg/main/Templates/Beleid/OmgRecht.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/AMvB.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/Enkelbestemming.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/EnkelbestemmingMake.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/EnkelbestemmingRead.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/EnkelbestemmingRead/BP_vs_CBS.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/EnkelbestemmingRead/ReadFSSsubsetC.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/IJburg.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/Verschil_EnkelbestemmingRead.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/BP/Zeewolde_datacenter.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/Bestemmingsplan.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/Bestemmingsplan/Gebiedsaanduiding.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/EU.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/MIRT.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/NOVI.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/NRMLMS.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/Overigen.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/Overigen/AtelierZuidHolland.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/Overigen/Geluid_Nationaal.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/Overigen/Schiphol.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PMV.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/PMV/Drenthe.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/PMV/Flevoland.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/PMV/Noord_Brabant.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/PMV/Noord_Holland.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/PMV/Zeeland.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/PMV/Zuid_Holland.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Drenthe.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Flevoland.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Friesland.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Gelderland.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Groningen.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Limburg.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Noord_Brabant.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Noord_Holland.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Overijssel.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Utrecht.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Zeeland.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Zuid_Holland.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/SelectieEnVergrid.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/Structuurvisie.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/SumOppT.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht/VergriddingT.dms
-	deleted:    cfg/main/Templates/Beleid/OmgRecht/Verwerk_NLIMRObestand.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Glastuinbouw.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Verblijfsrecreatie.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Werken.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wind.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wonen.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wonen/Bestemmingsplannen.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wonen/Gemeenten.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wonen/NOVEX.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wonen/NieuweNieuweKaart.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wonen/Provincies.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Wonen/Woondeals.dms
-	deleted:    cfg/main/Templates/Beleid/Plancapaciteit/Zon.dms
-	modified:   cfg/main/Templates/Restricties/AMvB.dms
-	modified:   cfg/main/Templates/Restricties/Bevi.dms
-	modified:   cfg/main/Templates/Restricties/EU.dms
-	modified:   cfg/main/Templates/Restricties/Overigen.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Drenthe.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Flevoland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Friesland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Gelderland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Groningen.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Limburg.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Noord_Brabant.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Noord_Holland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Overijssel.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Utrecht.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Zeeland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Zuid_Holland.dms
 	modified:   cfg/main/Templates/Restricties/PRV/Drenthe.dms
 	modified:   cfg/main/Templates/Restricties/PRV/Flevoland.dms
 	modified:   cfg/main/Templates/Restricties/PRV/Friesland.dms
@@ -100,13 +33,12 @@ Changes not staged for commit:
 	modified:   cfg/main/Templates/Restricties/PRV/Utrecht.dms
 	modified:   cfg/main/Templates/Restricties/PRV/Zeeland.dms
 	modified:   cfg/main/Templates/Restricties/PRV/Zuid_Holland.dms
-	deleted:    cfg/main/Templates/Restricties/Structuurvisie.dms
+	modified:   git.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	cfg/main/ExportSettings.dms
-	cfg/main/Templates/Beleid/OmgRecht/Verwerk_NLIMRObestand_T.dms
-	git.txt
+	cfg/main/Templates/Beleid/OmgRecht/Structuurvisie.dms
+	cfg/main/Templates/Stimuli/
 
 no changes added to commit (use "git add" and/or "git commit -a")
-49e96856a58a6a60ec3b461312b4ab822e049862
+3b7eeb725286db2ab793cfa307c9d572a1aa6e2f

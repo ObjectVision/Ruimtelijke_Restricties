@@ -1,12 +1,7 @@
-container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
+container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domain)
 {
 	container woongebied_en_werk_bedrijventerrein
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -14,7 +9,7 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		
 		container Middel
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Totaal (domain):= const(false, domain);
 		}
 		
 		container Zacht
@@ -23,16 +18,11 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Woongebied := woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein;
 	
 	container Verblijfsrecreatie
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -48,37 +38,29 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
-		
+	
 	container Glastuinbouw
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Glastuinbouw_vestigingsgebied (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Glastuinbouw_vestigingsgebied/selectie/Result;
+			attribute<bool> Totaal                        (domain) := Glastuinbouw_vestigingsgebied;
 		}
 		
 		container Middel
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
-		
+
 		container Zacht
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Glastuinbouw_doorgroeigebied (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Glastuinbouw_doorgroeigebied/selectie/Result;
+			attribute<bool> Totaal                       (domain) := Glastuinbouw_doorgroeigebied;
 		}
 	}
 	
 	container Wind
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -94,14 +76,9 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
-	
+
 	container Zon
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);

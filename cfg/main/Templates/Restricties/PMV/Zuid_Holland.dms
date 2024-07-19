@@ -1,4 +1,4 @@
-container Zuid_Holland := Templates/Restricties_Provincie_T('Zuid_Holland', Src, domain)
+container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 {
 	container woongebied_en_werk_bedrijventerrein
 	{

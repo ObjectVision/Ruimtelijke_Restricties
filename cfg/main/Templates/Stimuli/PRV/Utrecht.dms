@@ -1,12 +1,7 @@
 container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 {
-	container woongebied_en_werk_bedrijventerrein
+	container Woongebied
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -23,16 +18,26 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
 	
 	container Verblijfsrecreatie
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
 			attribute<bool> Totaal (domain) := const(false, domain);
@@ -48,17 +53,13 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
-		
+	
 	container Glastuinbouw
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Concentratiegebied_glastuinbouw (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Concentratiegebied_glastuinbouw/selectie/Result;
+			attribute<bool> Totaal                          (domain) := Concentratiegebied_glastuinbouw;
 		}
 		
 		container Middel
@@ -74,14 +75,10 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	
 	container Wind
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Windenergie_en_Zonnevelden (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Windenergie_en_Zonnevelden/selectie/Result;
+			attribute<bool> Totaal (domain):= Windenergie_en_Zonnevelden;
 		}
 		
 		container Middel
@@ -97,14 +94,10 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	
 	container Zon
 	{
-		container ZeerHard
-		{
-			attribute<bool> Totaal (domain) := const(false, domain);
-		}
-		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Windenergie_en_Zonnevelden (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Windenergie_en_Zonnevelden/selectie/Result;
+			attribute<bool> Totaal (domain):= Windenergie_en_Zonnevelden;
 		}
 		
 		container Middel
