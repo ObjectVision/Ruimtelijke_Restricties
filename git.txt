@@ -5,40 +5,7 @@ Your branch is up to date with 'origin/main'.
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   cfg/main.dms
-	modified:   cfg/main/SourceData.dms
-	modified:   cfg/main/Templates.dms
-	modified:   cfg/main/Templates/Beleid/OmgRecht.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Drenthe.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Flevoland.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Friesland.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Gelderland.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Groningen.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Limburg.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Noord_Brabant.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Noord_Holland.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Overijssel.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Utrecht.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Zeeland.dms
-	modified:   cfg/main/Templates/Restricties/PMV/Zuid_Holland.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Drenthe.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Flevoland.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Friesland.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Gelderland.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Groningen.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Limburg.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Noord_Brabant.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Noord_Holland.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Overijssel.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Utrecht.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Zeeland.dms
-	modified:   cfg/main/Templates/Restricties/PRV/Zuid_Holland.dms
 	modified:   git.txt
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	cfg/main/Templates/Beleid/OmgRecht/Structuurvisie.dms
-	cfg/main/Templates/Stimuli/
-
 no changes added to commit (use "git add" and/or "git commit -a")
-3b7eeb725286db2ab793cfa307c9d572a1aa6e2f
+da16d45ca1106a117b60b6d9b435662718266cca
