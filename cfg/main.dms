@@ -3,6 +3,7 @@ container Ruimtelijke_Restricties
 	container ModelParameters
 	{
 		parameter<string> RegioIndelingen_jaar := '2022';
+		parameter<string> Export_Date          := '20240806';
 	}
 	
 	container Units
