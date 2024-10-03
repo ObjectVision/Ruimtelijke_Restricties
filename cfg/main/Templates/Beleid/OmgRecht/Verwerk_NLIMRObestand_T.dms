@@ -35,4 +35,9 @@ template verwerk_NLIMRObestand_T
 			laag_naam_selectie/ti_naam
 			, 'SelectieEnVergrid(NLIMRObestand,' + quote(laag_naam_selectie/naam) + ')'
 		);
+	Container Laag_namen := 
+		for_each_ne(
+			Uq_laag_naam/ti_naam
+			, 'SelectieEnVergrid(NLIMRObestand,' + quote(Uq_laag_naam/values) + ')'
+		);
 }

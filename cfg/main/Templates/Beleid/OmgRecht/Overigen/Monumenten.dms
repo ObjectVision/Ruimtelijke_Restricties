@@ -8,12 +8,12 @@ container Monumenten: url=""
 					    "download maart 2024 WFS-service"
 	, url             = "https://www.cultureelerfgoed.nl/onderwerpen/rijksmonumentenregister/rijksmonumenten-kaartlagen"
 	{
-		unit<uint32> BAG: SqlString  = "SELECT * FROM rijksmonumentpunten_2024 WHERE herkomst ='BAG'"
+		unit<uint32> BAG: SqlString  = "SELECT * FROM rijksmonumentpunten_2024 WHERE herkomst ='BAG'", StorageReadOnly = "True"
 		{
 			attribute<rdc_meter> Point;
 		}
 		
-		unit<uint32> Totaal: SqlString  = "SELECT * FROM rijksmonumentpunten_2024"
+		unit<uint32> Totaal: SqlString  = "SELECT * FROM rijksmonumentpunten_2024", StorageReadOnly = "True"
 		{
 			attribute<rdc_meter> Point;
 			attribute<uint32>    per_domain      (domain) := sum(uint32(const(1u,.)) , point[domain]);
@@ -30,14 +30,14 @@ container Monumenten: url=""
 					    "download maart 2024 WFS-service"
 	, url             = "https://www.cultureelerfgoed.nl/onderwerpen/rijksmonumentenregister/rijksmonumenten-kaartlagen"
 	{
-		unit<uint32> BAG: SqlString = "SELECT * FROM rijksmonumentcontouren_2024 WHERE herkomst ='BAG'"
+		unit<uint32> BAG: SqlString = "SELECT * FROM rijksmonumentcontouren_2024 WHERE herkomst ='BAG'", StorageReadOnly = "True"
 		{
 			attribute<rdc_meter> Geometry (poly);
 			attribute<.> per_domain                (domain) := poly2grid(geometry, domain);
 			attribute<bool> IsRijksmonumentcontour (domain) := IsDefined(per_domain);
 		}
 		
-		unit<uint32> Totaal: SqlString  = "SELECT * FROM rijksmonumentcontouren_2024"
+		unit<uint32> Totaal: SqlString  = "SELECT * FROM rijksmonumentcontouren_2024", StorageReadOnly = "True"
 		{
 			attribute<rdc_meter> Geometry (poly);
 			attribute<.> per_domain                (domain) := poly2grid(geometry, domain);
