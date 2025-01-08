@@ -8,6 +8,8 @@ container Energie
 		,	StorageReadOnly = "true"
 		,	Source          = "Martijn Spoon, aanlevering per mail via Gert Kelfkens RIVM op 20240328
 							   conversie van shp naar gpkg in Qgis versie 3.34.1"
+
+		, 	url				= ""
 		{
 			attribute<rdc_meter> geometry (arc);
 			attribute<rdc_meter>  lijn_buffer (poly) := bg_buffer_linestring(geometry, rekenafsta, const(32b,.));
