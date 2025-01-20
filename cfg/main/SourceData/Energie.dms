@@ -6,8 +6,9 @@ container Energie
 		:	StorageName     = "%RestrictiesDataDir%/Energie/Hoogspanning/Netkaart_2024_versie_5_11_maart_versie_PBL.gpkg"
 		,	StorageType     = "gdal.vect"
 		,	StorageReadOnly = "true"
-		,	Source          = "Martijn Spoon, aanlevering per mail via Gert Kelfkens RIVM op 20240328
+		,	Source          = "Martijn Spoon, aanlevering per mail via Gert Kelfkens RIVM op 20240328 
 							   conversie van shp naar gpkg in Qgis versie 3.34.1"
+		// januari 25: update niet nodig, want data is recent genoeg en hoogspanning verandert niet vaak
 
 		, 	url				= ""
 		{
@@ -24,6 +25,7 @@ container Energie
 		{
 			#include<analysekaarten.dms>//technisch
 		}
+		// nieuwe versie is nov 2023, nog checken in andere bestand
 	}
 	
 	container Wind

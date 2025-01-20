@@ -34,10 +34,25 @@ container SourceData : using = "geography;units"
 		{
 			attribute<rdc_meter>    geometry (poly);
 			attribute<.>            per_rdc_25m      (rdc_25m) := poly2grid(geometry, rdc_25m);
-			attribute<.>            per_rdc_100m    (rdc_100m) := poly2grid(geometry, rdc_100m);
+			//attribute<.>            per_rdc_100m    (rdc_100m) := poly2grid(geometry, rdc_100m);
 			attribute<bool>         Is_bbg_rdc_25m   (rdc_25m) := IsDefined(per_rdc_25m);
 			// attribute<bool>         Is_bbg_rdc_100m (rdc_100m) := IsDefined(per_rdc_100m);
 		}
+		
+		unit<uint32> Bevolkingskern_2021
+		:	StorageName     = "%RestrictiesDataDir%/RegioIndelingen/CBS_bevolkingskernen_2021.gpkg"
+		,	StorageType     = "gdal.vect"
+		,	StorageReadOnly = "True"
+		, 	Source			= "Nationaal georegister"
+		, 	URL				= "https://nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/9b795b71-e772-4315-a087-a2560343e2f"
+		{
+			attribute<rdc_meter>    geometry (poly);
+			attribute<.>            per_rdc_25m      (rdc_25m) := poly2grid(geometry, rdc_25m);
+			attribute<bool>         Is_bbg_rdc_25m   (rdc_25m) := IsDefined(per_rdc_25m);
+			// attribute<bool>         Is_bbg_rdc_100m (rdc_100m) := IsDefined(per_rdc_100m);
+		}	
+
+		//attribute<bool> Verschil_21_11 (rdc_25m) 		:= !Bevolkingskern_2021/Is_bbg_rdc_25m && bevolkingskern_2011/Is_bbg_rdc_25m;
 	}
 	
 	container Beleid := Templates/Beleid_T('rdc_25m');
