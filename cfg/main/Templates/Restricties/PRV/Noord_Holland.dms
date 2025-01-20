@@ -63,7 +63,49 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 	}
 	
 	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein
+	{
+		container ZeerHard := woongebied_en_werk_bedrijventerrein/ZeerHard;
+		container Hard := woongebied_en_werk_bedrijventerrein/Hard;
+		container Middel
+		{
+			attribute<bool> Regionale_waterkering_cat_1                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_1/selectie/Result;
+			attribute<bool> Regionale_waterkering_cat_2                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_2/selectie/Result;
+			attribute<bool> Regionale_waterkering_cat_3                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_3/selectie/Result;
+			attribute<bool> Regionale_waterkering_cat_4                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_4/selectie/Result;
+			attribute<bool> Regionale_waterkering_cat_5                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_5/selectie/Result;
+			attribute<bool> Regionale_waterkering_cat_6                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_6/selectie/Result;
+			attribute<bool> Beschermingszone_regionale_waterkering           (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Beschermingszone_regionale_waterkering/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(	  
+					  Regionale_waterkering_cat_1
+					, Regionale_waterkering_cat_2
+					, Regionale_waterkering_cat_3
+					, Regionale_waterkering_cat_4
+					, Regionale_waterkering_cat_5
+					, Regionale_waterkering_cat_6
+					, Beschermingszone_regionale_waterkering
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Bijzonder_provinciaal_landschap                  (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Bijzonder_provinciaal_landschap/selectie/Result;
+			attribute<bool> Ganzenfoerageergebieden       (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Ganzenfoerageergebieden/selectie/Result;
+			attribute<bool> Stiltegebieden                (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied  (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Bijzonder_provinciaal_landschap
+					, Ganzenfoerageergebieden
+					, Stiltegebieden
+					, Grondwaterbeschermingsgebied
+				);
+		}
+	}
+	
 	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
 	container Wind
 	{

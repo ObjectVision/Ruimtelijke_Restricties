@@ -16,6 +16,7 @@ template verwerk_NLIMRObestand_T
 	{
 		attribute<uint2>  InSelectie  := const(0u2,.);
 		attribute<string> ti_naam     := AsItemName(values);
+		attribute<string> Values;
 	}
  
 	unit<uint32> Read_NLIMRO_Selectiebestand: StorageName = "=Bestandsloc + bestandsnaam + '.csv'", StorageType = "gdal.vect", StorageReadOnly = "True"
