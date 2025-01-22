@@ -76,7 +76,7 @@ container Templates : using = "units;classifications;geography"
 					)
 				, rdc_25m
 				, bool
-				,'%LocalDataProjDir%/Output/'+ModelParameters/Export_Date+'/Stimuli_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
+				,'%LocalDataProjDir%/Output/'+ModelParameters/CurrentDateTime+'/Stimuli_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
 			)
 		{
 			//adhoc
