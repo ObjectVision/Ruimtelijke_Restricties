@@ -4,6 +4,7 @@ container OmgRecht
 	#include<AMvB.dms>
 	#include<Bevi.dms>
 	#include<PRV.dms>
+	#include<PRV2025.dms>
 	#include<PMV.dms>
 	#include<Bestemmingsplan.dms>
 	#include<StructuurVisie.dms>

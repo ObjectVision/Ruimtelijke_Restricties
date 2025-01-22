@@ -1,0 +1,8 @@
+container Fryslân : url="geen pdf"
+{
+	parameter<string> subpad:='prv_2025/fr';
+
+	container OmgevingsverordeningFriesland2022 
+	:= verwerk_NLIMRObestand_T('VerordeningFriesland2022', 'prv_2025/fr')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv21-2023-omgevingsverordening-11/overzicht";
+}

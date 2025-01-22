@@ -1,0 +1,8 @@
+container Limburg : url="geen pdf"
+{
+	parameter<string> subpad:='prv_2025/li';
+	
+	container OV_Limburg
+	:= verwerk_NLIMRObestand_T('OV_Limburg', 'prv_2025/li')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv31-2023-omgevingsverordening-1";
+}

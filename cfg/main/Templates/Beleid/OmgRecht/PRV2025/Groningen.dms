@@ -1,0 +1,8 @@
+container Groningen : url="geen pdf"
+{
+	parameter<string> subpad:='prv_2025/gr';
+	
+	container  VerordeningGroningen2023
+	:= verwerk_NLIMRObestand_T('VerordeningGroningen2023', 'prv_2025/gr')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv20-2023-omgevingsverordening-2";
+}

@@ -1,0 +1,10 @@
+container Noord_Holland : url="geen pdf"
+{
+	parameter<string> subpad:='prv_2025/nh';
+
+	container VerordeningNH22
+	:= verwerk_NLIMRObestand_T('VerordeningNH22', 'prv_2025/nh')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv27-2022-omgevingsverordening-6";
+	
+
+}

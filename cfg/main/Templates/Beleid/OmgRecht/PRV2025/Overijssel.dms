@@ -1,0 +1,9 @@
+container Overijssel : url=""
+{
+	parameter<string> subpad:='prv_2025/ov';
+
+	container VerordeningOverijssel2023 
+	:= verwerk_NLIMRObestand_T('VerordeningOverijssel2023', 'prv_2025/ov')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv23-2023-omgevingsverordening-2";
+
+}

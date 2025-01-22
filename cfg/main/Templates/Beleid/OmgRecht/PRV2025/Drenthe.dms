@@ -1,0 +1,9 @@
+container Drenthe : url="geen pdf"
+{
+	parameter<string> subpad:='prv_2025/dr';
+	
+	container VerordeningDrenthe2023
+	:= verwerk_NLIMRObestand_T('VerordeningDrenthe2023', 'prv_2025/dr')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv22-2023-omgevingsverordening-5/";
+	
+}

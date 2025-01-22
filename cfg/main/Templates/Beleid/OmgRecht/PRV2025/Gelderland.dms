@@ -1,0 +1,8 @@
+container Gelderland : url="geen pdf"
+{
+	parameter<string> subpad:='prv_2025/ge';
+	
+	container VerordeningGelderland2024
+	:= verwerk_NLIMRObestand_T('VerordeningGelderland2024', 'prv_2025/ge')
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv25-2023-omgevingsverordening-4/";
+}
