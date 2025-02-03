@@ -25,6 +25,14 @@ container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 					, Natuurnetwerk_Nederland
 					, kasteelbiotoop
 				);
+				
+			attribute<uint8> Totaal_unit8 (domain):=   Waterwingebied[uint8] + 
+					cat_1_NatuurNetwerk_Nederland[uint8] + 
+					cat_1_beschermd_grasland_in_de_Bollenstreek[uint8] +
+					cat_1_kroonjuweel_cultureel_erfgoed[uint8] + 
+					Natuurnetwerk_Nederland[uint8] +
+					kasteelbiotoop[uint8];
+
 		}
 		
 		container Middel
