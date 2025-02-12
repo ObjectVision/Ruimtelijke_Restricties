@@ -1,6 +1,6 @@
 container EU
 {
-	unit<uint32> Natura2000_oud:
+	unit<uint32> Natura2000:
 		StorageName     = "%RestrictiesDataDir%/Beleid/EU/Natura2000_20200524_RD_reproject.gdb"
 	,	StorageType     = "gdal.vect"
 	,	StorageReadOnly = "True"
@@ -17,7 +17,7 @@ container EU
 		attribute<bool> Result (domain) := Result_geom >= 0;
 	}
 	
-		unit<uint32> Natura2000:
+		unit<uint32> Natura2000_nieuw:
 		StorageName     = "%RestrictiesDataDir%/Beleid/EU/natura2000_20241119.gpkg"
 	,	StorageType     = "gdal.vect"
 	,	StorageReadOnly = "True"
