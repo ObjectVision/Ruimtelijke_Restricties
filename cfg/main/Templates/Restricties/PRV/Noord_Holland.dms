@@ -47,15 +47,15 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 		
 		container Zacht
 		{
-			attribute<bool> Bijzonder_provinciaal_landschap (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Bijzonder_provinciaal_landschap/selectie/Result;
+			//attribute<bool> Bijzonder_provinciaal_landschap (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Bijzonder_provinciaal_landschap/selectie/Result;
 			attribute<bool> Ganzenfoerageergebieden         (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Ganzenfoerageergebieden/selectie/Result;
 			attribute<bool> Stiltegebieden                  (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result;
 			attribute<bool> Grondwaterbeschermingsgebied    (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-				 	  Bijzonder_provinciaal_landschap
-					, Ganzenfoerageergebieden
+				 	  //Bijzonder_provinciaal_landschap
+					  Ganzenfoerageergebieden
 					, Stiltegebieden
 					, Grondwaterbeschermingsgebied
 				);
