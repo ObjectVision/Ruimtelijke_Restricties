@@ -26,7 +26,7 @@ container Templates : using = "units;classifications;geography"
 		unit<uint32> Provincie := SrcSrc/Provincie;
 		
 		container Totaal := 
-			for_each_nedva(
+			for_each_nedvat(
 				Actoren/Sector/name
 				,replace(
 					'max_elem('
@@ -42,6 +42,7 @@ container Templates : using = "units;classifications;geography"
 				, rdc_25m
 				, bool
 				,'%LocalDataProjDir%/Output/'+ModelParameters/CurrentDateTime+'/Restricties_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
+				, 'tif'
 			)
 		{
 			//adhoc
@@ -68,7 +69,7 @@ container Templates : using = "units;classifications;geography"
 		unit<uint32> Provincie := SrcSrc/Provincie;
 		
 		container Totaal := 
-			for_each_nedva(
+			for_each_nedvat(
 				Actoren/Sector/name
 				,replace(
 					'max_elem('+AsItemList('PRV/'+Provincie/name+'/@C@')+')'
@@ -77,6 +78,7 @@ container Templates : using = "units;classifications;geography"
 				, rdc_25m
 				, bool
 				,'%LocalDataProjDir%/Output/'+ModelParameters/CurrentDateTime+'/Stimuli_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
+				,'tif'
 			)
 		{
 			//adhoc
