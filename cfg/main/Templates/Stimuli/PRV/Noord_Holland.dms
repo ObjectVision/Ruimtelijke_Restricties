@@ -27,8 +27,8 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 		
 		container Middel
 		{
-			attribute<bool> Datacenter_clustering_toegestaan (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Datacenter_clustering_toegestaan/selectie/Result;
-			attribute<bool> Totaal (domain):= Datacenter_clustering_toegestaan;
+			//attribute<bool> Datacenter_clustering_toegestaan (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Datacenter_clustering_toegestaan/selectie/Result;
+			attribute<bool> Totaal (domain):= const(false, domain);
 		}
 		
 		container Zacht
