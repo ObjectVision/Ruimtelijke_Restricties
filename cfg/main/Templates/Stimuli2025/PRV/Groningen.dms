@@ -1,0 +1,121 @@
+container Groningen := Templates/Per_Provincie_T('Groningen', Src, domain)
+{
+	container woongebied
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Bedrijventerrein
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute <bool> Nieuw_bedrijventerrein_toegestaan (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Nieuw_bedrijventerrein_toegestaan/selectie/Result;
+			attribute<bool>  Totaal (domain)                           := Nieuw_bedrijventerrein_toegestaan;
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Verblijfsrecreatie
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+
+	
+	container Glastuinbouw
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Wind
+	{
+		container Hard
+		{
+			attribute <bool> Concentratiegebieden_grootschalige_windenergie (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Concentratiegebieden_grootschalige_windenergie/selectie/Result;
+			attribute <bool> Zoekgebied_vervanging_windturbines             (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Zoekgebied_vervanging_windturbines/selectie/Result;
+			attribute <bool> Zoekgebied_windenergie_Roodehaan               (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Zoekgebied_windenergie_Roodehaan/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Concentratiegebieden_grootschalige_windenergie
+					, Zoekgebied_vervanging_windturbines
+					, Zoekgebied_windenergie_Roodehaan
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Zon
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+}

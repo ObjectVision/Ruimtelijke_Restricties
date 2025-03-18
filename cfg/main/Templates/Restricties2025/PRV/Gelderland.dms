@@ -1,0 +1,115 @@
+container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Gelders_natuurnetwerk       (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Gelders_natuurnetwerk/selectie/Result;
+			attribute<bool> Nieuwe_Hollandse_Waterlinie (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Nieuwe_Hollandse_Waterlinie/selectie/Result;
+			attribute<bool> waterwingebied              (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Gelders_natuurnetwerk
+					, Nieuwe_Hollandse_Waterlinie
+					, waterwingebied
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Waardevol_open_gebied              (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Waardevol_open_gebied/selectie/Result;
+			attribute<bool> Groene_ontwikkelingszone           (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Groene_ontwikkelingszone/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Waardevol_open_gebied
+					, Groene_ontwikkelingszone
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Stiltegebieden                     (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Stiltegebied/selectie/Result;
+			attribute<bool> Ganzenrustgebied                   (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
+			attribute<bool> weidevogelgebied                   (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/weidevogelgebied/selectie/Result;
+			attribute<bool> beschermingszone_natte_landnatuur  (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/beschermingszone_natte_landnatuur/selectie/Result;
+			attribute<bool> Grondwaterbescherming              (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Stiltegebieden
+					, Ganzenrustgebied
+					, weidevogelgebied
+					, beschermingszone_natte_landnatuur
+					, Grondwaterbescherming
+				);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+		
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			
+			attribute<bool> Verbodsgebied_windenergie_in_NNN (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Gelders_natuurnetwerk/selectie/Result && !
+																				Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Gelders_natuurnetwerk_windturbines_onder_voorwaarden_mogelijk/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Verbodsgebied_windenergie_in_NNN;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Ganzenrustgebied (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
+			attribute<bool> weidevogelgebied (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/weidevogelgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Ganzenrustgebied
+					, weidevogelgebied
+				);
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := Wind/Zacht/Totaal;
+		}
+	}
+}

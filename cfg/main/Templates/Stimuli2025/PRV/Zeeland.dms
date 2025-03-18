@@ -1,0 +1,119 @@
+container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
+{
+	container woongebied
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Bedrijventerrein
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Grootschalige_bedrijventerreinen (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Grootschalige_bedrijventerreinen/selectie/Result;
+			attribute<bool> Detailhandelsvoorzieningen       (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Detailhandelsvoorzieningen/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Grootschalige_bedrijventerreinen
+					, Detailhandelsvoorzieningen
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Verblijfsrecreatie
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Verblijfsrecreatie_begrenzing_badplaatsen (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Verblijfsrecreatie_begrenzing_badplaatsen_/selectie/Result;
+			attribute<bool> Totaal (domain):= Verblijfsrecreatie_begrenzing_badplaatsen;
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Glastuinbouw
+	{
+		container Hard
+		{
+			attribute<bool> Glastuinbouw (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Glastuinbouw/selectie/Result;
+			attribute<bool> Totaal (domain) := Glastuinbouw;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Wind
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Zon
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+}

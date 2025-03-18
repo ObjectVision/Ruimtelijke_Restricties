@@ -1,0 +1,113 @@
+container Overijssel := Templates/Per_Provincie_T('Overijssel', Src, domain)
+{
+	container Woongebied
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Bedrijventerrein
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Verblijfsrecreatie
+	{
+		container Hard
+		{
+			
+			attribute<bool> Mogelijkheden_voor_nieuwe_recreatiewoningen (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P/Laag_namen_selectie/Mogelijkheden_voor_nieuwe_recreatiewoningen/selectie/Result;
+			attribute<bool> Totaal (domain) := Mogelijkheden_voor_nieuwe_recreatiewoningen;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Glastuinbouw
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Wind
+	{
+		container Hard
+		{
+			attribute<bool> Zoekgebieden_windenergie_Noordoost_Twente (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Zoekgebieden_windenergie_Noordoost_Twente/selectie/Result;
+			attribute<bool> Totaal (domain) := Zoekgebieden_windenergie_Noordoost_Twente;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Zon
+	{
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+}

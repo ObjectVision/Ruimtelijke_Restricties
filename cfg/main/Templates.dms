@@ -57,6 +57,49 @@ container Templates : using = "units;classifications;geography"
 		#include<Restricties/Overigen.dms>
 	}
 	
+	Template Restricties2025_T
+	{
+		container SrcSrc;
+		parameter<string> HardheidK;
+		//
+		
+		parameter<string> domain_str := SrcSrc/domain_str;
+		
+		unit<ipoint> domain := =domain_str;
+		unit<uint32> Provincie := SrcSrc/Provincie;
+		
+		container Totaal := 
+			for_each_nedvat(
+				Actoren/Sector/name
+				,replace(
+					'max_elem('
+						'EU/@C@,'
+						'AMVB/@C@,'
+						'Bevi/@C@,'
+						+AsItemList('PRV/'+Provincie/name+'/@C@')+','+
+						+AsItemList('PMV/'+Provincie/name+'/@C@')+','+
+						'Overigen/@C@'
+					')',
+					'@C@', Actoren/Sector/ref+'/'+HardheidK+'/Totaal'
+					)
+				, rdc_25m
+				, bool
+				,'%LocalDataProjDir%/Output/'+ModelParameters/CurrentDateTime+'/Restricties_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
+				, 'tif'
+			)
+		{
+			//adhoc
+			attribute<bool> any (rdc_25m) := =AsList(Actoren/Sector/name, ' || ');
+		}
+		
+		#include<Restricties2025/EU.dms>
+		#include<Restricties2025/AMVB.dms>
+		#include<Restricties2025/Bevi.dms>
+		#include<Restricties2025/PRV.dms>
+		#include<Restricties2025/PMV.dms>
+		#include<Restricties2025/Overigen.dms>
+	}
+	
 	Template Stimuli_T
 	{
 		container SrcSrc;
@@ -88,6 +131,39 @@ container Templates : using = "units;classifications;geography"
 		#include<Stimuli/AMVB.dms>
 		#include<Stimuli/Structuurvisie.dms>
 		#include<Stimuli/PRV.dms>
+	}
+	
+	Template Stimuli2025_T
+	{
+		container SrcSrc;
+		parameter<string> HardheidK;
+		//
+		
+		parameter<string> domain_str := SrcSrc/domain_str;
+		
+		unit<ipoint> domain := =domain_str;
+		unit<uint32> Provincie := SrcSrc/Provincie;
+		
+		container Totaal := 
+			for_each_nedvat(
+				Actoren/Sector/name
+				,replace(
+					'max_elem('+AsItemList('PRV/'+Provincie/name+'/@C@')+')'
+					,'@C@', Actoren/Sector/ref+'/'+HardheidK+'/Totaal'
+					)
+				, rdc_25m
+				, bool
+				,'%LocalDataProjDir%/Output/'+ModelParameters/CurrentDateTime+'/Stimuli_'+Actoren/Sector/name+'_'+HardheidK+'.tif'
+				,'tif'
+			)
+		{
+			//adhoc
+			attribute<bool> any (rdc_25m) := =AsList(Actoren/Sector/name, ' || ');
+		}
+		
+		#include<Stimuli2025/AMVB.dms>
+		#include<Stimuli2025/Structuurvisie.dms>
+		#include<Stimuli2025/PRV.dms>
 	}
 	
 	Template Per_Provincie_T

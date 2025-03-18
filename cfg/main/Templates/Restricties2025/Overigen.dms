@@ -1,0 +1,164 @@
+container Overigen
+{
+	container Src := SrcSrc/OmgRecht/Overigen;
+	
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> NabijWindturbines       (rdc_25m)  := Preprocessing/Wind_restricties/bestaande_turbines/IsNietToegestaan_basis;
+			attribute<bool> NabijWindturbinesBP	    (rdc_25m)  := Preprocessing/Wind_restricties/windturbines_BP/IsNietToegestaan_basis;
+			attribute<bool> Rijksmonumenten         (domain) := Src/Monumenten/RijksMonumenten/Totaal/IsRijksmonument;
+			attribute<bool> RijksMonumentenContour  (domain) := Src/Monumenten/RijksMonumentenContour/Totaal/IsRijksmonumentcontour;
+			attribute<bool> Stads_en_Dorpsgezichten (domain) := Src/Monumenten/Stads_en_Dorpsgezichten/IsHard[poly2grid(Src/Monumenten/Stads_en_Dorpsgezichten/Geometry, domain)];
+			attribute<bool> Hoogspanningslijn 		(rdc_25m)  := SourceData/Energie/hoogspanning/Hoogspanningslijn/BufferGridResult;
+			attribute<bool> Totaal 					(domain) := OR(Rijksmonumenten, RijksMonumentenContour, Stads_en_Dorpsgezichten,NabijWindturbines, NabijWindturbinesBP, Hoogspanningslijn);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Buisleiding (rdc_25m) :=/SourceData/Bodem/Buisleiding/is_buisleiding_vergrid;
+			attribute<bool> Totaal (rdc_25m) := Buisleiding;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Stads_en_Dorpsgezichten (rdc_25m) := Src/Monumenten/Stads_en_Dorpsgezichten/IsNietHard[poly2grid(Src/Monumenten/Stads_en_Dorpsgezichten/Geometry, domain)];
+			attribute<bool> Totaal (rdc_25m) := Stads_en_Dorpsgezichten;
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (rdc_25m) := const(false, rdc_25m);
+		}
+	}
+	
+	container woongebied
+	{
+		container ZeerHard
+		{
+			attribute<bool> Maastricht        (rdc_25m) := Src/Regionale_luchthavens/Maastricht_lden_70_hoger;
+			attribute<bool> Groningen         (rdc_25m) := Src/Regionale_luchthavens/Groningen_lden_70_hoger;
+			attribute<bool> Lelystad          (rdc_25m) := Src/Regionale_luchthavens/Lelystad_lden_70_hoger;
+			attribute<bool> Rotterdam         (rdc_25m) := Src/Regionale_luchthavens/Rotterdam_lden_70_hoger;
+			attribute<bool> Eindhoven_Airport (rdc_25m) := Src/Regionale_luchthavens/Eindhoven_Airport/ke_35_40/Multi/Result;
+			
+			attribute<bool> Totaal (rdc_25m) := Max_elem(
+				woongebied_en_werk_bedrijventerrein/ZeerHard/totaal,
+				Maastricht,
+				Groningen,
+				Lelystad,
+				Rotterdam,
+				Eindhoven_Airport
+			);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (rdc_25m) := Woongebied_en_werk_bedrijventerrein/Hard/Totaal;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Maastricht        (rdc_25m) := Src/Regionale_luchthavens/Maastricht_lden_56_70;
+			attribute<bool> Groningen         (rdc_25m) := Src/Regionale_luchthavens/Groningen_lden_56_70;
+			attribute<bool> Lelystad          (rdc_25m) := Src/Regionale_luchthavens/Lelystad_lden_56_70;
+			attribute<bool> Rotterdam         (rdc_25m) := Src/Regionale_luchthavens/Rotterdam_lden_56_70;
+
+			attribute<bool> Totaal (rdc_25m) := Max_elem(
+				woongebied_en_werk_bedrijventerrein/middel/totaal,
+				Maastricht,
+				Groningen,
+				Lelystad,
+				Rotterdam
+			);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Maastricht        (rdc_25m) := Src/Regionale_luchthavens/Maastricht_lden_48_56;
+			attribute<bool> Groningen         (rdc_25m) := Src/Regionale_luchthavens/Groningen_lden_48_56;
+			attribute<bool> Lelystad          (rdc_25m) := Src/Regionale_luchthavens/Lelystad_lden_48_56;
+			attribute<bool> Rotterdam         (rdc_25m) := Src/Regionale_luchthavens/Rotterdam_lden_48_56;
+		
+			attribute<bool> Totaal (domain) := Max_elem(
+				woongebied_en_werk_bedrijventerrein/zacht/totaal,
+				Maastricht,
+				Groningen,
+				Lelystad,
+				Rotterdam
+			);
+		}
+	}
+	
+	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein;
+	
+	container Verblijfsrecreatie
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := Woongebied_en_werk_bedrijventerrein/Hard/Totaal;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (rdc_25m) := Src/RES/Wind/IsRestrictief_hard;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (rdc_25m) := Src/RES/Wind/IsRestrictief_zacht;
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (rdc_25m) := Src/RES/Zon/IsRestrictief_hard;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (rdc_25m) := const(false, rdc_25m);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (rdc_25m) := const(false, rdc_25m);
+		}
+	}
+}

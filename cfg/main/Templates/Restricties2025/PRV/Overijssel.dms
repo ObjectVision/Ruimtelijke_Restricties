@@ -1,0 +1,108 @@
+container Overijssel := Templates/Per_Provincie_T('Overijssel', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Overstromingsrisicogebied         (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Overstromingsrisicogebied_vrijwaringsgebied_in_verband_met_het_overstromingsrisico_/selectie/Result;
+			
+			attribute<bool> Totaal (domain) := Max_elem
+				(
+					Overstromingsrisicogebied
+				);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Bestaande_natuur_NNN_voorheen_EHS (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P/Laag_namen_selectie/Bestaande_natuur_NNN_land/selectie/Result;
+			attribute<bool> Waterwingebied                    (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain) := Max_elem
+				(
+					  Bestaande_natuur_NNN_voorheen_EHS
+					, Waterwingebied
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Overig_te_realiseren_natuur                                   (domain): = Src/NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P/Laag_namen_selectie/Overig_te_realiseren_natuur/selectie/Result;
+			attribute<bool> Uitwerkingsgebied_ontwikkelopgave_Natura_2000                 (domain): = Src/NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P/Laag_namen_selectie/Uitwerkingsgebied_ontwikkelopgave_Natura_2000/selectie/Result;
+			attribute<bool> Zoekgebied_natuur_NNN_voorheen_EHS                            (domain): = Src/NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P/Laag_namen_selectie/Zoekgebied_natuur_NNN_voorheen_EHS_/selectie/Result;
+			attribute<bool> Te_realiseren_natuur_NNN_voorheen_EHS                         (domain): = Src/NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P/Laag_namen_selectie/Te_realiseren_natuur_NNN_voorheen_EHS_/selectie/Result;
+			attribute<bool> Waterbergingsgebieden                                         (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Waterbergingsgebieden/selectie/Result;
+			
+			attribute<bool> Totaal (domain) := Max_elem
+				(
+					  Overig_te_realiseren_natuur
+					, Uitwerkingsgebied_ontwikkelopgave_Natura_2000
+					, Zoekgebied_natuur_NNN_voorheen_EHS
+					, Te_realiseren_natuur_NNN_voorheen_EHS
+					, Waterbergingsgebieden
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Weidevogelleefgebieden        (domain): = Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Weidevogelleefgebieden/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied  (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain) := Max_elem
+				(
+					  Weidevogelleefgebieden
+					, Grondwaterbeschermingsgebied
+				);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Uitsluitingsgebieden_windturbines (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Uitsluitingsgebieden_windturbines/selectie/Result;
+			attribute<bool> Totaal (domain) := Uitsluitingsgebieden_windturbines;
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Weidevogelleefgebieden;
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Weidevogelleefgebieden;
+		}
+	}
+}

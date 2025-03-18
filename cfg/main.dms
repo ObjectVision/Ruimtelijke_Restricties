@@ -63,6 +63,26 @@ container Ruimtelijke_Restricties
 		// attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/Stimuli_HardheidK/name+'/Totaal/Any',' || ');
 	}
 	
+	container Restricties2025 := 
+		for_each_ne(
+			Classifications/Restrictie_HardheidK/name
+			, 'Templates/Restricties2025_T(SourceData/Beleid,'+quote(Classifications/Restrictie_HardheidK/name)+')'
+		), using = "units;Classifications;Geography"
+	{
+		parameter<string> Generate_All  := 'Ready', ExplicitSuppliers = "=Aslist(Classifications/Restrictie_HardheidK/name+'/Totaal',';')";
+		// attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/Restrictie_HardheidK/name+'/Totaal/Any',' || ');
+	}
+	
+	container Stimuli2025 := 
+		for_each_ne(
+			Classifications/Stimuli_HardheidK/name
+			, 'Templates/Stimuli2025_T(SourceData/Beleid,'+quote(Classifications/Stimuli_HardheidK/name)+')'
+		), using = "units;Classifications;Geography"
+	{
+		parameter<string> Generate_All  := 'Ready', ExplicitSuppliers = "=Aslist(Classifications/Stimuli_HardheidK/name+'/Totaal',';')";
+		// attribute<bool>   Any (rdc_25m) := =Aslist(Classifications/Stimuli_HardheidK/name+'/Totaal/Any',' || ');
+	}
+	
 	#include<Templates.dms>
 	
 	// Settings

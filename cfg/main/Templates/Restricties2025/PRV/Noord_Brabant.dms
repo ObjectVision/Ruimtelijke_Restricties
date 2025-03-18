@@ -1,0 +1,110 @@
+container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Rivierbed                        (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Rivierbed/selectie/Result;
+			attribute<bool> Waterwingebied                   (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			attribute<bool> Groenblauwe_mantel               (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Groenblauwe_mantel/selectie/Result;
+			attribute<bool> Natuur_Netwerk_Brabant           (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Natuur_Netwerk_Brabant/selectie/Result;
+			attribute<bool> Nieuwe_Hollandse_Waterlinie      (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Nieuwe_Hollandse_Waterlinie/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Rivierbed
+					, Waterwingebied
+					, Groenblauwe_mantel
+					, Natuur_Netwerk_Brabant
+					, Nieuwe_Hollandse_Waterlinie
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Regionale_waterberging           (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Regionale_waterberging/selectie/Result;
+			attribute<bool> Reservering_waterberging         (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Reservering_waterberging/selectie/Result;
+			attribute<bool> Aansluiting_primaire_waterkering (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Aansluiting_primaire_waterkering/selectie/Result;
+			attribute<bool> Regionale_waterkering            (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Regionale_waterkering/selectie/Result;
+			attribute<bool> Landelijk_gebied_zonder_verstedelijking_afweegbaar (domain) := AND(Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Landelijk_gebied/selectie/Result, !Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Verstedelijking_afweegbaar/selectie/Result);
+
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Regionale_waterberging
+					, Reservering_waterberging
+					, Aansluiting_primaire_waterkering
+					, Regionale_waterkering
+					, Landelijk_gebied_zonder_verstedelijking_afweegbaar
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Aardkundig_waardevol_gebied      (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Aardkundig_waardevol_gebied/selectie/Result;
+			attribute<bool> Stiltegebied                     (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Stiltegebied/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied     (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Aardkundig_waardevol_gebied
+					, Stiltegebied
+					, Grondwaterbeschermingsgebied
+				);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+	}
+}

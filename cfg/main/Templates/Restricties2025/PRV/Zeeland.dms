@@ -1,0 +1,131 @@
+container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Waterwingebied                (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			attribute<bool> bestaande_natuur              (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P/Laag_namen_selectie/Bestaande_Natuur/selectie/Result;
+			attribute<bool> nieuwe_natuur                 (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P/Laag_namen_selectie/Nieuwe_natuur/selectie/Result;
+			
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Waterwingebied
+					, bestaande_natuur
+					, nieuwe_natuur
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain):= const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Milieubeschermingsgebied_overig            (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Milieubeschermingsgebied_overig_/selectie/Result;//defacto stiltegebieden
+			attribute<bool> Agrarisch_gebied_van_ecologische_betekenis (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P/Laag_namen_selectie/Agrarisch_gebied_van_ecologische_betekenis/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied               (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			attribute<bool> Landschap_en_erfgoed                       (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Landschap_en_erfgoed/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Milieubeschermingsgebied_overig
+					, Agrarisch_gebied_van_ecologische_betekenis
+					, Grondwaterbeschermingsgebied
+					, Landschap_en_erfgoed
+				);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	
+	container Verblijfsrecreatie
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			
+			attribute<bool> Beschermingsgebied            (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P/Laag_namen_selectie/Beschermingsgebied/selectie/Result;
+			attribute<bool> Natuurstrand                  (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P/Laag_namen_selectie/Natuurstrand/selectie/Result;
+			attribute<bool> Zeeuwse_topkwaliteit          (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P/Laag_namen_selectie/Zeeuwse_topkwaliteit/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  woongebied_en_werk_bedrijventerrein/Hard/Totaal
+					, Beschermingsgebied
+					, Natuurstrand
+					, Zeeuwse_topkwaliteit
+				);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Middel/Totaal;
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := woongebied_en_werk_bedrijventerrein/Zacht/Totaal;
+		}
+	}
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Landschap_en_erfgoed  (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Landschap_en_erfgoed/selectie/Result;
+			attribute<bool> Totaal (domain):= Landschap_en_erfgoed;
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Landschap_en_erfgoed  (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Landschap_en_erfgoed/selectie/Result;
+			attribute<bool> Totaal (domain):= Landschap_en_erfgoed;
+		}
+	}
+}

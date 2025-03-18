@@ -1,0 +1,127 @@
+container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
+{
+	container woongebied_en_werk_bedrijventerrein
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Waterwingebied                                             (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			attribute<bool> cat_1_NatuurNetwerk_Nederland                              (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_NatuurNetwerk_Nederland/selectie/Result;
+			attribute<bool> cat_1_beschermd_grasland_in_de_Bollenstreek                (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_beschermd_grasland_in_de_Bollenstreek/selectie/Result;
+			attribute<bool> cat_1_kroonjuweel_cultureel_erfgoed                        (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_kroonjuweel_cultureel_erfgoed/selectie/Result;
+			attribute<bool> Natuurnetwerk_Nederland                                    (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_NatuurNetwerk_Nederland/selectie/Result;
+			attribute<bool> kasteelbiotoop                                             (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/kasteelbiotoop/selectie/Result;
+
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Waterwingebied
+					, cat_1_NatuurNetwerk_Nederland
+					, cat_1_beschermd_grasland_in_de_Bollenstreek
+					, cat_1_kroonjuweel_cultureel_erfgoed
+					, Natuurnetwerk_Nederland
+					, kasteelbiotoop
+				);
+				
+			attribute<uint8> Totaal_unit8 (domain):=   Waterwingebied[uint8] + 
+					cat_1_NatuurNetwerk_Nederland[uint8] + 
+					cat_1_beschermd_grasland_in_de_Bollenstreek[uint8] +
+					cat_1_kroonjuweel_cultureel_erfgoed[uint8] + 
+					Natuurnetwerk_Nederland[uint8] +
+					kasteelbiotoop[uint8];
+
+		}
+		
+		container Middel
+		{
+			attribute<bool> cat_2_groene_buffer                                        (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_groene_buffer/selectie/Result;
+			attribute<bool> cat_2_recreatiegebied                                      (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_recreatiegebied/selectie/Result;
+			attribute<bool> landgoedbiotoop                                            (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/landgoedbiotoop/selectie/Result;
+			attribute<bool> regionale_waterkering_handhaven_theoretisch_profiel_legger (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/regionale_waterkering_handhaven_theoretisch_profiel_legger/selectie/Result;
+			
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  cat_2_groene_buffer
+					, cat_2_recreatiegebied
+					, landgoedbiotoop
+					, regionale_waterkering_handhaven_theoretisch_profiel_legger
+				);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> stiltegebied                                       (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/stiltegebied/selectie/Result;
+			attribute<bool> cat_2_belangrijk_weidevogelgebied                  (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_belangrijk_weidevogelgebied/selectie/Result;
+			attribute<bool> blijvend_agrarisch_gebied_binnen_Natura2000_gebied (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/blijvend_agrarisch_gebied_binnen_Natura2000_gebied/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied                       (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  stiltegebied
+					, cat_2_belangrijk_weidevogelgebied
+					, blijvend_agrarisch_gebied_binnen_Natura2000_gebied
+					, Grondwaterbeschermingsgebied
+				);
+		}
+	}
+	
+	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	
+	container Wind
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> cat_2_belangrijk_weidevogelgebied                  (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_belangrijk_weidevogelgebied/selectie/Result;
+			attribute<bool> blijvend_agrarisch_gebied_binnen_Natura2000_gebied (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/blijvend_agrarisch_gebied_binnen_Natura2000_gebied/selectie/Result;
+
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					 cat_2_belangrijk_weidevogelgebied
+					, blijvend_agrarisch_gebied_binnen_Natura2000_gebied
+				);
+		}
+	}
+	
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := Wind/Zacht/Totaal;
+		}
+	}
+}
