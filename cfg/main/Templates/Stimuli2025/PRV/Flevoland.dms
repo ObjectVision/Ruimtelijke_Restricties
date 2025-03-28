@@ -76,8 +76,8 @@ container Flevoland := Templates/Per_Provincie_T('Flevoland', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Wijziging_omgevingsverordening_Windplan_Groen (domain): = Src/NL_IMRO_9924_OVwindplangroen_VA01_Besluitvlak_P/Laag_namen_selectie/Wijziging_omgevingsverordening_Windplan_Groen/selectie/Result;
-			attribute<bool> Totaal (domain):= Wijziging_omgevingsverordening_Windplan_Groen;
+			attribute<bool> windgebied_Locatie (domain): = Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/windgebied_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain):= windgebied_Locatie;
 		}
 	
 		container Middel
@@ -95,12 +95,7 @@ container Flevoland := Templates/Per_Provincie_T('Flevoland', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> grondgebonden_zonne_energie_in_het_landelijk_gebied (domain) := 
-										Src/NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P/Laag_namen_selectie/grondgebonden_zonne_energie_in_het_landelijk_gebied/selectie/Result && 
-										!Src/NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P/Laag_namen_selectie/uitzondering_glastuinbouw_i_r_t_zonne_energie_in_het_landelijk_gebied/selectie/Result && 
-										!Src/NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P/Laag_namen_selectie/uitzonderingsgebieden_agrarische_gronden/selectie/Result;
-										
-			attribute<bool> Totaal (domain) := grondgebonden_zonne_energie_in_het_landelijk_gebied;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
 		container Middel

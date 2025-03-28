@@ -1,4 +1,5 @@
 container Drenthe := Templates/Per_Provincie_T('Drenthe', Src, domain)
+//notitie: Glastuinbouw_Locatie nieuw toegevoegd als stimuli
 {
 	container Woongebied
 	{
@@ -58,7 +59,14 @@ container Drenthe := Templates/Per_Provincie_T('Drenthe', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Glastuinbouw_Locatie (domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Glastuinbouw_Locatie/selectie/Result;
+			attribute<bool> Glastuinbouwgebieden_Locatie (domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Glastuinbouwgebieden_Locatie/selectie/Result;
+			
+			attribute<bool> Totaal (domain) := Max_elem
+				(
+					  Glastuinbouw_Locatie
+					, Glastuinbouwgebieden_Locatie
+				);
 		}
 		
 		container Middel

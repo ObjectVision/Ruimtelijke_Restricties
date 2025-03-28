@@ -9,17 +9,19 @@ container Limburg := Templates/Per_Provincie_T('Limburg', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> Goudgroene_natuurzone                                    (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Goudgroene_natuurzone/selectie/Result;
-			attribute<bool> Waterwingebieden                                         (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Waterwingebieden/selectie/Result;
-			attribute<bool> Gesloten_stortplaats                                     (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Gesloten_stortplaats/selectie/Result;
-			attribute<bool> Reserveringszones_langs_spoorwegen_en_provinciale_wegen  (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Reserveringszones_langs_spoorwegen_en_provinciale_wegen/selectie/Result;
+			attribute<bool> Natuurnetwerk_Limburg									 (domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/Natuurnetwerk_Limburg/selectie/Result;
+			attribute<bool> Waterwingebieden                                        (domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/Waterwingebieden/selectie/Result;
+			attribute<bool> Gesloten_stortplaatsen                                  (domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/gesloten_stortplaatsen/selectie/Result;
+			attribute<bool> Reserveringszone_provinciale_weg  						(domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/reserveringszone_provinciale_weg/selectie/Result;
+			attribute<bool> Reserveringszone_spoorweg 						 		(domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/reserveringszone_spoorweg/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Goudgroene_natuurzone
+					  Natuurnetwerk_Limburg
 					, Waterwingebieden
-					, Gesloten_stortplaats
-					, Reserveringszones_langs_spoorwegen_en_provinciale_wegen
+					, Gesloten_stortplaatsen
+					, Reserveringszone_provinciale_weg
+					, Reserveringszone_spoorweg
 				);
 		}
 		
@@ -30,13 +32,15 @@ container Limburg := Templates/Per_Provincie_T('Limburg', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> Stiltegebieden                   (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result;
-			attribute<bool> Grondwaterbeschermingsgebieden   (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebieden/selectie/Result;
+			attribute<bool> Stiltegebied                   		(domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/Stiltegebied/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebieden   	(domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/Grondwaterbeschermingsgebieden/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied_Hanik 	(domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Hanik/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Stiltegebieden
+					  Stiltegebied
 					, Grondwaterbeschermingsgebieden
+					, Grondwaterbeschermingsgebied_Hanik
 				);
 		}
 	}
@@ -54,8 +58,8 @@ container Limburg := Templates/Per_Provincie_T('Limburg', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> Beschermingsgebied_Einstein_Telescope               (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Beschermingsgebied_Einstein_Telescope/selectie/Result;
-			attribute<bool> Beschermingsgebied_Nationaal_Landschap_Zuid_Limburg (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Beschermingsgebied_Nationaal_Landschap_Zuid_Limburg/selectie/Result;
+			attribute<bool> Beschermingsgebied_Einstein_Telescope              	(domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/Beschermingsgebied_Einstein_Telescope/selectie/Result;
+			attribute<bool> Beschermingsgebied_Nationaal_Landschap_Zuid_Limburg (domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/Beschermingsgebied_Nationaal_Landschap_Zuid_Limburg/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(

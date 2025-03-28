@@ -27,8 +27,8 @@ container Groningen := Templates/Per_Provincie_T('Groningen', Src, domain)
 		
 		container Middel
 		{
-			attribute <bool> Nieuw_bedrijventerrein_toegestaan (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Nieuw_bedrijventerrein_toegestaan/selectie/Result;
-			attribute<bool>  Totaal (domain)                           := Nieuw_bedrijventerrein_toegestaan;
+			attribute<bool> gebiedmetpotentilebedrijventerreinen_Locatie (domain):= Src/akn_nl_act_pv20_2023_omgevingsverordening/Laag_namen_selectie/gebiedmetpotentilebedrijventerreinen_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain) :=  gebiedmetpotentilebedrijventerreinen_Locatie;
 		}
 		
 		container Zacht
@@ -78,15 +78,15 @@ container Groningen := Templates/Per_Provincie_T('Groningen', Src, domain)
 	{
 		container Hard
 		{
-			attribute <bool> Concentratiegebieden_grootschalige_windenergie (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Concentratiegebieden_grootschalige_windenergie/selectie/Result;
-			attribute <bool> Zoekgebied_vervanging_windturbines             (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Zoekgebied_vervanging_windturbines/selectie/Result;
-			attribute <bool> Zoekgebied_windenergie_Roodehaan               (domain):= Src/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Zoekgebied_windenergie_Roodehaan/selectie/Result;
+			attribute <bool> concentratiegebiedengrootschaligewindenergie_Locatie (domain):= Src/akn_nl_act_pv20_2023_omgevingsverordening/Laag_namen_selectie/concentratiegebiedengrootschaligewindenergie_Locatie/selectie/Result;
+			attribute <bool> zoekgebiedvervangingwindturbines_Locatie             (domain):= Src/akn_nl_act_pv20_2023_omgevingsverordening/Laag_namen_selectie/zoekgebiedvervangingwindturbines_Locatie/selectie/Result;
+			attribute <bool> zoekgebiedwindenergieRoodehaan_Locatie               (domain):= Src/akn_nl_act_pv20_2023_omgevingsverordening/Laag_namen_selectie/zoekgebiedwindenergieRoodehaan_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Concentratiegebieden_grootschalige_windenergie
-					, Zoekgebied_vervanging_windturbines
-					, Zoekgebied_windenergie_Roodehaan
+					  concentratiegebiedengrootschaligewindenergie_Locatie
+					, zoekgebiedvervangingwindturbines_Locatie
+					, zoekgebiedwindenergieRoodehaan_Locatie
 				);
 		}
 		

@@ -27,7 +27,6 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 		
 		container Middel
 		{
-			//attribute<bool> Datacenter_clustering_toegestaan (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Datacenter_clustering_toegestaan/selectie/Result;
 			attribute<bool> Totaal (domain):= const(false, domain);
 		}
 		
@@ -59,8 +58,8 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 	{
 		container Hard
 		{
-			attribute<bool> Glastuinbouwconcentratiegebied (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Glastuinbouwconcentratiegebied/selectie/Result;
-			attribute<bool> Totaal (domain):= Glastuinbouwconcentratiegebied;
+			attribute<bool> Glastuinbouwconcentratiegebied_Locatie (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Glastuinbouwconcentratiegebied_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain):= Glastuinbouwconcentratiegebied_Locatie;
 		}
 		
 		container Middel
@@ -78,8 +77,8 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 	{
 		container Hard
 		{
-			attribute<bool> Zoekgebieden_wind_en_wind_zon_RES_1_0 (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Zoekgebieden_wind_en_wind_zon_RES_1_0/selectie/Result;
-			attribute<bool> Totaal (domain) := Zoekgebieden_wind_en_wind_zon_RES_1_0;
+			attribute<bool> ZoekgebiedenwindenwindenzonRES_Locatie (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/ZoekgebiedenwindenwindenzonRES_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain) := ZoekgebiedenwindenwindenzonRES_Locatie;
 		}
 		
 		container Middel
@@ -97,8 +96,8 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 	{
 		container Hard
 		{
-			attribute<bool> Zoekgebieden_wind_en_wind_zon_RES_1_0 (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Zoekgebieden_wind_en_wind_zon_RES_1_0/selectie/Result;
-			attribute<bool> Totaal (domain) := Zoekgebieden_wind_en_wind_zon_RES_1_0;
+			attribute<bool> ZoekgebiedenwindenwindenzonRES_Locatie (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/ZoekgebiedenwindenwindenzonRES_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain) := ZoekgebiedenwindenwindenzonRES_Locatie;
 		}
 		
 		container Middel

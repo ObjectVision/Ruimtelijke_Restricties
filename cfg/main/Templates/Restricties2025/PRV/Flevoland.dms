@@ -4,20 +4,30 @@ container Flevoland := Templates/Per_Provincie_T('Flevoland', Src, domain)
 	{
 		container ZeerHard
 		{
-			attribute<bool> Wijziging_omgevingsverordening_Windplan_Groen (domain) := Src/NL_IMRO_9924_OVwindplangroen_VA01_Besluitvlak_P/Laag_namen_selectie/Wijziging_omgevingsverordening_Windplan_Groen/selectie/Result;
-		
-			attribute<bool> Totaal (domain) := Wijziging_omgevingsverordening_Windplan_Groen;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
 		container Hard
 		{
-			attribute<bool> NatuurnetwerkNederland                           (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Natuurnetwerk_Nederland/selectie/Result;
-			attribute<bool> Waterwingebied                                   (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			attribute<bool> NatuurnetwerkNederland_Locatie         		(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/NatuurnetwerkNederland_Locatie/selectie/Result;
+			attribute<bool> WaterwingebiedSpiekzand35meter_Locatie      (domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/WaterwingebiedSpiekzand35meter_Locatie/selectie/Result;
+			attribute<bool> waterwingebiedBremerberg2meter_Locatie 		(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/waterwingebiedBremerberg2meter_Locatie/selectie/Result;
+			attribute<bool> waterwingebiedFledite26meter_Locatie 		(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/waterwingebiedFledite26meter_Locatie/selectie/Result;
+			attribute<bool> waterwingebiedFledite29meter_Locatie 		(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/waterwingebiedFledite29meter_Locatie/selectie/Result;
+			attribute<bool> waterwingebiedFledite32meter_Locatie 		(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/waterwingebiedFledite32meter_Locatie/selectie/Result;
+			attribute<bool> waterwingebiedHarderbroek11meter_Locatie 	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/waterwingebiedHarderbroek11meter_Locatie/selectie/Result;
+			attribute<bool> waterwingebiedHarderbroek14meter_Locatie 	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/waterwingebiedHarderbroek14meter_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  NatuurnetwerkNederland
-					, Waterwingebied
+					  NatuurnetwerkNederland_Locatie
+					, WaterwingebiedSpiekzand35meter_Locatie
+					, waterwingebiedBremerberg2meter_Locatie
+					, waterwingebiedFledite26meter_Locatie
+					, waterwingebiedFledite29meter_Locatie
+					, waterwingebiedFledite32meter_Locatie
+					, waterwingebiedHarderbroek11meter_Locatie
+					, waterwingebiedHarderbroek14meter_Locatie
 				);
 		}
 		
@@ -28,13 +38,23 @@ container Flevoland := Templates/Per_Provincie_T('Flevoland', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> Stiltegebieden             (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result;
-			attribute<bool> Beschermingsgebied         (domain) := Src/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/beschermingsgebied/selectie/Result;
+			attribute<bool> Stiltegebied_Locatie             							(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/Stiltegebied_Locatie/selectie/Result;
+			attribute<bool> beschermingsgebiedvoorgrondwaterBremerberg2meter_Locatie    (domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/beschermingsgebiedvoorgrondwaterBremerberg2meter_Locatie/selectie/Result;
+			attribute<bool> beschermingsgebiedvoorgrondwaterHarderbroek8meter_Locatie	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/beschermingsgebiedvoorgrondwaterHarderbroek8meter_Locatie/selectie/Result;
+			attribute<bool> beschermingsgebiedvoorgrondwaterHarderbroek11meter_Locatie	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/beschermingsgebiedvoorgrondwaterHarderbroek11meter_Locatie/selectie/Result;
+			attribute<bool> beschermingsgebiedvoorgrondwaterHarderbroek14meter_Locatie	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/beschermingsgebiedvoorgrondwaterHarderbroek14meter_Locatie/selectie/Result;
+			attribute<bool> beschermingsgebiedvoorgrondwaterHarderbroek17meter_Locatie	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/beschermingsgebiedvoorgrondwaterHarderbroek17meter_Locatie/selectie/Result;
+			attribute<bool> beschermingsgebiedvoorgrondwaterHarderbroek20meter_Locatie	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/beschermingsgebiedvoorgrondwaterHarderbroek20meter_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Stiltegebieden
-					, Beschermingsgebied
+					  Stiltegebied_Locatie
+					, beschermingsgebiedvoorgrondwaterBremerberg2meter_Locatie
+					, beschermingsgebiedvoorgrondwaterHarderbroek8meter_Locatie
+					, beschermingsgebiedvoorgrondwaterHarderbroek11meter_Locatie
+					, beschermingsgebiedvoorgrondwaterHarderbroek14meter_Locatie
+					, beschermingsgebiedvoorgrondwaterHarderbroek17meter_Locatie
+					, beschermingsgebiedvoorgrondwaterHarderbroek20meter_Locatie
 				);
 		}
 	}
@@ -75,15 +95,13 @@ container Flevoland := Templates/Per_Provincie_T('Flevoland', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> uitzondering_glastuinbouw_i_r_t_zonne_energie_in_het_landelijk_gebied (domain) := 
-					Src/NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P/Laag_namen_selectie/uitzondering_glastuinbouw_i_r_t_zonne_energie_in_het_landelijk_gebied/selectie/Result;
-			attribute<bool> uitzonderingsgebieden_agrarische_gronden (domain) :=
-					Src/NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P/Laag_namen_selectie/uitzonderingsgebieden_agrarische_gronden/selectie/Result;
+			attribute<bool> Uitzonderingglastuinbouwirtzonne_energieinlandelijkgebied_Locatie 	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/Uitzonderingglastuinbouwirtzonne_energieinlandelijkgebied_Locatie/selectie/Result;
+			attribute<bool> Uitzonderingsgebiedvoorzonne_energieopagrarischegronden_Locatie 	(domain) := Src/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/Uitzonderingsgebiedvoorzonne_energieopagrarischegronden_Locatie/selectie/Result;
 		
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  uitzondering_glastuinbouw_i_r_t_zonne_energie_in_het_landelijk_gebied
-					, uitzonderingsgebieden_agrarische_gronden
+					  Uitzonderingglastuinbouwirtzonne_energieinlandelijkgebied_Locatie
+					, Uitzonderingsgebiedvoorzonne_energieopagrarischegronden_Locatie
 				);
 		}
 		

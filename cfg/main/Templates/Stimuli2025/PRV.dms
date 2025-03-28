@@ -1,6 +1,6 @@
 container PRV
 {
-	container Src := SrcSrc/OmgRecht/PRV;
+	container Src := SrcSrc/OmgRecht/PRV2025;
 	
 	#include <Friesland.dms>
 	#include <Groningen.dms>

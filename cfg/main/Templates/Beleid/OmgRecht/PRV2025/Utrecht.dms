@@ -2,7 +2,7 @@ container Utrecht : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/ut';
 	
-	container VerordeningUtrecht2024 
-	:= verwerk_NLIMRObestand_T('VerordeningUtrecht2024', 'prv_2025/ut')
+	container akn_nl_act_pv26_2022_omgevingsverordening
+	:= verwerk_NLIMRObestand_T('akn_nl_act_pv26_2022_omgevingsverordening', 'prv_2025/ut')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv26-2022-omgevingsverordening-5/";
 }

@@ -2,8 +2,8 @@ container Flevoland : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/fl';
 	
-	container VerordeningFlevoland2024
-	:= verwerk_NLIMRObestand_T('VerordeningFlevoland2024', 'prv_2025/fl')
+	container akn_nl_act_pv24_2022_omgevingsverordening
+	:= verwerk_NLIMRObestand_T('akn_nl_act_pv24_2022_omgevingsverordening', 'prv_2025/fl')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv24-2022-omgevingsverordening-2/";
 	
 }

@@ -41,8 +41,8 @@ container Overijssel := Templates/Per_Provincie_T('Overijssel', Src, domain)
 		container Hard
 		{
 			
-			attribute<bool> Mogelijkheden_voor_nieuwe_recreatiewoningen (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P/Laag_namen_selectie/Mogelijkheden_voor_nieuwe_recreatiewoningen/selectie/Result;
-			attribute<bool> Totaal (domain) := Mogelijkheden_voor_nieuwe_recreatiewoningen;
+			attribute<bool> nieuwerecreatiewoningen_Locatie (domain) := Src/akn_nl_act_pv23_2023_omgevingsverordening/Laag_namen_selectie/nieuwerecreatiewoningen_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain) := nieuwerecreatiewoningen_Locatie;
 		}
 		
 		container Middel
@@ -78,8 +78,14 @@ container Overijssel := Templates/Per_Provincie_T('Overijssel', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Zoekgebieden_windenergie_Noordoost_Twente (domain) := Src/NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P/Laag_namen_selectie/Zoekgebieden_windenergie_Noordoost_Twente/selectie/Result;
-			attribute<bool> Totaal (domain) := Zoekgebieden_windenergie_Noordoost_Twente;
+			attribute<bool> zoekgebiedenwindenergieNoordoost_Twente_Locatie	(domain) := Src/akn_nl_act_pv23_2023_omgevingsverordening/Laag_namen_selectie/zoekgebiedenwindenergieNoordoost_Twente_Locatie/selectie/Result;
+			attribute<bool> voorkeursgebiedenwindenergie_Locatie 			(domain) := Src/akn_nl_act_pv23_2023_omgevingsverordening/Laag_namen_selectie/voorkeursgebiedenwindenergie_Locatie/selectie/Result;
+			
+			attribute<bool> Totaal (domain) := Max_elem
+				(
+					  zoekgebiedenwindenergieNoordoost_Twente_Locatie
+					, voorkeursgebiedenwindenergie_Locatie
+				);
 		}
 		
 		container Middel

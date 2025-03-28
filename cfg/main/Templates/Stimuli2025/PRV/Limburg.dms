@@ -43,7 +43,7 @@ container Limburg := Templates/Per_Provincie_T('Limburg', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Ontwikkelingsgebied_glastuinbouw (domain) := Src/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Ontwikkelingsgebied_glastuinbouw/selectie/Result;
+			attribute<bool> Ontwikkelingsgebied_glastuinbouw (domain) := Src/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie/Ontwikkelingsgebied_glastuinbouw;
 			attribute<bool> Totaal (domain) := Ontwikkelingsgebied_glastuinbouw;
 		}
 		

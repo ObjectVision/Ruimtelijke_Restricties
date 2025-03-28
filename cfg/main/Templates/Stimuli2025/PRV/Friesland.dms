@@ -9,8 +9,7 @@ container Fryslân := Templates/Per_Provincie_T('Fryslân', Src, domain)
 		
 		container Middel
 		{
-			attribute<bool> Opeinde_De_Peinder_Mieden   (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Opeinde_De_Peinder_Mieden/selectie/Result;
-			attribute<bool> Totaal (domain):= Opeinde_De_Peinder_Mieden;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
 		container Zacht
@@ -46,15 +45,7 @@ container Fryslân := Templates/Per_Provincie_T('Fryslân', Src, domain)
 		
 		container Middel
 		{
-
-			attribute<bool> Driezum_Bungalowpark     (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Driezum_Bungalowpark/selectie/Result;
-			attribute<bool> Westergeest_Ljeppershiem (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Westergeest_Ljeppershiem/selectie/Result;
-			
-			attribute<bool> Totaal (domain):= Max_elem
-				(
-					  Driezum_Bungalowpark
-					, Westergeest_Ljeppershiem
-				);
+			attribute<bool> Totaal (domain):= const(false, domain);
 		}
 		
 		container Zacht
@@ -67,8 +58,8 @@ container Fryslân := Templates/Per_Provincie_T('Fryslân', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> glastuinbouwlocaties_Noordwest_Fryslân  (domain): = Src/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/glastuinbouwlocaties_Noordwest_Fryslân/selectie/Result;
-			attribute<bool> Totaal (domain) := glastuinbouwlocaties_Noordwest_Fryslân;
+			attribute<bool> Glastuinbouwlocaties  (domain): = Src/akn_nl_act_pv21_2023_omgevingsverordening/Laag_namen_selectie/Glastuinbouwlocaties/selectie/Result;
+			attribute<bool> Totaal (domain) := Glastuinbouwlocaties;
 		}
 		
 		container Middel

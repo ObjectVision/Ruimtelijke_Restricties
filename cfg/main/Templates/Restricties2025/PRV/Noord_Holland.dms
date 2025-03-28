@@ -9,62 +9,54 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 		
 		container Hard
 		{
-			attribute<bool> Natuurnetwerk_Nederland                          (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Natuurnetwerk_Nederland/selectie/Result;
-			attribute<bool> Waterwingebied                                   (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
-			attribute<bool> Erfgoederen_van_uitzonderlijke_universele_waarde (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Erfgoederen_van_uitzonderlijke_universele_waarde/selectie/Result;
-			attribute<bool> Luchthavengebied_Loodswezen_IJmuiden             (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Luchthavengebied_Loodswezen_IJmuiden/selectie/Result;
+			attribute<bool> NatuurnetwerkNederland_Locatie                       (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/NatuurnetwerkNederland_Locatie/selectie/Result;
+			attribute<bool> Waterwingebied_Locatie                               (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Waterwingebied_Locatie/selectie/Result;
+			attribute<bool> Erfgoederenvanuitzonderlijkeuniverselewaarde_Locatie (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Erfgoederenvanuitzonderlijkeuniverselewaarde_Locatie/selectie/Result;
+			attribute<bool> LuchthavengebiedLoodswezenIJmuiden_Locatie           (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/LuchthavengebiedLoodswezenIJmuiden_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Natuurnetwerk_Nederland
-					, Waterwingebied
-					, Erfgoederen_van_uitzonderlijke_universele_waarde
-					, Luchthavengebied_Loodswezen_IJmuiden
+					  NatuurnetwerkNederland_Locatie
+					, Waterwingebied_Locatie
+					, Erfgoederenvanuitzonderlijkeuniverselewaarde_Locatie
+					, LuchthavengebiedLoodswezenIJmuiden_Locatie
 				);
 		}
 		
 		container Middel
 		{
-			attribute<bool> Regionale_waterkering_cat_1                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_1/selectie/Result;
-			attribute<bool> Regionale_waterkering_cat_2                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_2/selectie/Result;
-			attribute<bool> Regionale_waterkering_cat_3                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_3/selectie/Result;
-			attribute<bool> Regionale_waterkering_cat_4                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_4/selectie/Result;
-			attribute<bool> Regionale_waterkering_cat_5                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_5/selectie/Result;
-			attribute<bool> Regionale_waterkering_cat_6                      (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Regionale_waterkering_cat_6/selectie/Result;
-			attribute<bool> Beschermingszone_regionale_waterkering           (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Beschermingszone_regionale_waterkering/selectie/Result;
+			attribute<bool> Regionalewaterkeringen_Locatie                       (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Regionalewaterkeringen_Locatie/selectie/Result;
+			attribute<bool> Beperkingengebiedregionalewaterkeringen_Locatie		 (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Beperkingengebiedregionalewaterkeringen_Locatie/selectie/Result;
+			attribute<bool> Natura2000_bufferzone_Locatie 						 (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Natura2000_bufferzone_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Regionale_waterkering_cat_1
-					, Regionale_waterkering_cat_2
-					, Regionale_waterkering_cat_3
-					, Regionale_waterkering_cat_4
-					, Regionale_waterkering_cat_5
-					, Regionale_waterkering_cat_6
-					, Beschermingszone_regionale_waterkering
+					  Regionalewaterkeringen_Locatie
+					, Beperkingengebiedregionalewaterkeringen_Locatie
+					, Natura2000_bufferzone_Locatie
 				);
 		}
 		
 		container Zacht
 		{
-			//attribute<bool> Bijzonder_provinciaal_landschap (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Bijzonder_provinciaal_landschap/selectie/Result;
-			attribute<bool> Ganzenfoerageergebieden         (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Ganzenfoerageergebieden/selectie/Result;
-			attribute<bool> Stiltegebieden                  (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result;
-			attribute<bool> Grondwaterbeschermingsgebied    (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			attribute<bool> Beschermdlandschap_Locatie 				(domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Beschermdlandschap_Locatie/selectie/Result;
+			attribute<bool> Foerageergebieden_Locatie         		(domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Foerageergebieden_Locatie/selectie/Result;
+			attribute<bool> Stiltegebieden_Locatie                  (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Stiltegebieden_Locatie/selectie/Result;
+			attribute<bool> Grondwaterbeschermingsgebied_Locatie    (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Grondwaterbeschermingsgebied_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-				 	  //Bijzonder_provinciaal_landschap
-					  Ganzenfoerageergebieden
-					, Stiltegebieden
-					, Grondwaterbeschermingsgebied
+				 	  Beschermdlandschap_Locatie
+					, Foerageergebieden_Locatie
+					, Stiltegebieden_Locatie
+					, Grondwaterbeschermingsgebied_Locatie
 				);
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
-	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	container Woongebied         := woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   := woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie := woongebied_en_werk_bedrijventerrein;
 	
 	container Wind
 	{
@@ -85,8 +77,8 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 		
 		container Zacht
 		{
-			attribute<bool> Ganzenfoerageergebieden (domain) := Src/NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P/Laag_namen_selectie/Ganzenfoerageergebieden/selectie/Result;
-			attribute<bool> Totaal (domain):= Ganzenfoerageergebieden;
+			attribute<bool> Foerageergebieden_Locatie		(domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Foerageergebieden_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain):= Foerageergebieden_Locatie;
 		}
 	}
 	

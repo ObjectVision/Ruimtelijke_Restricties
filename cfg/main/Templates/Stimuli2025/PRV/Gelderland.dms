@@ -1,4 +1,5 @@
 container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
+//notitie: aangezien in restricties verbodsgebied wind in NNN ontbrak (vorige keer was er wel zo'n laag), nu wind onder voorwaarden mogelijk als middel stimuli toegevoegd.
 {
 	container Woongebied
 	{
@@ -58,7 +59,7 @@ container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> glastuinbouwontwikkelingsgebied (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/glastuinbouwontwikkelingsgebied/selectie/Result;
+			attribute<bool> glastuinbouwontwikkelingsgebied (domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/glastuinbouwontwikkelingsgebied/selectie/Result;
 			attribute<bool> Totaal (domain):= glastuinbouwontwikkelingsgebied;
 		}
 		
@@ -83,7 +84,8 @@ container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
 		
 		container Middel
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Gelders_natuurnetwerk_windturbines_onder_voorwaarden_mogelijk	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Gelders_natuurnetwerk_windturbines_onder_voorwaarden_mogelijk/selectie/Result;
+			attribute<bool> Totaal (domain) := Gelders_natuurnetwerk_windturbines_onder_voorwaarden_mogelijk;
 		}
 		
 		container Zacht

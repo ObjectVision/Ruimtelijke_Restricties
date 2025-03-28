@@ -9,54 +9,54 @@ container Drenthe := Templates/Per_Provincie_T('Drenthe', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> Natuurnetwerk_Nederland                            (domain) := Src/NL_IMRO_9922_NNNpovDrenthe22WG_VA01_Besluitvlak_P/Laag_namen_selectie/NNN_provincie_Drenthe_vastgesteld_2022/selectie/Result;
-			attribute<bool> Defensieterrein_met_natuurwaarden                  (domain) := Src/NL_IMRO_9922_NNNpovDrenthe22WG_VA01_Besluitvlak_P/Laag_namen_selectie/Defensieterrein_met_natuurwaarden/selectie/Result;
-			attribute<bool> Landschap_van_de_kolonien_van_Weldadigheid_UNESCO_ (domain) := Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Landschap_van_de_kolonien_van_Weldadigheid_UNESCO_/selectie/Result;
-			attribute<bool> Waterwingebied                                     (domain) := Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
-			attribute<bool> Beekdal                                            (domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Beekdal_Locatie/selectie/Result;
+			attribute<bool> NatuurnetwerkNederland_Locatie                     	(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/NatuurnetwerkNederland_Locatie/selectie/Result;
+			attribute<bool> LandschapvandekolonienvanWeldadigheid_Locatie 		(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/LandschapvandekolonienvanWeldadigheid_Locatie/selectie/Result;
+			attribute<bool> UNESCOWerelderfgoedKoloninVanWeldadigheid_Locatie 	(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/UNESCOWerelderfgoedKoloninVanWeldadigheid_Locatie/selectie/Result;
+			attribute<bool> Waterwingebied_Locatie                              (domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Waterwingebied_Locatie/selectie/Result;
+			attribute<bool> Beekdal_Locatie                                    	(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Beekdal_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Natuurnetwerk_Nederland
-					, Defensieterrein_met_natuurwaarden
-					, Landschap_van_de_kolonien_van_Weldadigheid_UNESCO_
-					, Waterwingebied
-					, Beekdal
+					  NatuurnetwerkNederland_Locatie
+					, LandschapvandekolonienvanWeldadigheid_Locatie
+					, UNESCOWerelderfgoedKoloninVanWeldadigheid_Locatie
+					, Waterwingebied_Locatie
+					, Beekdal_Locatie
 				);
 		}
 		
 		container Middel
 		{
-			attribute<bool> Zonering_radioastronomie_zone_I  (domain): = Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Zonering_radioastronomie_1/selectie/Result;
-			attribute<bool> Bergingsgebied                   (domain): = Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Bergingsgebied/selectie/Result;
+			attribute<bool> ZoneringradioastronomiezoneI_Locatie  		(domain): = Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/ZoneringradioastronomiezoneI_Locatie/selectie/Result;
+			attribute<bool> Bergingsgebied_Locatie                   	(domain): = Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Bergingsgebied_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Zonering_radioastronomie_zone_I
-					, Bergingsgebied
+					  ZoneringradioastronomiezoneI_Locatie
+					, Bergingsgebied_Locatie
 				);
 		}
 		
 		container Zacht
 		{
-			attribute<bool> Zonering_radioastronomie_zone_II (domain) := Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Zonering_radioastronomie_2/selectie/Result;
-			attribute<bool> Stiltegebied                     (domain) := Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Stiltegebied/selectie/Result;
-			attribute<bool> Hoogste_bescherming              (domain) := Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Hoogste_bescherming/selectie/Result;//aardkundige waarden
-			attribute<bool> Grondwaterbeschermingsgebied     (domain) := Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			attribute<bool> ZoneringradioastronomiezoneII_Locatie 						(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/ZoneringradioastronomiezoneII_Locatie/selectie/Result;
+			attribute<bool> Stiltegebied_Locatie                    					(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Stiltegebied_Locatie/selectie/Result;
+			attribute<bool> AardkundigewaardenBeschermingsniveauHoog_Locatie          	(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/AardkundigewaardenBeschermingsniveauHoog_Locatie/selectie/Result;//aardkundige waarden
+			attribute<bool> Grondwaterbeschermingsgebied_Locatie     					(domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Grondwaterbeschermingsgebied_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Zonering_radioastronomie_zone_II
-					, Stiltegebied
-					, Hoogste_bescherming
-					, Grondwaterbeschermingsgebied
+					  ZoneringradioastronomiezoneII_Locatie
+					, Stiltegebied_Locatie
+					, AardkundigewaardenBeschermingsniveauHoog_Locatie
+					, Grondwaterbeschermingsgebied_Locatie
 				);
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
-	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	container Woongebied         := woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   := woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie := woongebied_en_werk_bedrijventerrein;
 	
 	container Wind
 	{
@@ -90,8 +90,8 @@ container Drenthe := Templates/Per_Provincie_T('Drenthe', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> Beekdal (domain) := Src/NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P/Laag_namen_selectie/Beekdal/selectie/Result;
-			attribute<bool> Totaal  (domain) := Beekdal;
+			attribute<bool> Beekdal_Locatie (domain) := Src/akn_nl_act_pv22_2023_omgevingsverordening_5/Laag_namen_selectie/Beekdal_Locatie/selectie/Result;
+			attribute<bool> Totaal  (domain) := Beekdal_Locatie;
 		}
 		
 		container Middel

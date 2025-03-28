@@ -9,43 +9,52 @@ container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> Waterwingebied                                             (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
-			attribute<bool> cat_1_NatuurNetwerk_Nederland                              (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_NatuurNetwerk_Nederland/selectie/Result;
-			attribute<bool> cat_1_beschermd_grasland_in_de_Bollenstreek                (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_beschermd_grasland_in_de_Bollenstreek/selectie/Result;
-			attribute<bool> cat_1_kroonjuweel_cultureel_erfgoed                        (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_kroonjuweel_cultureel_erfgoed/selectie/Result;
-			attribute<bool> Natuurnetwerk_Nederland                                    (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_1_NatuurNetwerk_Nederland/selectie/Result;
-			attribute<bool> kasteelbiotoop                                             (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/kasteelbiotoop/selectie/Result;
+			attribute<bool> waterwingebied                                      (domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/waterwingebied/selectie/Result;
+			attribute<bool> NatuurNetwerk_Nederland_bestaande_en_nieuwe_natuur	(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/NatuurNetwerk_Nederland_bestaande_en_nieuwe_natuur/selectie/Result;
+			attribute<bool> Beschermd_grasland_in_de_Bollenstreek               (domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Beschermd_grasland_in_de_Bollenstreek/selectie/Result;
+			attribute<bool> Kroonjuweel_cultureel_erfgoed                       (domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Kroonjuweel_cultureel_erfgoed/selectie/Result;
+			attribute<bool> NatuurNetwerk_Nederland_ecologische_verbinding      (domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/NatuurNetwerk_Nederland_ecologische_verbinding/selectie/Result;
+			attribute<bool> NatuurNetwerk_Nederland_prioritaire_nieuwe_natuur 	(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/NatuurNetwerk_Nederland_prioritaire_nieuwe_natuur/selectie/Result;
+			attribute<bool> NatuurNetwerk_Nederland_waternatuurgebied 			(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/NatuurNetwerk_Nederland_waternatuurgebied/selectie/Result;
+			attribute<bool> NatuurNetwerk_Nederland_zoekgebied_natuur 			(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/NatuurNetwerk_Nederland_zoekgebied_natuur/selectie/Result;
+			attribute<bool> kasteelbiotoop                                      (domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/kasteelbiotoop/selectie/Result;
 
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Waterwingebied
-					, cat_1_NatuurNetwerk_Nederland
-					, cat_1_beschermd_grasland_in_de_Bollenstreek
-					, cat_1_kroonjuweel_cultureel_erfgoed
-					, Natuurnetwerk_Nederland
+					  waterwingebied
+					, NatuurNetwerk_Nederland_bestaande_en_nieuwe_natuur
+					, Beschermd_grasland_in_de_Bollenstreek
+					, Kroonjuweel_cultureel_erfgoed
+					, NatuurNetwerk_Nederland_ecologische_verbinding
+					, NatuurNetwerk_Nederland_prioritaire_nieuwe_natuur
+					, NatuurNetwerk_Nederland_waternatuurgebied
+					, NatuurNetwerk_Nederland_zoekgebied_natuur
 					, kasteelbiotoop
 				);
 				
-			attribute<uint8> Totaal_unit8 (domain):=   Waterwingebied[uint8] + 
-					cat_1_NatuurNetwerk_Nederland[uint8] + 
-					cat_1_beschermd_grasland_in_de_Bollenstreek[uint8] +
-					cat_1_kroonjuweel_cultureel_erfgoed[uint8] + 
-					Natuurnetwerk_Nederland[uint8] +
+			attribute<uint8> Totaal_unit8 (domain):=   waterwingebied[uint8] + 
+					NatuurNetwerk_Nederland_bestaande_en_nieuwe_natuur[uint8] + 
+					Beschermd_grasland_in_de_Bollenstreek[uint8] +
+					Kroonjuweel_cultureel_erfgoed[uint8] + 
+					NatuurNetwerk_Nederland_ecologische_verbinding[uint8] +
+					NatuurNetwerk_Nederland_prioritaire_nieuwe_natuur[uint8] +
+					NatuurNetwerk_Nederland_waternatuurgebied[uint8] +
+					NatuurNetwerk_Nederland_zoekgebied_natuur[uint8] +
 					kasteelbiotoop[uint8];
 
 		}
 		
 		container Middel
 		{
-			attribute<bool> cat_2_groene_buffer                                        (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_groene_buffer/selectie/Result;
-			attribute<bool> cat_2_recreatiegebied                                      (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_recreatiegebied/selectie/Result;
-			attribute<bool> landgoedbiotoop                                            (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/landgoedbiotoop/selectie/Result;
-			attribute<bool> regionale_waterkering_handhaven_theoretisch_profiel_legger (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/regionale_waterkering_handhaven_theoretisch_profiel_legger/selectie/Result;
+			attribute<bool> Groene_buffer                                        		(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Groene_buffer/selectie/Result;
+			attribute<bool> Recreatiegebied                                      		(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Recreatiegebied/selectie/Result;
+			attribute<bool> landgoedbiotoop                                            	(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/landgoedbiotoop/selectie/Result;
+			attribute<bool> regionale_waterkering_handhaven_theoretisch_profiel_legger 	(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/regionale_waterkering_handhaven_theoretisch_profiel_legger/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  cat_2_groene_buffer
-					, cat_2_recreatiegebied
+					  Groene_buffer
+					, Recreatiegebied
 					, landgoedbiotoop
 					, regionale_waterkering_handhaven_theoretisch_profiel_legger
 				);
@@ -53,17 +62,17 @@ container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> stiltegebied                                       (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/stiltegebied/selectie/Result;
-			attribute<bool> cat_2_belangrijk_weidevogelgebied                  (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_belangrijk_weidevogelgebied/selectie/Result;
-			attribute<bool> blijvend_agrarisch_gebied_binnen_Natura2000_gebied (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/blijvend_agrarisch_gebied_binnen_Natura2000_gebied/selectie/Result;
-			attribute<bool> Grondwaterbeschermingsgebied                       (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			attribute<bool> Stiltegebied                                       							(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Stiltegebied/selectie/Result;
+			attribute<bool> Belangrijk_weidevogelgebied                  								(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Belangrijk_weidevogelgebied/selectie/Result;
+			attribute<bool> NatuurNetwerk_Nederland_blijvend_agrarisch_gebied_binnen_Natura2000_gebied 	(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/NatuurNetwerk_Nederland_blijvend_agrarisch_gebied_binnen_Natura2000_gebied/selectie/Result;
+			attribute<bool> Grondwaterbeschermingszone                       							(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Grondwaterbeschermingszone/selectie/Result;
 
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  stiltegebied
-					, cat_2_belangrijk_weidevogelgebied
-					, blijvend_agrarisch_gebied_binnen_Natura2000_gebied
-					, Grondwaterbeschermingsgebied
+					  Stiltegebied
+					, Belangrijk_weidevogelgebied
+					, NatuurNetwerk_Nederland_blijvend_agrarisch_gebied_binnen_Natura2000_gebied
+					, Grondwaterbeschermingszone
 				);
 		}
 	}
@@ -91,13 +100,13 @@ container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> cat_2_belangrijk_weidevogelgebied                  (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_cat_2_belangrijk_weidevogelgebied/selectie/Result;
-			attribute<bool> blijvend_agrarisch_gebied_binnen_Natura2000_gebied (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/blijvend_agrarisch_gebied_binnen_Natura2000_gebied/selectie/Result;
+			attribute<bool> Belangrijk_weidevogelgebied                  								(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Belangrijk_weidevogelgebied/selectie/Result;
+			attribute<bool> NatuurNetwerk_Nederland_blijvend_agrarisch_gebied_binnen_Natura2000_gebied 	(domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/NatuurNetwerk_Nederland_blijvend_agrarisch_gebied_binnen_Natura2000_gebied/selectie/Result;
 
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					 cat_2_belangrijk_weidevogelgebied
-					, blijvend_agrarisch_gebied_binnen_Natura2000_gebied
+					Belangrijk_weidevogelgebied
+					, NatuurNetwerk_Nederland_blijvend_agrarisch_gebied_binnen_Natura2000_gebied
 				);
 		}
 	}

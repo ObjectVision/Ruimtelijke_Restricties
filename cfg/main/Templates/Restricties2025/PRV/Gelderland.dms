@@ -9,52 +9,272 @@ container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> Gelders_natuurnetwerk       (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Gelders_natuurnetwerk/selectie/Result;
-			attribute<bool> Nieuwe_Hollandse_Waterlinie (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Nieuwe_Hollandse_Waterlinie/selectie/Result;
-			attribute<bool> waterwingebied              (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
+			attribute<bool> Gelders_natuurnetwerk_Achterhoek       							(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Gelders_natuurnetwerk_Achterhoek/selectie/Result;
+			attribute<bool> Gelders_natuurnetwerk_Arnhem_Nijmegen_City_Region				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Gelders_natuurnetwerk_Arnhem_Nijmegen_City_Region/selectie/Result;
+			attribute<bool> Gelders_natuurnetwerk_FoodValley								(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Gelders_natuurnetwerk_FoodValley/selectie/Result;
+			attribute<bool> Gelders_natuurnetwerk_Noord_Veluwe								(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Gelders_natuurnetwerk_Noord_Veluwe/selectie/Result;
+			attribute<bool> Gelders_natuurnetwerk_Rivierenland								(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Gelders_natuurnetwerk_Rivierenland/selectie/Result;
+			attribute<bool> Gelders_natuurnetwerk_Stedendriehoek 							(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Gelders_natuurnetwerk_Stedendriehoek/selectie/Result;
+			attribute<bool> Hollandse_Waterlinies 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Hollandse_Waterlinies/selectie/Result;
+			attribute<bool> waterwingebied_t_Klooster             							(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_t_Klooster/selectie/Result;
+			attribute<bool> waterwingebied_Aalten_t_Loohuis_ 								(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Aalten_t_Loohuis_/selectie/Result;
+			attribute<bool> waterwingebied_Amersfoortseweg 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Amersfoortseweg/selectie/Result;
+			attribute<bool> waterwingebied_Corle 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Corle/selectie/Result;
+			attribute<bool> waterwingebied_Culemborg 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Culemborg/selectie/Result;
+			attribute<bool> waterwingebied_De_Haere 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_De_Haere/selectie/Result;
+			attribute<bool> waterwingebied_De_Pol 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_De_Pol/selectie/Result;
+			attribute<bool> waterwingebied_Dinxperlo 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Dinxperlo/selectie/Result;
+			attribute<bool> waterwingebied_Druten 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Druten/selectie/Result;
+			attribute<bool> waterwingebied_Edese_Bos 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Edese_Bos/selectie/Result;
+			attribute<bool> waterwingebied_Eerbeek 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Eerbeek/selectie/Result;
+			attribute<bool> waterwingebied_Ellecom 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Ellecom/selectie/Result;
+			attribute<bool> waterwingebied_Epe 												(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Epe/selectie/Result;
+			attribute<bool> waterwingebied_Fikkersdries 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Fikkersdries/selectie/Result;
+			attribute<bool> waterwingebied_Haarlo 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Haarlo/selectie/Result;
+			attribute<bool> waterwingebied_Harderwijk 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Harderwijk/selectie/Result;
+			attribute<bool> waterwingebied_Hemmen 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Hemmen/selectie/Result;
+			attribute<bool> waterwingebied_Herveldse_Veld 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Herveldse_Veld/selectie/Result;
+			attribute<bool> waterwingebied_Hettenheuvel 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Hettenheuvel/selectie/Result;
+			attribute<bool> waterwingebied_Heumensoord 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Heumensoord/selectie/Result;
+			attribute<bool> waterwingebied_Hoenderloo 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Hoenderloo/selectie/Result;
+			attribute<bool> waterwingebied_Holk 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Holk/selectie/Result;
+			attribute<bool> waterwingebied_Kerk_Avezaath 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Kerk_Avezaath/selectie/Result;
+			attribute<bool> waterwingebied_Kolff 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Kolff/selectie/Result;
+			attribute<bool> waterwingebied_La_Cabine 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_La_Cabine/selectie/Result;
+			attribute<bool> waterwingebied_Lochem 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Lochem/selectie/Result;
+			attribute<bool> waterwingebied_Muntberg 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Muntberg/selectie/Result;
+			attribute<bool> waterwingebied_Noordijkerveld 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Noordijkerveld/selectie/Result;
+			attribute<bool> waterwingebied_Olden_Eibergen 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Olden_Eibergen/selectie/Result;
+			attribute<bool> waterwingebied_Oosterbeek 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Oosterbeek/selectie/Result;
+			attribute<bool> waterwingebied_Pinkenberg 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Pinkenberg/selectie/Result;
+			attribute<bool> waterwingebied_Putten 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Putten/selectie/Result;
+			attribute<bool> waterwingebied_Schalterberg 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Schalterberg/selectie/Result;
+			attribute<bool> waterwingebied_Sijmons 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Sijmons/selectie/Result;
+			attribute<bool> waterwingebied_Twello 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Twello/selectie/Result;
+			attribute<bool> waterwingebied_Van_Heek 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Van_Heek/selectie/Result;
+			attribute<bool> waterwingebied_Velddriel 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Velddriel/selectie/Result;
+			attribute<bool> waterwingebied_Vorden_Dennewater_ 								(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Vorden_Dennewater_/selectie/Result;
+			attribute<bool> waterwingebied_Wageningen 										(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Wageningen/selectie/Result;
+			attribute<bool> waterwingebied_Wezep_Boele_ 									(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Wezep_Boele_/selectie/Result;
+			attribute<bool> waterwingebied_Zoelen 											(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied_Zoelen/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Gelders_natuurnetwerk
-					, Nieuwe_Hollandse_Waterlinie
-					, waterwingebied
+					  Gelders_natuurnetwerk_Achterhoek
+					, Gelders_natuurnetwerk_Arnhem_Nijmegen_City_Region
+					, Gelders_natuurnetwerk_FoodValley
+					, Gelders_natuurnetwerk_Noord_Veluwe
+					, Gelders_natuurnetwerk_Rivierenland
+					, Gelders_natuurnetwerk_Stedendriehoek
+					, Hollandse_Waterlinies
+					, waterwingebied_t_Klooster
+					, waterwingebied_Aalten_t_Loohuis_
+					, waterwingebied_Amersfoortseweg
+					, waterwingebied_Corle
+					, waterwingebied_Culemborg
+					, waterwingebied_De_Haere
+					, waterwingebied_De_Pol
+					, waterwingebied_Dinxperlo
+					, waterwingebied_Druten
+					, waterwingebied_Edese_Bos
+					, waterwingebied_Eerbeek
+					, waterwingebied_Ellecom
+					, waterwingebied_Epe
+					, waterwingebied_Fikkersdries
+					, waterwingebied_Haarlo
+					, waterwingebied_Harderwijk
+					, waterwingebied_Hemmen
+					, waterwingebied_Herveldse_Veld
+					, waterwingebied_Hettenheuvel
+					, waterwingebied_Heumensoord
+					, waterwingebied_Hoenderloo
+					, waterwingebied_Holk
+					, waterwingebied_Kerk_Avezaath
+					, waterwingebied_Kolff
+					, waterwingebied_La_Cabine
+					, waterwingebied_Lochem
+					, waterwingebied_Muntberg
+					, waterwingebied_Noordijkerveld
+					, waterwingebied_Olden_Eibergen
+					, waterwingebied_Oosterbeek
+					, waterwingebied_Pinkenberg
+					, waterwingebied_Putten
+					, waterwingebied_Schalterberg
+					, waterwingebied_Sijmons
+					, waterwingebied_Twello
+					, waterwingebied_Van_Heek
+					, waterwingebied_Velddriel
+					, waterwingebied_Vorden_Dennewater_
+					, waterwingebied_Wageningen
+					, waterwingebied_Wezep_Boele_
+					, waterwingebied_Zoelen
 				);
 		}
 		
 		container Middel
 		{
-			attribute<bool> Waardevol_open_gebied              (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Waardevol_open_gebied/selectie/Result;
-			attribute<bool> Groene_ontwikkelingszone           (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Groene_ontwikkelingszone/selectie/Result;
+			//niet in nieuwe laag namen selectie// attribute<bool> Waardevol_open_gebied              (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Waardevol_open_gebied/selectie/Result;
+			attribute<bool> Groene_ontwikkelingszone_Achterhoek           			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Groene_ontwikkelingszone_Achterhoek/selectie/Result;
+			attribute<bool> Groene_ontwikkelingszone_Arnhem_Nijmegen_City_Region 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Groene_ontwikkelingszone_Arnhem_Nijmegen_City_Region/selectie/Result;
+			attribute<bool> Groene_ontwikkelingszone_FoodValley 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Groene_ontwikkelingszone_FoodValley/selectie/Result;
+			attribute<bool> Groene_ontwikkelingszone_Noord_Veluwe 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Groene_ontwikkelingszone_Noord_Veluwe/selectie/Result;
+			attribute<bool> Groene_ontwikkelingszone_Rivierenland 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Groene_ontwikkelingszone_Rivierenland/selectie/Result;
+			attribute<bool> Groene_ontwikkelingszone_Stedendriehoek 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Groene_ontwikkelingszone_Stedendriehoek/selectie/Result;
+			
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Waardevol_open_gebied
-					, Groene_ontwikkelingszone
+					  Groene_ontwikkelingszone_Achterhoek
+					, Groene_ontwikkelingszone_Arnhem_Nijmegen_City_Region
+					, Groene_ontwikkelingszone_FoodValley
+					, Groene_ontwikkelingszone_Noord_Veluwe
+					, Groene_ontwikkelingszone_Rivierenland
+					, Groene_ontwikkelingszone_Stedendriehoek
 				);
 		}
 		
 		container Zacht
 		{
-			attribute<bool> Stiltegebieden                     (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Stiltegebied/selectie/Result;
-			attribute<bool> Ganzenrustgebied                   (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
-			attribute<bool> weidevogelgebied                   (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/weidevogelgebied/selectie/Result;
-			attribute<bool> beschermingszone_natte_landnatuur  (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/beschermingszone_natte_landnatuur/selectie/Result;
-			attribute<bool> Grondwaterbescherming              (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
-			
+			attribute<bool> stiltegebied_BENNEKOMMER_MEENT					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_BENNEKOMMER_MEENT/selectie/Result;
+			attribute<bool> stiltegebied_BORCULO_NOORD 						(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_BORCULO_NOORD/selectie/Result;
+			attribute<bool> stiltegebied_KIL_VAN_HURWENEN 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_KIL_VAN_HURWENEN/selectie/Result;
+			attribute<bool> stiltegebied_NOORD_OOST_VELUWE 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_NOORD_OOST_VELUWE/selectie/Result;
+			attribute<bool> stiltegebied_OUDE_WAAL 							(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_OUDE_WAAL/selectie/Result;
+			attribute<bool> stiltegebied_WEIDE_OUDE_RIJNSTRANGEN 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_WEIDE_OUDE_RIJNSTRANGEN/selectie/Result;
+			attribute<bool> stiltegebied_WILDENBORCH_BOSKET 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_WILDENBORCH_BOSKET/selectie/Result;
+			attribute<bool> stiltegebied_ZUID_OOST_VELUWE 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/stiltegebied_ZUID_OOST_VELUWE/selectie/Result;
+			attribute<bool> Ganzenrustgebied 								(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
+			attribute<bool> beschermingszone_natte_landnatuur  				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/beschermingszone_natte_landnatuur/selectie/Result;
+			attribute<bool> weidevogelgebied_Bentinkswellen      			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Bentinkswellen/selectie/Result;
+			attribute<bool> weidevogelgebied_Broeklanden 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Broeklanden/selectie/Result;
+			attribute<bool> weidevogelgebied_De_Bemmen 						(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_De_Bemmen/selectie/Result;
+			attribute<bool> weidevogelgebied_De_Meilanden 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_De_Meilanden/selectie/Result;
+			attribute<bool> weidevogelgebied_Eldiksche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Eldiksche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Epseweerdse_Polder_Wilpse_Klei	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Epseweerdse_Polder_Wilpse_Klei/selectie/Result;
+			attribute<bool> weidevogelgebied_Gelderdijksche_Waard 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Gelderdijksche_Waard/selectie/Result;
+			attribute<bool> weidevogelgebied_Giesbeeksche_Broek 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Giesbeeksche_Broek/selectie/Result;
+			attribute<bool> weidevogelgebied_Groote_Lage_Broek 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Groote_Lage_Broek/selectie/Result;
+			attribute<bool> weidevogelgebied_Hoenwaard 						(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Hoenwaard/selectie/Result;
+			attribute<bool> weidevogelgebied_Ingensche_waarden_Tollewaard 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Ingensche_waarden_Tollewaard/selectie/Result;
+			attribute<bool> weidevogelgebied_Lage_Veldslagen 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Lage_Veldslagen/selectie/Result;
+			attribute<bool> weidevogelgebied_Leuvensche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Leuvensche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Mauriksche_en_Ecksche_Waarden 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Mauriksche_en_Ecksche_Waarden/selectie/Result;
+			attribute<bool> weidevogelgebied_Noordijkerveld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Noordijkerveld/selectie/Result;
+			attribute<bool> weidevogelgebied_Ommerensche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Ommerensche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Polder_Arkemheen 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polder_Arkemheen/selectie/Result;
+			attribute<bool> weidevogelgebied_Polder_Oldebroek 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polder_Oldebroek/selectie/Result;
+			attribute<bool> weidevogelgebied_Polder_Oosterwolde 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polder_Oosterwolde/selectie/Result;
+			attribute<bool> weidevogelgebied_Polsmaten 						(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polsmaten/selectie/Result;
+			attribute<bool> weidevogelgebied_Randmeerkust_Polder_Het_Goor 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Randmeerkust_Polder_Het_Goor/selectie/Result;
+			attribute<bool> weidevogelgebied_Rijswijksche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Rijswijksche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Rijswijksche_Veld_Oost 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Rijswijksche_Veld_Oost/selectie/Result;
+			attribute<bool> weidevogelgebied_Wapenveldsche_Broek 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Wapenveldsche_Broek/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_t_Klooster         (domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_t_Klooster/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Aalten_t_Loohuis_ 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Aalten_t_Loohuis_/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Amersfoortseweg 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Amersfoortseweg/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Corle 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Corle/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_De_Haere 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_De_Haere/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_De_Pol 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_De_Pol/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Dinxperlo 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Dinxperlo/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Druten 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Druten/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Edese_Bos 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Edese_Bos/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Ellecom 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Ellecom/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Epe 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Epe/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Fikkersdries 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Fikkersdries/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Haarlo 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Haarlo/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Harderwijk 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Harderwijk/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Hemmen 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Hemmen/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Herveldse_Veld 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Herveldse_Veld/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Heumensoord 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Heumensoord/selectie/Result;			
+			attribute<bool> grondwaterbeschermingsgebied_Hoenderloo 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Hoenderloo/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Kolff 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Kolff/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_La_Cabine 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_La_Cabine/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Lochem 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Lochem/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Muntberg 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Muntberg/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Noordijkerveld 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Noordijkerveld/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Pinkenberg 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Pinkenberg/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Putten 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Putten/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Schalterberg 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Schalterberg/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Sijmons 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Sijmons/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Van_Heek 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Van_Heek/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Velddriel 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Velddriel/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Vorden_Dennewater_	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Vorden_Dennewater_/selectie/Result;
+			attribute<bool> grondwaterbeschermingsgebied_Wezep_Boele_ 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/grondwaterbeschermingsgebied_Wezep_Boele_/selectie/Result;			
+
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Stiltegebieden
+					  stiltegebied_BENNEKOMMER_MEENT
+					, stiltegebied_BORCULO_NOORD
+					, stiltegebied_KIL_VAN_HURWENEN
+					, stiltegebied_NOORD_OOST_VELUWE
+					, stiltegebied_OUDE_WAAL
+					, stiltegebied_WEIDE_OUDE_RIJNSTRANGEN
+					, stiltegebied_WILDENBORCH_BOSKET
+					, stiltegebied_ZUID_OOST_VELUWE
 					, Ganzenrustgebied
-					, weidevogelgebied
 					, beschermingszone_natte_landnatuur
-					, Grondwaterbescherming
+					, weidevogelgebied_Bentinkswellen
+					, weidevogelgebied_Broeklanden
+					, weidevogelgebied_De_Bemmen
+					, weidevogelgebied_De_Meilanden
+					, weidevogelgebied_Eldiksche_Veld
+					, weidevogelgebied_Epseweerdse_Polder_Wilpse_Klei
+					, weidevogelgebied_Gelderdijksche_Waard
+					, weidevogelgebied_Giesbeeksche_Broek
+					, weidevogelgebied_Groote_Lage_Broek
+					, weidevogelgebied_Hoenwaard
+					, weidevogelgebied_Ingensche_waarden_Tollewaard
+					, weidevogelgebied_Lage_Veldslagen
+					, weidevogelgebied_Leuvensche_Veld
+					, weidevogelgebied_Mauriksche_en_Ecksche_Waarden
+					, weidevogelgebied_Noordijkerveld
+					, weidevogelgebied_Ommerensche_Veld
+					, weidevogelgebied_Polder_Arkemheen
+					, weidevogelgebied_Polder_Oldebroek
+					, weidevogelgebied_Polder_Oosterwolde
+					, weidevogelgebied_Polsmaten
+					, weidevogelgebied_Randmeerkust_Polder_Het_Goor
+					, weidevogelgebied_Rijswijksche_Veld
+					, weidevogelgebied_Rijswijksche_Veld_Oost
+					, weidevogelgebied_Wapenveldsche_Broek
+					, grondwaterbeschermingsgebied_t_Klooster
+					, grondwaterbeschermingsgebied_Aalten_t_Loohuis_
+					, grondwaterbeschermingsgebied_Amersfoortseweg
+					, grondwaterbeschermingsgebied_Corle
+					, grondwaterbeschermingsgebied_De_Haere
+					, grondwaterbeschermingsgebied_De_Pol
+					, grondwaterbeschermingsgebied_Dinxperlo
+					, grondwaterbeschermingsgebied_Druten
+					, grondwaterbeschermingsgebied_Edese_Bos
+					, grondwaterbeschermingsgebied_Ellecom
+					, grondwaterbeschermingsgebied_Epe
+					, grondwaterbeschermingsgebied_Fikkersdries
+					, grondwaterbeschermingsgebied_Haarlo
+					, grondwaterbeschermingsgebied_Harderwijk
+					, grondwaterbeschermingsgebied_Hemmen
+					, grondwaterbeschermingsgebied_Herveldse_Veld
+					, grondwaterbeschermingsgebied_Heumensoord
+					, grondwaterbeschermingsgebied_Hoenderloo
+					, grondwaterbeschermingsgebied_Kolff
+					, grondwaterbeschermingsgebied_La_Cabine
+					, grondwaterbeschermingsgebied_Lochem
+					, grondwaterbeschermingsgebied_Muntberg
+					, grondwaterbeschermingsgebied_Noordijkerveld
+					, grondwaterbeschermingsgebied_Pinkenberg
+					, grondwaterbeschermingsgebied_Putten
+					, grondwaterbeschermingsgebied_Schalterberg
+					, grondwaterbeschermingsgebied_Sijmons
+					, grondwaterbeschermingsgebied_Van_Heek
+					, grondwaterbeschermingsgebied_Velddriel
+					, grondwaterbeschermingsgebied_Vorden_Dennewater_
+					, grondwaterbeschermingsgebied_Wezep_Boele_
 				);
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
-	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	container Woongebied         := woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   := woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie := woongebied_en_werk_bedrijventerrein;
 		
 	container Wind
 	{
@@ -65,11 +285,7 @@ container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
 		
 		container Hard
 		{
-			
-			attribute<bool> Verbodsgebied_windenergie_in_NNN (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Gelders_natuurnetwerk/selectie/Result && !
-																				Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Gelders_natuurnetwerk_windturbines_onder_voorwaarden_mogelijk/selectie/Result;
-			
-			attribute<bool> Totaal (domain):= Verbodsgebied_windenergie_in_NNN;
+			attribute<bool> Totaal (domain):= const(false, domain);
 		}
 		
 		container Middel
@@ -79,13 +295,61 @@ container Gelderland := Templates/Per_Provincie_T('Gelderland', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> Ganzenrustgebied (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
-			attribute<bool> weidevogelgebied (domain) := Src/NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P/Laag_namen_selectie/weidevogelgebied/selectie/Result;
+			attribute<bool> Ganzenrustgebied 								(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/Ganzenrustgebied/selectie/Result;
+			attribute<bool> weidevogelgebied_Bentinkswellen      			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Bentinkswellen/selectie/Result;
+			attribute<bool> weidevogelgebied_Broeklanden 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Broeklanden/selectie/Result;
+			attribute<bool> weidevogelgebied_De_Bemmen 						(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_De_Bemmen/selectie/Result;
+			attribute<bool> weidevogelgebied_De_Meilanden 					(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_De_Meilanden/selectie/Result;
+			attribute<bool> weidevogelgebied_Eldiksche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Eldiksche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Epseweerdse_Polder_Wilpse_Klei	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Epseweerdse_Polder_Wilpse_Klei/selectie/Result;
+			attribute<bool> weidevogelgebied_Gelderdijksche_Waard 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Gelderdijksche_Waard/selectie/Result;
+			attribute<bool> weidevogelgebied_Giesbeeksche_Broek 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Giesbeeksche_Broek/selectie/Result;
+			attribute<bool> weidevogelgebied_Groote_Lage_Broek 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Groote_Lage_Broek/selectie/Result;
+			attribute<bool> weidevogelgebied_Hoenwaard 						(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Hoenwaard/selectie/Result;
+			attribute<bool> weidevogelgebied_Ingensche_waarden_Tollewaard 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Ingensche_waarden_Tollewaard/selectie/Result;
+			attribute<bool> weidevogelgebied_Lage_Veldslagen 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Lage_Veldslagen/selectie/Result;
+			attribute<bool> weidevogelgebied_Leuvensche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Leuvensche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Mauriksche_en_Ecksche_Waarden 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Mauriksche_en_Ecksche_Waarden/selectie/Result;
+			attribute<bool> weidevogelgebied_Noordijkerveld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Noordijkerveld/selectie/Result;
+			attribute<bool> weidevogelgebied_Ommerensche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Ommerensche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Polder_Arkemheen 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polder_Arkemheen/selectie/Result;
+			attribute<bool> weidevogelgebied_Polder_Oldebroek 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polder_Oldebroek/selectie/Result;
+			attribute<bool> weidevogelgebied_Polder_Oosterwolde 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polder_Oosterwolde/selectie/Result;
+			attribute<bool> weidevogelgebied_Polsmaten 						(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Polsmaten/selectie/Result;
+			attribute<bool> weidevogelgebied_Randmeerkust_Polder_Het_Goor 	(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Randmeerkust_Polder_Het_Goor/selectie/Result;
+			attribute<bool> weidevogelgebied_Rijswijksche_Veld 				(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Rijswijksche_Veld/selectie/Result;
+			attribute<bool> weidevogelgebied_Rijswijksche_Veld_Oost 		(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Rijswijksche_Veld_Oost/selectie/Result;
+			attribute<bool> weidevogelgebied_Wapenveldsche_Broek 			(domain) := Src/akn_nl_act_pv25_2023_omgevingsverordening/Laag_namen_selectie/weidevogelgebied_Wapenveldsche_Broek/selectie/Result;
+
+			
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
 					  Ganzenrustgebied
-					, weidevogelgebied
+					, weidevogelgebied_Bentinkswellen
+					, weidevogelgebied_Broeklanden
+					, weidevogelgebied_De_Bemmen
+					, weidevogelgebied_De_Meilanden
+					, weidevogelgebied_Eldiksche_Veld
+					, weidevogelgebied_Epseweerdse_Polder_Wilpse_Klei
+					, weidevogelgebied_Gelderdijksche_Waard
+					, weidevogelgebied_Giesbeeksche_Broek
+					, weidevogelgebied_Groote_Lage_Broek
+					, weidevogelgebied_Hoenwaard
+					, weidevogelgebied_Ingensche_waarden_Tollewaard
+					, weidevogelgebied_Lage_Veldslagen
+					, weidevogelgebied_Leuvensche_Veld
+					, weidevogelgebied_Mauriksche_en_Ecksche_Waarden
+					, weidevogelgebied_Noordijkerveld
+					, weidevogelgebied_Ommerensche_Veld
+					, weidevogelgebied_Polder_Arkemheen
+					, weidevogelgebied_Polder_Oldebroek
+					, weidevogelgebied_Polder_Oosterwolde
+					, weidevogelgebied_Polsmaten
+					, weidevogelgebied_Randmeerkust_Polder_Het_Goor
+					, weidevogelgebied_Rijswijksche_Veld
+					, weidevogelgebied_Rijswijksche_Veld_Oost
+					, weidevogelgebied_Wapenveldsche_Broek
 				);
 		}
 	}

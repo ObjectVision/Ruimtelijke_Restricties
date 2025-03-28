@@ -4,6 +4,7 @@ container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 	{
 		container Hard
 		{
+			//er zit een laag woningbouwlocatie in de prv2025 (akn_nl_act_pv28_2024_ZHOV) maar dit lijkt een puntbestand, kunnen we hier iets mee als stimuli?
 			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
@@ -27,16 +28,11 @@ container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 		
 		container Middel
 		{
-			//detailhandel:woonwinkels lees woonboulevard. PDV= Perifere detailhandel
-			attribute<bool> bedrijventerrein_met_PDV_locatie   (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/_bedrijventerrein_met_PDV_locatie/selectie/Result;
-			//kantoren
-			attribute<bool> bijzondere_locatie                 (domain) := Src/NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P/Laag_namen_selectie/bijzondere_locatie/selectie/Result;
+			//detailhandel:woonwinkels lees woonboulevard. PDV= Perifere detailhandel //kantoren
+			attribute<bool> _bedrijventerrein_met_PDV_locatie   (domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/_bedrijventerrein_met_PDV_locatie/selectie/Result;
 			
-			attribute<bool> Totaal (domain):= Max_elem
-				(
-					  bedrijventerrein_met_PDV_locatie
-					, bijzondere_locatie
-				);
+			attribute<bool> Totaal (domain):= _bedrijventerrein_met_PDV_locatie;
+
 		}
 		
 		container Zacht
@@ -86,7 +82,8 @@ container Zuid_Holland := Templates/Per_Provincie_T('Zuid_Holland', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Locatie_voor_windenergie (domain) := Src/akn_nl_act_pv28_2024_ZHOV/Laag_namen_selectie/Locatie_voor_windenergie/selectie/Result;
+			attribute<bool> Totaal (domain) := Locatie_voor_windenergie;
 		}
 		
 		container Middel

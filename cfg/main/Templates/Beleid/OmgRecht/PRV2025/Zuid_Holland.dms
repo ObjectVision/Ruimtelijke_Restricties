@@ -2,7 +2,7 @@ container Zuid_Holland : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/zh';
 
-	container Verordening_ZH
-	:= verwerk_NLIMRObestand_T('Verordening_ZH', 'prv_2025/zh')
+	container akn_nl_act_pv28_2024_ZHOV
+	:= verwerk_NLIMRObestand_T('akn_nl_act_pv28_2024_ZHOV', 'prv_2025/zh')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv28-2024-zhov-1/";
 }

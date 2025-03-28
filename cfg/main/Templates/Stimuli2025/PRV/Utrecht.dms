@@ -58,8 +58,8 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Concentratiegebied_glastuinbouw (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Concentratiegebied_glastuinbouw/selectie/Result;
-			attribute<bool> Totaal                          (domain) := Concentratiegebied_glastuinbouw;
+			attribute<bool> Concentratiegebiedglastuinbouw_Locatie (domain) := Src/akn_nl_act_pv26_2022_omgevingsverordening/Laag_namen_selectie/Concentratiegebiedglastuinbouw_Locatie/selectie/Result;
+			attribute<bool> Totaal                          (domain) := Concentratiegebiedglastuinbouw_Locatie;
 		}
 		
 		container Middel
@@ -77,8 +77,8 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Windenergie_en_Zonnevelden (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Windenergie_en_Zonnevelden/selectie/Result;
-			attribute<bool> Totaal (domain):= Windenergie_en_Zonnevelden;
+			attribute<bool> Windenergie_Locatie (domain) := Src/akn_nl_act_pv26_2022_omgevingsverordening/Laag_namen_selectie/Windenergie_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain):= Windenergie_Locatie;
 		}
 		
 		container Middel
@@ -96,8 +96,8 @@ container Utrecht := Templates/Per_Provincie_T('Utrecht', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Windenergie_en_Zonnevelden (domain) := Src/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Windenergie_en_Zonnevelden/selectie/Result;
-			attribute<bool> Totaal (domain):= Windenergie_en_Zonnevelden;
+			attribute<bool> Zonneveld_Locatie (domain) := Src/akn_nl_act_pv26_2022_omgevingsverordening/Laag_namen_selectie/Zonneveld_Locatie/selectie/Result;
+			attribute<bool> Totaal (domain):= Zonneveld_Locatie;
 		}
 		
 		container Middel
