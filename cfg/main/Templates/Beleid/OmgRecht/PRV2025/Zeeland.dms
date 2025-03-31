@@ -1,19 +1,8 @@
-container Zeeland : url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/ze/doc/NL_IMRO_9929_OVOmgVer2018_VA01.pdf"
-//url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/ze/doc/NL_IMRO_9929_WijzOVOmgVer2018_VA11.mhtml
-//url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2024/ze/doc/NL_IMRO_9929_WijzOVOmgVer2018_VA10.mhtml
-
+container Zeeland : url="geen pdf"
 {
-	parameter<string> subpad:='prv_2024/ze';
-
-	container NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P
-	:= verwerk_NLIMRObestand_T('NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P', 'prv_2024/ze')
-	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9929.WijzOVOmgVer2018-VA10)?id=NL.IMRO.9929.WijzOVOmgVer2018-VA10";
-
-	container NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P
-	:= verwerk_NLIMRObestand_T('NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P', 'prv_2024/ze')
-	, url="https://www.ruimtelijkeplannen.nl/view?planidn=NL.IMRO.9929.WijzOVOmgVer2018-VA11"; //geen url beschikbaar in omgevingsloket 
+	parameter<string> subpad:='prv_2025/ze';
 	
-	container NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P
-	:= verwerk_NLIMRObestand_T('NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P', 'prv_2024/ze')
-	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/viewer/(documentresult//rechter-paneel:document/NL.IMRO.9929.OVOmgVer2018-VA01/kaarten)?id=NL.IMRO.9929.OVOmgVer2018-VA01";
+	container VerordeningZeeland2023 
+	:= verwerk_NLIMRObestand_T('VerordeningZeeland2023', 'prv_2025/ze')
+	, url="";
 }
