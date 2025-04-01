@@ -62,3 +62,67 @@ container Monumenten: url=""
 		attribute<bool>      IsNietHard := !IsHard;
 	}
 }
+
+container Monumenten2025: url=""
+{
+	container RijksMonumenten
+	: StorageName     = "%RestrictiesDataDir%/Omgeving/Monumenten/monumenten2025.geojson"
+	, StorageType     = "gdal.vect"
+	, StorageReadOnly = "True"
+	, Source          = "Website https://nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/eedd39d6-b427-4e11-90fd-f5054241c3a7"
+					    "download 31/03/2025 WFS-service"
+	, url             = "https://www.cultureelerfgoed.nl/onderwerpen/rijksmonumentenregister/rijksmonumenten-kaartlagen"
+	{
+		unit<uint32> BAG: SqlString  = "SELECT * FROM monumenten2025 WHERE herkomst ='BAG'", StorageReadOnly = "True"
+		{
+			attribute<rdc_meter> Point;
+		}
+		
+		unit<uint32> Totaal: SqlString  = "SELECT * FROM monumenten2025", StorageReadOnly = "True"
+		{
+			attribute<rdc_meter> Point;
+			attribute<uint32>    per_domain      (domain) := sum(uint32(const(1u,.)) , point[domain]);
+			attribute<bool>      IsRijksmonument (domain) := per_domain > 0[uint32];
+		}
+	}
+	
+	container RijksMonumentenContour
+	: StorageName     = "%RestrictiesDataDir%/Omgeving/Monumenten/monumenten2025_contour.geojson"
+	, StorageType     = "gdal.vect"
+	, StorageReadOnly = "True"
+	, DialogType      = "Map"
+	, Source          = "Website https://nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/eedd39d6-b427-4e11-90fd-f5054241c3a7"
+					    "download 31/03/2025 WFS-service"
+	, url             = "https://www.cultureelerfgoed.nl/onderwerpen/rijksmonumentenregister/rijksmonumenten-kaartlagen"
+	{
+		unit<uint32> BAG: SqlString = "SELECT * FROM monumenten2025_contour WHERE herkomst ='BAG'", StorageReadOnly = "True"
+		{
+			attribute<rdc_meter> Geometry (poly);
+			attribute<.> per_domain                (domain) := poly2grid(geometry, domain);
+			attribute<bool> IsRijksmonumentcontour (domain) := IsDefined(per_domain);
+		}
+		
+		unit<uint32> Totaal: SqlString  = "SELECT * FROM monumenten2025_contour", StorageReadOnly = "True"
+		{
+			attribute<rdc_meter> Geometry (poly);
+			attribute<.> per_domain                (domain) := poly2grid(geometry, domain);
+			attribute<bool> IsRijksmonumentcontour (domain) := IsDefined(per_domain);
+		}
+	}
+	
+	unit<uint32> Stads_en_Dorpsgezichten
+	: StorageName     = "%RestrictiesDataDir%/Omgeving/Monumenten/Stads_en_dorpsgezichten_2025/TownscapesPolygon.shp"
+	, StorageType     = "gdal.vect"
+	, StorageReadOnly = "True"
+	, DialogData      = "Geometry"
+	, DialogType      = "Map"
+	, Source          = "website http://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/4e2ef670-cddd-11dd-ad8b-0800200c9a66"
+					    "download op 31/03/2025"
+	, url             = "https://www.cultureelerfgoed.nl/onderwerpen/bronnen-en-kaarten/overzicht/kaart-van-beschermde-stads--en-dorpsgezichten"
+	, SqlString       = "SELECT * FROM TownscapesPolygon"
+	{
+		attribute<rdc_meter> Geometry (poly);
+		attribute<bool>      IsHard     := JURSTATUS == 'rijksbeschermd stads- of dorpsgezicht';
+		attribute<bool>      IsNietHard := !IsHard;
+	}
+}

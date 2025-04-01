@@ -1,0 +1,121 @@
+container AMvB2025 : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showManifest?organizationId=vrom&striVersion=STRI2008"
+{
+	parameter<string> subpad:='Ruimte\AMvB_OWet';
+	
+	container BKL : url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-mnre1034-2018-bwbr0041313-6"
+	{
+
+		
+		parameter<string> OWbestand:='BKL_2025';
+
+		parameter<string> Bestandsloc: = '%RestrictiesDataDir%/Beleid/Ruimte/AMvB_OWet/'+ OWbestand + '.gpkg';
+		parameter<string> OGRQuery:    = 'BKL van omgevingswet.overheid.nl, in QGIS naar gpkg';
+
+			
+			container A_zone_munitieopslagplaats : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer LIKE ''A-zone_munitieopslagplaats%'''
+				,''
+				'=OGRQuery'
+			);	
+			
+						
+			container A_zone_civiele_inrichting_voor_activiteiten_met_explosieven : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer LIKE ''A-zone_civiele_inrichting_voor_activiteiten_met_explosieven%'''
+				,''
+				'=OGRQuery'
+			);	
+			
+						
+			container B_zone_munitieopslagplaats : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer LIKE ''B-zone_munitieopslagplaats%'''
+				,''
+				'=OGRQuery'
+			);	
+			
+			container B_zone_civiele_inrichting_voor_activiteiten_met_explosieven : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer LIKE ''B-zone_civiele_inrichting_voor_activiteiten_met_explosieven%'''
+				,''
+				'=OGRQuery'
+			);	
+
+			container Erfgoederen : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer = ''Droogmakerij_de_Beemster'' OR layer = ''Stelling_van_Amsterdam''OR layer = ''Romeinse_Limes''OR layer = ''Nieuwe_Hollandse_Waterlinie'' '
+				,''
+				'=OGRQuery'
+			);	
+
+			container Reserveringsgebieden : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer LIKE ''Reserveringsgebieden%'''
+				,''
+				'=OGRQuery'
+			);			
+			
+			container kustfundament : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer =''Kustfundament'''
+				,''
+				'=OGRQuery'
+			);		
+
+			container Rivierbed_grote_rivieren : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer =''Rivierbed_grote_rivieren'''
+				,''
+				'=OGRQuery'
+			);				
+			
+			container Stroomvoerend_deel_rivierbed_grote_rivieren : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer = ''Stroomvoerend_deel_rivierbed_grote_rivieren'''
+				,''
+				'=OGRQuery'
+			);	
+			
+			container Waddenzee : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer = ''Waddenzee'''
+				,''
+				'=OGRQuery'
+			);	
+		
+	}
+	
+container BAL : url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn/nl/act/mnre1034/2018/BWBR0041330"
+	{
+
+		
+		parameter<string> OWbestand:='BAL';
+
+		parameter<string> Bestandsloc: = '%RestrictiesDataDir%/Beleid/Ruimte/AMvB_OWet/'+ OWbestand + '.gpkg';
+		parameter<string> OGRQuery:    = 'BKL van omgevingswet.overheid.nl, inlezen relevante lagen met QGIS, naar gpkg';
+
+
+
+			
+			container Militaire_terreinen_en_terreinen_met_een_militair_object : = VergriddingT
+			(
+				'=Bestandsloc'
+				,'SELECT * FROM ' + OWbestand + ' WHERE naam = ''Militaire_terreinen_en_terreinen_met_een_militair_object'''
+				,''
+				'=OGRQuery'
+			);	
+			
+		
+	}
+}

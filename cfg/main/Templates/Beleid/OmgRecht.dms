@@ -2,6 +2,7 @@ container OmgRecht
 {
 	#include<EU.dms>
 	#include<AMvB.dms>
+	#include<AMvB2025.dms>
 	#include<Bevi.dms>
 	#include<PRV.dms>
 	#include<PRV2025.dms>
