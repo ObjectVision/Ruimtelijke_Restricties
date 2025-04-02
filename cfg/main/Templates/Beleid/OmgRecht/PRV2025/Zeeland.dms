@@ -1,8 +1,9 @@
 container Zeeland : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/ze';
-	
-	container VerordeningZeeland2023 
-	:= verwerk_NLIMRObestand_T('VerordeningZeeland2023', 'prv_2025/ze')
-	, url="";
+
+	container VerordeningZeeland 
+	:= verwerk_NLIMRObestand_T('VerordeningZeeland', 'prv_2025/ze')
+	, url="https://opengeodata.zeeland.nl/geoserver/dso/wms?request=GetCapabilities";
+		// niet via API ingelezen maar via dataportaal van Zeeland. WFS-download op 4/2/2025, laatste wijziging van de bron is 09-09-2024
 }

@@ -2,7 +2,7 @@ container Noord_Brabant : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/nb';
 	
-	container VerordeningNoordBrabant2023 
-	:= verwerk_NLIMRObestand_T('VerordeningNoordBrabant2023', 'prv_2025/nb')
+	container Omgevingsverordening_NB 
+	:= verwerk_NLIMRObestand_T('Omgevingsverordening_NB', 'prv_2025/nb')
 	, url="";
 }
