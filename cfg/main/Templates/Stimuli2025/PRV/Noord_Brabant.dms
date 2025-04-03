@@ -43,8 +43,8 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 	{
 		container Hard
 		{
-			attribute<bool> Glastuinbouw_vestigingsgebied (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Glastuinbouw_vestigingsgebied/selectie/Result;
-			attribute<bool> Totaal                        (domain) := Glastuinbouw_vestigingsgebied;
+			attribute<bool> OVR_Glastuinbouw_en_teeltgebied_Zundert (domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Glastuinbouw_en_teeltgebied_Zundert/selectie/Result;
+			attribute<bool> Totaal (domain) := OVR_Glastuinbouw_en_teeltgebied_Zundert;
 		}
 		
 		container Middel
@@ -54,8 +54,7 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 
 		container Zacht
 		{
-			attribute<bool> Glastuinbouw_doorgroeigebied (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Glastuinbouw_doorgroeigebied/selectie/Result;
-			attribute<bool> Totaal                       (domain) := Glastuinbouw_doorgroeigebied;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
 	

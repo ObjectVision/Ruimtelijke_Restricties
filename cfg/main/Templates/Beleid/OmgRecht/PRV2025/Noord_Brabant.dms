@@ -2,7 +2,8 @@ container Noord_Brabant : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/nb';
 	
-	container Omgevingsverordening_NB 
-	:= verwerk_NLIMRObestand_T('Omgevingsverordening_NB', 'prv_2025/nb')
+	container akn_nl_act_pv30_2024_omgevingsverordening 
+	:= verwerk_NLIMRObestand_T('akn_nl_act_pv30_2024_omgevingsverordening', 'prv_2025/nb')
 	, url="";
 }
+

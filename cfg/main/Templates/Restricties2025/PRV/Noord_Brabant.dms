@@ -9,58 +9,58 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 		
 		container Hard
 		{
-			attribute<bool> Rivierbed                        (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Rivierbed/selectie/Result;
-			attribute<bool> Waterwingebied                   (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
-			attribute<bool> Groenblauwe_mantel               (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Groenblauwe_mantel/selectie/Result;
-			attribute<bool> Natuur_Netwerk_Brabant           (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Natuur_Netwerk_Brabant/selectie/Result;
-			attribute<bool> Nieuwe_Hollandse_Waterlinie      (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Nieuwe_Hollandse_Waterlinie/selectie/Result;
+			attribute<bool> OVR_Rivierbed                        																			(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Rivierbed/selectie/Result;
+			attribute<bool> OVR_Waterwinning_voor_menselijke_consumptie_Waterwingebied_Grondwaterbeschermingsgebied_en_Boringsvrije_zone_	(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Waterwinning_voor_menselijke_consumptie_Waterwingebied_Grondwaterbeschermingsgebied_en_Boringsvrije_zone_/selectie/Result;
+			attribute<bool> OVR_Groenblauwe_waarden               																			(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Groenblauwe_waarden/selectie/Result;
+			attribute<bool> OVR_Natuur_Netwerk_Brabant           																			(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Natuur_Netwerk_Brabant/selectie/Result;
+			attribute<bool> OVR_Hollandse_waterlinies      																					(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Hollandse_waterlinies/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Rivierbed
-					, Waterwingebied
-					, Groenblauwe_mantel
-					, Natuur_Netwerk_Brabant
-					, Nieuwe_Hollandse_Waterlinie
+					  OVR_Rivierbed
+					, OVR_Waterwinning_voor_menselijke_consumptie_Waterwingebied_Grondwaterbeschermingsgebied_en_Boringsvrije_zone_
+					, OVR_Groenblauwe_waarden
+					, OVR_Natuur_Netwerk_Brabant
+					, OVR_Hollandse_waterlinies
 				);
 		}
 		
 		container Middel
 		{
-			attribute<bool> Regionale_waterberging           (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Regionale_waterberging/selectie/Result;
-			attribute<bool> Reservering_waterberging         (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Reservering_waterberging/selectie/Result;
-			attribute<bool> Aansluiting_primaire_waterkering (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Aansluiting_primaire_waterkering/selectie/Result;
-			attribute<bool> Regionale_waterkering            (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Regionale_waterkering/selectie/Result;
-			attribute<bool> Landelijk_gebied_zonder_verstedelijking_afweegbaar (domain) := AND(Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Landelijk_gebied/selectie/Result, !Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Verstedelijking_afweegbaar/selectie/Result);
+			attribute<bool> OVR_Regionale_waterberging          				(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Regionale_waterberging/selectie/Result;
+			attribute<bool> OVR_Waterberging        							(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen/OVR_Waterberging/selectie/Result;
+			attribute<bool> OVR_Reservering_waterberging        				(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Reservering_waterberging/selectie/Result;
+			attribute<bool> Aansluiting_primaire_waterkering 					(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/Aansluiting_primaire_waterkering/selectie/Result;
+			attribute<bool> OVR_Regionale_water_en_Compartimenteringskering		(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Regionale_water_en_Compartimenteringskering/selectie/Result;
+			attribute<bool> OVR_Landelijk_gebied								(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Landelijk_gebied/selectie/Result;
 
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Regionale_waterberging
-					, Reservering_waterberging
+					  OVR_Regionale_waterberging
+					, OVR_Waterberging
+					, OVR_Reservering_waterberging
 					, Aansluiting_primaire_waterkering
-					, Regionale_waterkering
-					, Landelijk_gebied_zonder_verstedelijking_afweegbaar
+					, OVR_Regionale_water_en_Compartimenteringskering
+					, OVR_Landelijk_gebied
 				);
 		}
 		
 		container Zacht
 		{
-			attribute<bool> Aardkundig_waardevol_gebied      (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Aardkundig_waardevol_gebied/selectie/Result;
-			attribute<bool> Stiltegebied                     (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Stiltegebied/selectie/Result;
-			attribute<bool> Grondwaterbeschermingsgebied     (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
+			attribute<bool> OVR_Aardkundige_waarden     (domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Aardkundige_waarden/selectie/Result;
+			attribute<bool> OVR_Stiltegebied            (domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Stiltegebied/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
 					  Aardkundig_waardevol_gebied
-					, Stiltegebied
-					, Grondwaterbeschermingsgebied
+					, OVR_Stiltegebied
 				);
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
-	container Verblijfsrecreatie :=woongebied_en_werk_bedrijventerrein;
+	container Woongebied         := woongebied_en_werk_bedrijventerrein;
+	container Bedrijventerrein   := woongebied_en_werk_bedrijventerrein;
+	container Verblijfsrecreatie := woongebied_en_werk_bedrijventerrein;
 	
 	container Wind
 	{
