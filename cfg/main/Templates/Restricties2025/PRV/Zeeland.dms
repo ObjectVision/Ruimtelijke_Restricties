@@ -9,16 +9,16 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 		
 		container Hard
 		{
-			attribute<bool> Waterwingebied                (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Waterwingebied/selectie/Result;
-			attribute<bool> bestaande_natuur              (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P/Laag_namen_selectie/Bestaande_Natuur/selectie/Result;
-			attribute<bool> nieuwe_natuur                 (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P/Laag_namen_selectie/Nieuwe_natuur/selectie/Result;
+			attribute<bool> waterwingebied                						(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied/selectie/Result;
+			attribute<bool> Omgevingsverordening_Bestaande_natuur 				(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Bestaande_natuur/selectie/Result;
+			attribute<bool> Omgevingsverordening_Natuurontwikkelingsgebieden	(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Natuurontwikkelingsgebieden/selectie/Result;
 			
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Waterwingebied
-					, bestaande_natuur
-					, nieuwe_natuur
+					  waterwingebied
+					, Omgevingsverordening_Bestaande_natuur
+					, Omgevingsverordening_Natuurontwikkelingsgebieden
 				);
 		}
 		
@@ -29,17 +29,19 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> Milieubeschermingsgebied_overig            (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Milieubeschermingsgebied_overig_/selectie/Result;//defacto stiltegebieden
-			attribute<bool> Agrarisch_gebied_van_ecologische_betekenis (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P/Laag_namen_selectie/Agrarisch_gebied_van_ecologische_betekenis/selectie/Result;
-			attribute<bool> Grondwaterbeschermingsgebied               (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebied/selectie/Result;
-			attribute<bool> Landschap_en_erfgoed                       (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Landschap_en_erfgoed/selectie/Result;
+			attribute<bool> Omgevingsverordening_Beschermingsgebied            				(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Beschermingsgebied/selectie/Result;
+			attribute<bool> Omgevingsverordening_Beschermingsgebied_2018       				(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Beschermingsgebied_2018/selectie/Result;
+			attribute<bool> Omgevingsverordening_Agrarisch_gebied_van_ecologische_betekenis	(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Agrarisch_gebied_van_ecologische_betekenis/selectie/Result;
+			attribute<bool> Omgevingsverordening_Grondwaterbeschermingszone            		(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Grondwaterbeschermingszone/selectie/Result;
+			attribute<bool> Omgevingsverordening_Ganzenrustgebieden      					(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Ganzenrustgebieden/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Milieubeschermingsgebied_overig
-					, Agrarisch_gebied_van_ecologische_betekenis
-					, Grondwaterbeschermingsgebied
-					, Landschap_en_erfgoed
+					  Omgevingsverordening_Beschermingsgebied
+					, Omgevingsverordening_Beschermingsgebied_2018
+					, Omgevingsverordening_Agrarisch_gebied_van_ecologische_betekenis
+					, Omgevingsverordening_Grondwaterbeschermingszone
+					, Omgevingsverordening_Ganzenrustgebieden
 				);
 		}
 	}
@@ -56,17 +58,20 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 		
 		container Hard
 		{
-			
-			attribute<bool> Beschermingsgebied            (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P/Laag_namen_selectie/Beschermingsgebied/selectie/Result;
-			attribute<bool> Natuurstrand                  (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P/Laag_namen_selectie/Natuurstrand/selectie/Result;
-			attribute<bool> Zeeuwse_topkwaliteit          (domain) := Src/NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P/Laag_namen_selectie/Zeeuwse_topkwaliteit/selectie/Result;
+			attribute<bool> Omgevingsverordening_Beschermingsgebied            	(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Beschermingsgebied/selectie/Result;
+			attribute<bool> Omgevingsverordening_Beschermingsgebied_2018       	(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Beschermingsgebied_2018/selectie/Result;
+			attribute<bool> Omgevingsverordening_Natuurstrand                  	(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Natuurstrand/selectie/Result;
+			attribute<bool> Omgevingsverordening_Zeeuwse_Topkwaliteit          	(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Zeeuwse_Topkwaliteit/selectie/Result;
+			attribute<bool> Omgevingsverordening_Zeeuwse_Topkwaliteit_2018		(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Zeeuwse_Topkwaliteit_2018/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
 					  woongebied_en_werk_bedrijventerrein/Hard/Totaal
-					, Beschermingsgebied
-					, Natuurstrand
-					, Zeeuwse_topkwaliteit
+					, Omgevingsverordening_Beschermingsgebied
+					, Omgevingsverordening_Beschermingsgebied_2018
+					, Omgevingsverordening_Natuurstrand
+					, Omgevingsverordening_Zeeuwse_Topkwaliteit
+					, Omgevingsverordening_Zeeuwse_Topkwaliteit_2018
 				);
 		}
 		
@@ -100,8 +105,7 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> Landschap_en_erfgoed  (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Landschap_en_erfgoed/selectie/Result;
-			attribute<bool> Totaal (domain):= Landschap_en_erfgoed;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
 	
@@ -124,8 +128,7 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 		
 		container Zacht
 		{
-			attribute<bool> Landschap_en_erfgoed  (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Landschap_en_erfgoed/selectie/Result;
-			attribute<bool> Totaal (domain):= Landschap_en_erfgoed;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 	}
 }

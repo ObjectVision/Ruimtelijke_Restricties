@@ -2,8 +2,9 @@ container Zeeland : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/ze';
 
-	container VerordeningZeeland 
-	:= verwerk_NLIMRObestand_T('VerordeningZeeland', 'prv_2025/ze')
+	container akn_nl_act_pv29_2023_omgevingsverordening
+	:= verwerk_NLIMRObestand_T('akn_nl_act_pv29_2023_omgevingsverordening', 'prv_2025/ze')
 	, url="https://opengeodata.zeeland.nl/geoserver/dso/wms?request=GetCapabilities";
 		// niet via API ingelezen maar via dataportaal van Zeeland. WFS-download op 4/2/2025, laatste wijziging van de bron is 09-09-2024
+		//url:= "https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv29-2023-omgevingsverordening-3/" - bevat geen kaartlagen;
 }

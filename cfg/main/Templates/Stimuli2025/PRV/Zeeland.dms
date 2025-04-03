@@ -27,14 +27,7 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 		
 		container Middel
 		{
-			attribute<bool> Grootschalige_bedrijventerreinen (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Grootschalige_bedrijventerreinen/selectie/Result;
-			attribute<bool> Detailhandelsvoorzieningen       (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Detailhandelsvoorzieningen/selectie/Result;
-			
-			attribute<bool> Totaal (domain):= Max_elem
-				(
-					  Grootschalige_bedrijventerreinen
-					, Detailhandelsvoorzieningen
-				);
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
 		container Zacht
@@ -52,8 +45,16 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 		
 		container Middel
 		{
-			attribute<bool> Verblijfsrecreatie_begrenzing_badplaatsen (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Verblijfsrecreatie_begrenzing_badplaatsen_/selectie/Result;
-			attribute<bool> Totaal (domain):= Verblijfsrecreatie_begrenzing_badplaatsen;
+			attribute<bool> Omgevingsverordening_Badplaatsen 				(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Badplaatsen/selectie/Result;
+			attribute<bool> Omgevingsverordening_Verblijfsrecreatie 		(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Verblijfsrecreatie/selectie/Result;
+			attribute<bool> Omgevingsverordening_Verblijfsrecreatie_2018 	(domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Verblijfsrecreatie_2018/selectie/Result;
+
+			attribute<bool> Totaal (domain):= Max_elem
+			(
+				  Omgevingsverordening_Badplaatsen
+				, Omgevingsverordening_Verblijfsrecreatie
+				, Omgevingsverordening_Verblijfsrecreatie_2018
+			);
 		}
 		
 		container Zacht
@@ -66,8 +67,8 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Glastuinbouw (domain) := Src/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/Glastuinbouw/selectie/Result;
-			attribute<bool> Totaal (domain) := Glastuinbouw;
+			attribute<bool> Omgevingsverordening_Glastuinbouwconcentratiegebieden (domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Glastuinbouwconcentratiegebieden/selectie/Result;
+			attribute<bool> Totaal (domain) := Omgevingsverordening_Glastuinbouwconcentratiegebieden;
 		}
 		
 		container Middel
@@ -85,7 +86,8 @@ container Zeeland := Templates/Per_Provincie_T('Zeeland', Src, domain)
 	{
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> Omgevingsverordening_Windenergie_Concentratielocaties (domain) := Src/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Windenergie_Concentratielocaties/selectie/Result;
+			attribute<bool> Totaal (domain) := Omgevingsverordening_Windenergie_Concentratielocaties;
 		}
 		
 		container Middel
