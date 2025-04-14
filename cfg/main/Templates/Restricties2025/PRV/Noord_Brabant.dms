@@ -52,7 +52,7 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
-					  Aardkundig_waardevol_gebied
+					  OVR_Aardkundige_waarden
 					, OVR_Stiltegebied
 				);
 		}
