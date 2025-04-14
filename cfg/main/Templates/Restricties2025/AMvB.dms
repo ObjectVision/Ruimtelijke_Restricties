@@ -1,73 +1,72 @@
 container AMVB
 {
-	container Src := SrcSrc/OmgRecht/AMVB;
+	container Src := SrcSrc/OmgRecht/AMVB2025;
 	
 	container woongebied_en_werk_bedrijventerrein
 	{
 		container ZeerHard
 		{
-			attribute<bool> kustfundament                                                               (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart3/kustfundament/Multi/Result;
-			attribute<bool> Waddenzee                                                                   (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart5/Waddenzee/Multi/Result;
-			attribute<bool> militair_terrein                                                            (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart1/militair_terrein/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart2/militair_terrein/Multi/Result;
-			attribute<bool> militair_luchtvaartterrein                                                  (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart1/militair_luchtvaartterrein/Multi/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart2/militair_luchtvaartterrein/Multi/Result;
-			attribute<bool> A_zone_munitieopslagplaats                                                  (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart8/A_zone_munitieopslagplaats/Multi/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart8/A_zone_munitieopslagplaats/Multi/Result;
-			attribute<bool> B_zone_munitieopslagplaats                                                  (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart8/B_zone_munitieopslagplaats/Multi/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart8/B_zone_munitieopslagplaats/Multi/Result;
-			attribute<bool> A_zone_civiele_inrichting_voor_activiteiten_met_explosieven                 (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart9/A_zone_civiele_inrichting_voor_activiteiten_met_explosieven/Multi/Result;
-			attribute<bool> B_zone_civiele_inrichting_voor_activiteiten_met_explosieven                 (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart9/B_zone_civiele_inrichting_voor_activiteiten_met_explosieven/Multi/Result;
-			attribute<bool> voorkeurstraces_buisleidingen                                               (domain):= Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart13/voorkeurstraces_buisleidingen/Multi/Result;
+			attribute<bool> kustfundament                                                               (domain) := Src/BKL/kustfundament/Multi/Result;
+			attribute<bool> Waddenzee                                                                   (domain) := Src/BKL/Waddenzee/Multi/Result;
+			attribute<bool> Militaire_terreinen_en_terreinen_met_een_militair_object 					(domain) := Src/BAL/Militaire_terreinen_en_terreinen_met_een_militair_object/Multi/Result;
+			//attribute<bool> militair_terrein                                                            (domain) := Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart1/militair_terrein/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart2/militair_terrein/Multi/Result;
+			//attribute<bool> militair_luchtvaartterrein                                                  (domain) := Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart1/militair_luchtvaartterrein/Multi/Result || Src/NL_IMRO_0000_BZKmr11Rarro_3055/Kaart2/militair_luchtvaartterrein/Multi/Result;
+			attribute<bool> A_zone_munitieopslagplaats                                                  (domain) := Src/BKL/A_zone_munitieopslagplaats/Multi/Result;
+			attribute<bool> B_zone_munitieopslagplaats                                                  (domain) := Src/BKL/B_zone_munitieopslagplaats/Multi/Result;
+			attribute<bool> A_zone_civiele_inrichting_voor_activiteiten_met_explosieven                 (domain) := Src/BKL/A_zone_civiele_inrichting_voor_activiteiten_met_explosieven/Multi/Result;
+			attribute<bool> B_zone_civiele_inrichting_voor_activiteiten_met_explosieven                 (domain) := Src/BKL/B_zone_civiele_inrichting_voor_activiteiten_met_explosieven/Multi/Result;
+			//attribute<bool> voorkeurstraces_buisleidingen                                               (domain) := Src/NL_IMRO_0000_BZKmrGCRarro_5050/Kaart13/voorkeurstraces_buisleidingen/Multi/Result;
 			
-			attribute<bool> Luchthavengebied                                                            (domain):= Src/NL_IMRO_0000_IMamGcLIB2021_5002/Luchthavengebied/Luchthavengebied/Multi/Result;
-			attribute<bool> sloopzone_woningen_vanwege_EV                                               (domain):=Src/NL_IMRO_0000_IMamGcLIB2021_5002/sloopzone_woningen_vanwege_EV/sloopzone_woningen_vanwege_EV/Multi/Result;//LIB1
-			attribute<bool> sloopzone_woningen_vanwege_geluid                                           (domain):=Src/NL_IMRO_0000_IMamGcLIB2021_5002/sloopzone_woningen_vanwege_geluid/sloopzone_woningen_vanwege_geluid/Multi/Result;//LIB2
-			attribute<bool> beperkingengebied_kwetsbare_objecten                                        (domain):= Src/NL_IMRO_0000_IMamGcLIB2021_5002/beperkingengebied_kwetsbare_objecten/beperkingengebied_kwetsbare_objecten/Multi/Result;//LIB3
-			attribute<bool> beperkingengebied_geluidgevoelige_gebouwen                                  (domain):= Src/NL_IMRO_0000_IMamGcLIB2021_5002/beperkingengebied_geluidgevoelige_gebouwen/beperkingengebied_geluidgevoelige_gebouwen/Multi/Result;//LIB4
+			//attribute<bool> Luchthavengebied                                                            (domain) := Src/NL_IMRO_0000_IMamGcLIB2021_5002/Luchthavengebied/Luchthavengebied/Multi/Result;
+			//attribute<bool> sloopzone_woningen_vanwege_EV                                               (domain) := Src/NL_IMRO_0000_IMamGcLIB2021_5002/sloopzone_woningen_vanwege_EV/sloopzone_woningen_vanwege_EV/Multi/Result;//LIB1
+			//attribute<bool> sloopzone_woningen_vanwege_geluid                                           (domain) := Src/NL_IMRO_0000_IMamGcLIB2021_5002/sloopzone_woningen_vanwege_geluid/sloopzone_woningen_vanwege_geluid/Multi/Result;//LIB2
+			//attribute<bool> beperkingengebied_kwetsbare_objecten                                        (domain) := Src/NL_IMRO_0000_IMamGcLIB2021_5002/beperkingengebied_kwetsbare_objecten/beperkingengebied_kwetsbare_objecten/Multi/Result;//LIB3
+			//attribute<bool> beperkingengebied_geluidgevoelige_gebouwen                                  (domain) := Src/NL_IMRO_0000_IMamGcLIB2021_5002/beperkingengebied_geluidgevoelige_gebouwen/beperkingengebied_geluidgevoelige_gebouwen/Multi/Result;//LIB4
 			
 			attribute<bool> Totaal (domain):= Max_elem(
 				  kustfundament
 				, Waddenzee
-				, militair_terrein
-				, militair_luchtvaartterrein
+				, Militaire_terreinen_en_terreinen_met_een_militair_object
+				//, militair_terrein
+				//, militair_luchtvaartterrein
 				, A_zone_munitieopslagplaats
 				, B_zone_munitieopslagplaats
 				, A_zone_civiele_inrichting_voor_activiteiten_met_explosieven
 				, B_zone_civiele_inrichting_voor_activiteiten_met_explosieven
-				, voorkeurstraces_buisleidingen
-				, Luchthavengebied
-				, sloopzone_woningen_vanwege_EV
-				, sloopzone_woningen_vanwege_geluid
-				, beperkingengebied_kwetsbare_objecten
-				, beperkingengebied_geluidgevoelige_gebouwen
+				//, voorkeurstraces_buisleidingen
+				//, Luchthavengebied
+				//, sloopzone_woningen_vanwege_EV
+				//, sloopzone_woningen_vanwege_geluid
+				//, beperkingengebied_kwetsbare_objecten
+				//, beperkingengebied_geluidgevoelige_gebouwen
 			);
 		}
 		
 		container Hard
 		{
-			attribute<bool> openbaar_toegankelijk_natuur_en_recreatiegebied_Midden_IJsselmonde          (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart2/openbaar_toegankelijk_natuur_en_recreatiegebied_Midden_IJsselmonde/Multi/Result;
-			attribute<bool> openbaar_toegankelijk_natuur_en_recreatiegebied_Schiebroekse_en_Zuidpolder  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart2/openbaar_toegankelijk_natuur_en_recreatiegebied_Schiebroekse_en_Zuidpolder/Multi/Result;
-			attribute<bool> openbaar_toegankelijk_natuur_en_recreatiegebied_Schiezone                   (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart2/openbaar_toegankelijk_natuur_en_recreatiegebied_Schiezone/Multi/Result;
-			attribute<bool> Erfgoederen_van_uitzonderlijke_universele_waarde                            (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart7/Erfgoederen_van_uitzonderlijke_universele_waarde/Multi/Result;
-			attribute<bool> rivierbed                                                                   (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart4/rivierbed/Multi/Result;
-			attribute<bool> stroomvoerend_deel_rivierbed                                                (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart4/stroomvoerend_deel_rivierbed_excl_BBG;
+			//attribute<bool> openbaar_toegankelijk_natuur_en_recreatiegebied_Midden_IJsselmonde          (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart2/openbaar_toegankelijk_natuur_en_recreatiegebied_Midden_IJsselmonde/Multi/Result;
+			//attribute<bool> openbaar_toegankelijk_natuur_en_recreatiegebied_Schiebroekse_en_Zuidpolder  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart2/openbaar_toegankelijk_natuur_en_recreatiegebied_Schiebroekse_en_Zuidpolder/Multi/Result;
+			//attribute<bool> openbaar_toegankelijk_natuur_en_recreatiegebied_Schiezone                   (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart2/openbaar_toegankelijk_natuur_en_recreatiegebied_Schiezone/Multi/Result;
+			attribute<bool> Erfgoederen										                            (domain):= Src/BKL/Erfgoederen/Multi/Result;
+			attribute<bool> Rivierbed_grote_rivieren                                                    (domain):= Src/BKL/Rivierbed_grote_rivieren/Multi/Result;
+			attribute<bool> Stroomvoerend_deel_rivierbed_grote_rivieren                                 (domain):= Src/BKL/Stroomvoerend_deel_rivierbed_grote_rivieren/Multi/Result;
 
 			attribute<bool> Totaal (domain):= Max_elem(
-				  openbaar_toegankelijk_natuur_en_recreatiegebied_Midden_IJsselmonde
-				, openbaar_toegankelijk_natuur_en_recreatiegebied_Schiebroekse_en_Zuidpolder
-				, openbaar_toegankelijk_natuur_en_recreatiegebied_Schiezone
-				, Erfgoederen_van_uitzonderlijke_universele_waarde
-				, rivierbed
-				, stroomvoerend_deel_rivierbed
+				//  openbaar_toegankelijk_natuur_en_recreatiegebied_Midden_IJsselmonde
+				//, openbaar_toegankelijk_natuur_en_recreatiegebied_Schiebroekse_en_Zuidpolder
+				//, openbaar_toegankelijk_natuur_en_recreatiegebied_Schiezone
+				  Erfgoederen
+				, Rivierbed_grote_rivieren
+				, Stroomvoerend_deel_rivierbed_grote_rivieren
 			);
 		}
 		
 		container Middel
 		{
-			attribute<bool> gebiedsreservering           (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart4/gebiedsreservering_excl_BBG;
-			attribute<bool> afwegingsgebied_geluid_en_EV (domain):= ='Src/NL_IMRO_0000_IMamGcLIB2021_5002/afwegingsgebied_geluid_en_EV/afwegingsgebied_geluid_en_EV/Multi/Result && !SourceData/RegioIndelingen/Bevolkingskern_2011/Is_bbg_'+domain_str+'';//LIB5
+			attribute<bool> Reserveringsgebieden           (domain):= Src/BKL/Reserveringsgebieden/Multi/Result;
+			//attribute<bool> afwegingsgebied_geluid_en_EV (domain):= ='Src/NL_IMRO_0000_IMamGcLIB2021_5002/afwegingsgebied_geluid_en_EV/afwegingsgebied_geluid_en_EV/Multi/Result && !SourceData/RegioIndelingen/Bevolkingskern_2011/Is_bbg_'+domain_str+'';//LIB5
 			
-			attribute<bool> Totaal (domain):= Max_elem(
-				  gebiedsreservering
-				, afwegingsgebied_geluid_en_EV
-			);
+			attribute<bool> Totaal (domain):= Reserveringsgebieden;
 		}
 		
 		container Zacht

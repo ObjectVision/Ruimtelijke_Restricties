@@ -62,8 +62,8 @@ container AMVB
 	{
 		container Hard
 		{
-			attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
-			attribute<bool> Totaal (domain) :=vestigingsplaats_voor_grootschalige_electriciteitsopwekking;
+			//attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
 		container Middel
@@ -81,8 +81,8 @@ container AMVB
 	{
 		container Hard
 		{
-			attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
-			attribute<bool> Totaal (domain) :=vestigingsplaats_voor_grootschalige_electriciteitsopwekking;
+			//attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
 		container Middel
