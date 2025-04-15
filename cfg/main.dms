@@ -88,5 +88,5 @@ container Ruimtelijke_Restricties
 	// Settings
 	#include <ConfigSettings.dms>
 	#include <ExportSettings.dms>
-	
+	#include <vergelijking.dms>
 }

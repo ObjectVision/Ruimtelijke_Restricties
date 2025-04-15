@@ -1,0 +1,13 @@
+container vergelijking
+{
+	container vergelijk_kustfundament := Templates/Combine2bestandenT(
+			'SourceData/Beleid/OmgRecht/AMvB/NL_IMRO_0000_BZKamGCBarro_5025/Kaart3/kustfundament/Multi/Result',
+			'SourceData/Beleid/OmgRecht/AMvB2025/BKL/kustfundament/Multi/Result'
+			);
+			
+			
+	container vergelijk_Weidevogelkansgebieden := Templates/Combine2bestandenT(
+			'/SourceData/Beleid/OmgRecht/PRV/Fryslân/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Weidevogelkansgebieden/selectie/Result',
+			'SourceData/Beleid/OmgRecht/PRV2025/Fryslân/akn_nl_act_pv21_2023_omgevingsverordening/Laag_namen_selectie/Weidevogelkansgebieden_en_weidevogelparels/selectie/Result'
+			);
+}

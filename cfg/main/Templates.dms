@@ -1,5 +1,8 @@
 container Templates : using = "units;classifications;geography"
 {
+
+	#include<Combine2bestanden.dms>
+
 	Template Beleid_T
 	{
 		parameter<string> domain_str;
