@@ -12,6 +12,8 @@ container Bevi
 						
 				attribute<bool> Totaal (rdc_25m) := PR10_6;
 			}
+			
+			attribute<bool> Totaal (rdc_25m) := rrgs_risico_10_6/PR10_6;
 		}
 		
 		container Hard
