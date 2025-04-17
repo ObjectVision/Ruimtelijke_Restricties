@@ -8,7 +8,7 @@ container Bevi2025 : url="%RestrictiesDataDir%/omgeving/externe_veiligheid/2017/
 
 		container  rrgs_risico_10_6 : url="https://rev-portaal.nl/geoserver/wfs?request=GetCapabilities"
 		{
-			container PR10_6 := VergriddingT(Src + 'PR10_6.gpkg','','','');
+			container PR10_6 := VergriddingT(Src + 'PR10_6.gdb','','','');
 		}
 	}
 }
