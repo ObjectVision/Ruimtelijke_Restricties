@@ -1,6 +1,6 @@
 container Bevi
 {
-	container Src := SrcSrc/OmgRecht/Bevi;
+	container Src := SrcSrc/OmgRecht/Bevi2025;
 	
 	container woongebied_en_werk_bedrijventerrein
 	{
@@ -8,14 +8,10 @@ container Bevi
 		{
 			container rrgs_risico_10_6
 			{
-				attribute<bool> Installatie (rdc_25m) := Src/Externe_Veiligheid/rrgs_risico_10_6/Installatie/Multi/Result;
-				attribute<bool> Inrichting  (rdc_25m) := Src/Externe_Veiligheid/rrgs_risico_10_6/Inrichting/Multi/Result;
+				attribute<bool> PR10_6 (rdc_25m) := Src/Externe_Veiligheid/rrgs_risico_10_6/PR10_6/Multi/Result;
+						
+				attribute<bool> Totaal (rdc_25m) := PR10_6;
 			}
-			
-			attribute<bool> Totaal (rdc_25m) := Max_elem(
-				rrgs_risico_10_6/Installatie,
-				rrgs_risico_10_6/Inrichting
-			);
 		}
 		
 		container Hard
@@ -36,8 +32,8 @@ container Bevi
 	
 	container woongebied := woongebied_en_werk_bedrijventerrein;
 	
-	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein; // @Bas, volgens mij ging dit fout (zie weggesterde code hieronder). Klopt deze verandering inhoudelijk?
-	container Verblijfsrecreatie := woongebied_en_werk_bedrijventerrein; // @Bas, volgens mij ging dit fout (zie weggesterde code hieronder). Klopt deze verandering inhoudelijk?
+	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein; 
+	container Verblijfsrecreatie := woongebied_en_werk_bedrijventerrein; 
 	
 	
 	container Wind
