@@ -6,13 +6,13 @@ container Overigen
 	{
 		container ZeerHard
 		{
-			attribute<bool> NabijWindturbines       (rdc_25m)  := Preprocessing/Wind_restricties/bestaande_turbines/IsNietToegestaan_basis;
-			attribute<bool> NabijWindturbinesBP	    (rdc_25m)  := Preprocessing/Wind_restricties/windturbines_BP/IsNietToegestaan_basis;
-			attribute<bool> Rijksmonumenten         (domain) := Src/Monumenten/RijksMonumenten/Totaal/IsRijksmonument;
-			attribute<bool> RijksMonumentenContour  (domain) := Src/Monumenten/RijksMonumentenContour/Totaal/IsRijksmonumentcontour;
-			attribute<bool> Stads_en_Dorpsgezichten (domain) := Src/Monumenten/Stads_en_Dorpsgezichten/IsHard[poly2grid(Src/Monumenten/Stads_en_Dorpsgezichten/Geometry, domain)];
-			attribute<bool> Hoogspanningslijn 		(rdc_25m)  := SourceData/Energie/hoogspanning/Hoogspanningslijn/BufferGridResult;
-			attribute<bool> Totaal 					(domain) := OR(Rijksmonumenten, RijksMonumentenContour, Stads_en_Dorpsgezichten,NabijWindturbines, NabijWindturbinesBP, Hoogspanningslijn);
+			attribute<bool> NabijWindturbines       (rdc_25m)  	:= Preprocessing/Wind_restricties/bestaande_turbines/IsNietToegestaan_basis;
+			attribute<bool> NabijWindturbinesBP	    (rdc_25m)  	:= Preprocessing/Wind_restricties/windturbines_BP/IsNietToegestaan_basis;
+			attribute<bool> Rijksmonumenten         (domain) 	:= Src/Monumenten2025/RijksMonumenten/Totaal/IsRijksmonument;
+			attribute<bool> RijksMonumentenContour  (domain) 	:= Src/Monumenten2025/RijksMonumentenContour/Totaal/IsRijksmonumentcontour;
+			attribute<bool> Stads_en_Dorpsgezichten (domain) 	:= Src/Monumenten2025/Stads_en_Dorpsgezichten/IsHard[poly2grid(Src/Monumenten2025/Stads_en_Dorpsgezichten/geometry, domain)];
+			attribute<bool> Hoogspanningslijn 		(rdc_25m)  	:= SourceData/Energie/hoogspanning/Hoogspanningslijn/BufferGridResult;
+			attribute<bool> Totaal 					(domain) 	:= OR(Rijksmonumenten, RijksMonumentenContour, Stads_en_Dorpsgezichten,NabijWindturbines, NabijWindturbinesBP, Hoogspanningslijn);
 		}
 		
 		container Hard

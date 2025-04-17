@@ -11,15 +11,5 @@ container Bevi : url="%RestrictiesDataDir%/omgeving/externe_veiligheid/2017/wett
 			container Installatie := VergriddingT(Src + 'installatie.shp','SELECT * FROM installatie','','');
 			container Inrichting := VergriddingT(Src + 'inrichting.shp','SELECT * FROM inrichting','','');
 		}
-
-	container Externe_Veiligheid2025: Source = "https://rev-portaal.nl/geoserver/wfs?request=GetCapabilities , download 31/03/2025"
-	{
-		parameter<string> Src := '%RestrictiesDataDir%/omgeving/externe_veiligheid/2025/';
-
-		container  rrgs_risico_10_6 : url="https://rev-portaal.nl/geoserver/wfs?request=GetCapabilities"
-		{
-			container PR10_6 := VergriddingT(Src + 'PR10_6.gpkg','','','');
-		}
-	}
 	}
 }

@@ -16,22 +16,4 @@ container EU
 		attribute<uint32> Result_geom (domain) := poly2grid(Geometry, domain);
 		attribute<bool> Result (domain) := Result_geom >= 0;
 	}
-	
-		unit<uint32> Natura2000_nieuw:
-		StorageName     = "%RestrictiesDataDir%/Beleid/EU/natura2000_20241119.gpkg"
-	,	StorageType     = "gdal.vect"
-	,	StorageReadOnly = "True"
-	,	DialogType      = "Map"
-	,	Source          = "Nationaal georegister download gpkg-formaat op 20250106"
-						 
-	,	url             = "https://service.pdok.nl/rvo/natura2000/atom/index.xml PS_Natura2000_as_is"
-						  "https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/fe4b36d5-8f69-403f-b084-ce010a4ae3b2"
-	,	SyncMode        = "Attr"
-	,	SqlString       = "SELECT * FROM n2000 WHERE kadaster  <> 'niet van toepassing' AND naam_n2k <> 'Bruine Bank'"		//skip gebieden ver de Noordzee op op basis van Kadaster-filter
-
-	{
-		attribute<rdc_meter> Geometry (poly);
-		attribute<uint32> Result_geom (domain) := poly2grid(Geometry, domain);
-		attribute<bool> Result (domain) := Result_geom >= 0;
-	}
 }

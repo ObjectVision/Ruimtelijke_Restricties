@@ -1,0 +1,14 @@
+//Bevi: Besluit externe veiligheid inrichtingen
+container Bevi2025 : url="%RestrictiesDataDir%/omgeving/externe_veiligheid/2017/wetten_nl - Regeling - Besluit externe veiligheid inrichtingen - BWBR0016767.mht"//http://wetten.overheid.nl/BWBR0016767/2016-01-01
+{
+//opmerking Anja: Bevi bestaat niet meer, regels zitten nu in het BAL
+	container Externe_Veiligheid: Source = "https://rev-portaal.nl/geoserver/wfs?request=GetCapabilities , download 31/03/2025"
+	{
+		parameter<string> Src := '%RestrictiesDataDir%/omgeving/externe_veiligheid/2025/';
+
+		container  rrgs_risico_10_6 : url="https://rev-portaal.nl/geoserver/wfs?request=GetCapabilities"
+		{
+			container PR10_6 := VergriddingT(Src + 'PR10_6.gpkg','','','');
+		}
+	}
+}

@@ -1,6 +1,6 @@
 container AMVB
 {
-	container Src := SrcSrc/OmgRecht/AMVB;
+	container Src := SrcSrc/OmgRecht/AMVB2025;
 	
 	container woongebied_en_werk_bedrijventerrein
 	{
@@ -62,8 +62,8 @@ container AMVB
 	{
 		container Hard
 		{
-			//attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= SourceData/Beleid/OmgRecht/AMvB/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
+			attribute<bool> Totaal (domain) := vestigingsplaats_voor_grootschalige_electriciteitsopwekking;
 		}
 		
 		container Middel
@@ -81,8 +81,8 @@ container AMVB
 	{
 		container Hard
 		{
-			//attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= Src/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> vestigingsplaats_voor_grootschalige_electriciteitsopwekking  (domain):= SourceData/Beleid/OmgRecht/AMvB/NL_IMRO_0000_BZKamGCBarro_5025/Kaart14/vestigingsplaats_voor_grootschalige_electriciteitsopwekking/Multi/Result;
+			attribute<bool> Totaal (domain) := vestigingsplaats_voor_grootschalige_electriciteitsopwekking;
 		}
 		
 		container Middel
