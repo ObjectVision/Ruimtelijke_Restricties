@@ -5,8 +5,30 @@ Your branch is up to date with 'origin/main'.
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
+	modified:   cfg/main.dms
+	modified:   cfg/main/Templates.dms
+	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV.dms
+	modified:   cfg/main/Templates/Beleid/OmgRecht/PRV/Friesland.dms
+	modified:   cfg/main/Templates/Beleid/OmgRecht/SelectieEnVergrid.dms
 	modified:   cfg/main/Templates/Beleid/OmgRecht/Verwerk_NLIMRObestand_T.dms
+	modified:   cfg/main/Templates/Restricties/AMvB.dms
+	modified:   cfg/main/Templates/Restricties/Bevi.dms
+	modified:   cfg/main/Templates/Restricties/EU.dms
+	modified:   cfg/main/Templates/Restricties/Overigen.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Drenthe.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Flevoland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Friesland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Gelderland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Groningen.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Limburg.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Noord_Brabant.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Noord_Holland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Overijssel.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Utrecht.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Zeeland.dms
+	modified:   cfg/main/Templates/Restricties/PMV/Zuid_Holland.dms
+	modified:   cfg/main/Templates/Restricties/PRV.dms
 	modified:   git.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
-a73d14ec7c332a0da3c54befae86b0570c481f62
+9c1a07417864af065e6acba11f111b84841b9e37
