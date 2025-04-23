@@ -33,7 +33,7 @@ container Overigen
 		}
 	}
 	
-	container woongebied
+	container Wonen
 	{
 		container ZeerHard
 		{
@@ -91,7 +91,7 @@ container Overigen
 		}
 	}
 	
-	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein;
+	container Werken := woongebied_en_werk_bedrijventerrein;
 	
 	container Verblijfsrecreatie
 	{

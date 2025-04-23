@@ -1,9 +1,10 @@
 template verwerk_NLIMRObestand_T
 {
 	parameter<string> bestandsnaam;
-	parameter<string> subpad;
+	parameter<string> prov;
 	// end case parameters
 
+	parameter<string> subpad := replace(PRV/subpad, '@prv_afk@', prov);
 	parameter<string> Bestandsloc: = '%RestrictiesDataDir%/Beleid/Ruimte/'+ subpad + '/';
 
 	unit<uint32> NLIMRObestand: StorageName = "=Bestandsloc + bestandsnaam + '.gpkg'", StorageType = "gdal.vect", StorageReadOnly = "True"
@@ -19,26 +20,26 @@ template verwerk_NLIMRObestand_T
 		attribute<string> Values;
 	}
  
-	unit<uint32> Read_NLIMRO_Selectiebestand: StorageName = "=Bestandsloc + bestandsnaam + '.csv'", StorageType = "gdal.vect", StorageReadOnly = "True"
-	{
-		attribute<bool>  selectie                        := InSelectie == '1';
-		attribute<.>     Uq_laag_naam_rel (Uq_laag_naam) := rlookup(Uq_laag_naam/values, values);
-	}
+	// unit<uint32> Read_NLIMRO_Selectiebestand: StorageName = "=Bestandsloc + bestandsnaam + '.csv'", StorageType = "gdal.vect", StorageReadOnly = "True"
+	// {
+		// attribute<bool>  selectie                        := InSelectie == '1';
+		// attribute<.>     Uq_laag_naam_rel (Uq_laag_naam) := rlookup(Uq_laag_naam/values, values);
+	// }
 	
-	unit<uint32> laag_naam_selectie  := select_with_org_rel(Read_NLIMRO_Selectiebestand/selectie[Read_NLIMRO_Selectiebestand/Uq_laag_naam_rel])
-	{
-		attribute<string> ti_naam := Uq_laag_naam/ti_naam[org_rel];
-		attribute<string> naam    := Uq_laag_naam/values[org_rel];
-	}
+	// unit<uint32> laag_naam_selectie  := select_with_org_rel(Read_NLIMRO_Selectiebestand/selectie[Read_NLIMRO_Selectiebestand/Uq_laag_naam_rel])
+	// {
+		// attribute<string> ti_naam := Uq_laag_naam/ti_naam[org_rel];
+		// attribute<string> naam    := Uq_laag_naam/values[org_rel];
+	// }
 	
-	Container Laag_namen_selectie := 
-		for_each_ne(
-			laag_naam_selectie/ti_naam
-			, 'SelectieEnVergrid(NLIMRObestand,' + quote(laag_naam_selectie/naam) + ')'
-		);
-	Container Laag_namen := 
+	// Container Laag_namen_selectie := 
+		// for_each_ne(
+			// laag_naam_selectie/ti_naam
+			// , 'SelectieEnVergrid(NLIMRObestand,' + quote(laag_naam_selectie/naam) + ')'
+		// );
+	Container PerLaag := 
 		for_each_ne(
 			Uq_laag_naam/ti_naam
-			, 'SelectieEnVergrid(NLIMRObestand,' + quote(Uq_laag_naam/values) + ')'
+			, 'SelectieEnVergrid_T(NLIMRObestand,' + quote(Uq_laag_naam/values) + ')'
 		);
 }

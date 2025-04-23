@@ -23,8 +23,8 @@ container Overijssel := Templates/Per_Provincie_T('Overijssel', Src, domain)
 		}
 	}
 	
-	container Woongebied         :=woongebied_en_werk_bedrijventerrein;
-	container Bedrijventerrein   :=woongebied_en_werk_bedrijventerrein;
+	container Wonen    := woongebied_en_werk_bedrijventerrein;
+	container Werken   := woongebied_en_werk_bedrijventerrein;
 	
 	container Verblijfsrecreatie
 	{

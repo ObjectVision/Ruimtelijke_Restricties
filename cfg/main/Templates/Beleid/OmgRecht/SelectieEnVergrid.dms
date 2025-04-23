@@ -1,4 +1,4 @@
-template SelectieEnVergrid
+template SelectieEnVergrid_T
 {
 	unit<uint32> NLIMRObestand;
 	parameter<String> laag_naam;
@@ -7,10 +7,10 @@ template SelectieEnVergrid
 	unit<uint32> selectie := select_with_org_rel(NLIMRObestand/naam == laag_naam)
 	{
 		attribute<rdc_meter> Geometry               (poly) := NLIMRObestand/geometry[org_rel];
-		attribute<rdc_meter> Geometry_inflated      (poly) := bg_buffer_multi_polygon(geometry, 100d, 8b);
+		// attribute<rdc_meter> Geometry_inflated      (poly) := bg_buffer_multi_polygon(geometry, 100d, 8b);
 		attribute<.>         Result_geom          (domain) := poly2grid(Geometry, domain);
 		attribute<bool>      Result               (domain) := Result_geom >= 0;
-		attribute<uint32>    Result_geom_inflated (domain) := poly2grid(Geometry_inflated, domain);
-		attribute<bool>      Result_inflated      (domain) := Result_geom_inflated >= 0;
+		// attribute<uint32>    Result_geom_inflated (domain) := poly2grid(Geometry_inflated, domain);
+		// attribute<bool>      Result_inflated      (domain) := Result_geom_inflated >= 0;
 	}
 }

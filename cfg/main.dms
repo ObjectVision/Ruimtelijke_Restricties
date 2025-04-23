@@ -24,6 +24,14 @@ container Ruimtelijke_Restricties
 		{
 			attribute<string> name : ['Hard','Middel','Zacht'];
 		}
+		
+		unit<uint32> Sector_x_ResHardheidK := combine(Actoren/Sector,Restrictie_HardheidK)
+		{
+			attribute<string> Sector_name     := Actoren/Sector/name[first_rel];
+			attribute<string> HardheidK_name  := Restrictie_HardheidK/name[second_rel];
+			attribute<string> name            := Sector_name+'_'+HardheidK_name;
+			attribute<string> label           := Sector_name+'/'+HardheidK_name;
+		}
 	
 		container Actoren
 		{

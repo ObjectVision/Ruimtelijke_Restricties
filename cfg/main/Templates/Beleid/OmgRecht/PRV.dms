@@ -2,17 +2,111 @@ container PRV: url="%RestrictiesDataDir%/Beleid/Ruimte/Prv_2020/overzicht_PRV.ht
 {
 	//alternatief voor overzicht_PRV.html omdat dit goed werkt in metadata-tabblad (zowel via paramter als source description)
 	#include<URL_overzicht_PRV.dms>
+	
+	parameter<string> subpad:='prv_2024/@prv_afk@';
+	
+	unit<uint32> PRV_Bronnen : NrOfRows = 20
+	{	
+		unit<uint32> Data := range(uint32, 0, nrAttr*#.)
+		{
+			attribute<string> Text: [ 
+			//Provincie      , bron  
+			 'Friesland'     ,'fr', 'NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P'
+			,'Groningen'     ,'gr', 'NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P'
+			,'Drenthe'       ,'dr', 'NL_IMRO_9922_POVDrenthe2018GC_GC02_Besluitsubvlak_P'
+			,'Drenthe'       ,'dr', 'NL_IMRO_9922_NNNpovDrenthe22WG_VA01_Besluitvlak_P'
+			,'Overijssel'    ,'ov', 'NL_IMRO_9923_Verordening2017_GV09_Besluitsubvlak_P'
+			,'Overijssel'    ,'ov', 'NL_IMRO_9923_Verordening2017_GV09_Besluitvlak_P'
+			,'Gelderland'    ,'ge', 'NL_IMRO_9925_PVOmgverordeningGC_gc11_Besluitsubvlak_P'
+			,'Flevoland'     ,'fl', 'NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P'
+			,'Flevoland'     ,'fl', 'NL_IMRO_9924_OVwindplangroen_VA01_Besluitvlak_P'
+			,'Flevoland'     ,'fl', 'NL_IMRO_9924_OVzonneenergieFle_VA01_Besluitvlak_P'
+			,'Noord_Holland' ,'nh', 'NL_IMRO_9927_POVCONSOLID_0710_Besluitvlak_P'
+			,'Noord_Holland' ,'nh', 'NL_IMRO_9927_WBOVNH1E2023_VG01_Besluitvlak_P'
+			,'Zuid_Holland'  ,'zh', 'NL_IMRO_9928_OVerordening2019_GC10_Besluitsubvlak_P'
+			,'Utrecht'       ,'ut', 'NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P'
+			,'Noord_Brabant' ,'nb', 'NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P'
+			,'Noord_Brabant' ,'nb', 'NL_IMRO_9930_TAMOvrNBrabant_va01_Besluitsubvlak_P'
+			,'Zeeland'       ,'ze', 'NL_IMRO_9929_WijzOVOmgVer2018_VA10_Besluitvlak_P'
+			,'Zeeland'       ,'ze', 'NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P'
+			,'Zeeland'       ,'ze', 'NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P'
+			,'Limburg'       ,'li', 'NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P'
+			];
+		}
+		attribute<string>   Provincie               := Data/Text[value(id(.) * nrAttr +  0, Data)];
+		attribute<string>   Provincie_afk           := Data/Text[value(id(.) * nrAttr +  1, Data)];
+		attribute<string>   Bron                    := Data/Text[value(id(.) * nrAttr +  2, Data)];
+		attribute<string>   naam                    := Provincie + '_' + Bron;
+		attribute<string>   Path                    := Provincie + '/' + Bron;
+		
+		container V := for_each_nedv(naam, 'value('+string(id(.))+', ..)', void, .);
+		
+		parameter<uint32> nrAttr := 3;
+	}
+	
+	container Get_IMRO_files :=
+		for_each_ne(
+			PRV_Bronnen/Path
+			, 'verwerk_NLIMRObestand_T('+quote(PRV_Bronnen/Bron)+','+quote(PRV_Bronnen/Provincie_afk)+')'
+		);
+	
+	unit<uint32> Write_AlleLagen := ='union_unit('+AsList('Get_IMRO_files/'+PRV_Bronnen/Path+'/Uq_laag_naam', ',')+')'
+	, StorageName = "%RestrictiesDataDir%/Beleid/Ruimte/PRV/IMRO_Lagen.new.csv"
+	, StorageType = "gdalwrite.vect"
+	{
+		attribute<string> provincie            := ='union_data(.,'+AsList('const('+quote(PRV_Bronnen/provincie)+', Get_IMRO_files/'+PRV_Bronnen/Path+'/Uq_laag_naam)', ',')+')';
+		attribute<string> bron                 := ='union_data(.,'+AsList('const('+quote(PRV_Bronnen/Bron)+', Get_IMRO_files/'+PRV_Bronnen/Path+'/Uq_laag_naam)', ',')+')';
+		attribute<string> laag_naam            := ='union_data(.,'+AsList('Get_IMRO_files/'+PRV_Bronnen/Path+'/Uq_laag_naam/ti_naam', ',')+')';
+		attribute<uint2>  IsUsed               := const(0[uint2],.);
+		attribute<string> HardheidK            := const('',.);
+		attribute<uint2>  IsWonen              := const(0[uint2],.);
+		attribute<uint2>  IsWerken             := const(0[uint2],.);
+		attribute<uint2>  IsVerblijfsrecreatie := const(0[uint2],.);
+		attribute<uint2>  IsWind               := const(0[uint2],.);
+		attribute<uint2>  IsZon                := const(0[uint2],.);
+	}
+	unit<uint32> Read_AlleLagen 
+	: StorageName = "%RestrictiesDataDir%/Beleid/Ruimte/PRV/IMRO_Lagen.csv"
+	, StorageType = "gdal.vect"
+	, StorageReadOnly = "true";
+	
+	container RelevanteLagen := 
+		for_each_nex(
+			Classifications/Sector_x_ResHardheidK/name
+			, 'select_with_attr_by_cond(Read_AlleLagen
+					, Read_AlleLagen/IsUsed == ''1''
+						&& Read_AlleLagen/Is'+Classifications/Sector_x_ResHardheidK/Sector_name+' == ''1''
+						&& Read_AlleLagen/HardheidK == '+quote(Classifications/Sector_x_ResHardheidK/HardheidK_name)+' 
+				)'
+			, uint32
+		);
+		
+	container Get_Results := 
+		for_each_ne(
+			Classifications/Sector_x_ResHardheidK/label
+			, 'Get_Results_T('+quote(Classifications/Sector_x_ResHardheidK/Sector_name)+','+quote(Classifications/Sector_x_ResHardheidK/HardheidK_name)+')' 
+		);
+		
+	Template Get_Results_T 
+	{
+		parameter<string> Sector_name;
+		parameter<string> HardheidK_name;
+		///
+		unit<uint32>      RelevanteLaagSet := ='RelevanteLagen/'+Sector_name+'_'+HardheidK_name+'';
+		attribute<bool>   Totaal (domain) := =#RelevanteLaagSet == 0 ? 'const(FALSE,domain)' : 'OR('+AsList('Get_IMRO_files/'+RelevanteLaagSet/provincie+'/'+RelevanteLaagSet/bron+'/PerLaag/'+RelevanteLaagSet/laag_naam+'/selectie/Result', ',')+')';
+	}
 
-	#include<Friesland.dms>
-	#include<Groningen.dms>
-	#include<Drenthe.dms>
-	#include<Overijssel.dms>
-	#include<Gelderland.dms>
-	#include<Flevoland.dms>
-	#include<Noord_Holland.dms>
-	#include<Zuid_Holland.dms>
-	#include<Utrecht.dms>
-	#include<Noord_Brabant.dms>
-	#include<Zeeland.dms>
-	#include<Limburg.dms>
+
+	// #include<Friesland.dms>
+	// #include<Groningen.dms>
+	// #include<Drenthe.dms>
+	// #include<Overijssel.dms>
+	// #include<Gelderland.dms>
+	// #include<Flevoland.dms>
+	// #include<Noord_Holland.dms>
+	// #include<Zuid_Holland.dms>
+	// #include<Utrecht.dms>
+	// #include<Noord_Brabant.dms>
+	// #include<Zeeland.dms>
+	// #include<Limburg.dms>
 }

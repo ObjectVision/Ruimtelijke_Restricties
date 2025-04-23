@@ -78,9 +78,9 @@ container AMVB
 		container Combis := Templates/Combis_T(., domain, Variant_id);
 	}
 	
-	container Woongebied := Woongebied_en_werk_bedrijventerrein;
+	container Wonen := Woongebied_en_werk_bedrijventerrein;
 	
-	container Bedrijventerrein := Woongebied_en_werk_bedrijventerrein;
+	container Werken := Woongebied_en_werk_bedrijventerrein;
 	
 	container Verblijfsrecreatie
 	{

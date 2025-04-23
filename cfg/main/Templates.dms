@@ -33,11 +33,11 @@ container Templates : using = "units;classifications;geography"
 						'EU/@C@,'
 						'AMVB/@C@,'
 						'Bevi/@C@,'
-						+AsItemList('PRV/'+Provincie/name+'/@C@')+','+
+						'PRV/@C@,'
 						+AsItemList('PMV/'+Provincie/name+'/@C@')+','+
 						'Overigen/@C@'
 					')',
-					'@C@', Actoren/Sector/ref+'/'+HardheidK+'/Totaal'
+					'@C@', Actoren/Sector/name+'/'+HardheidK+'/Totaal'
 					)
 				, rdc_25m
 				, bool

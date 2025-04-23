@@ -34,9 +34,9 @@ container Bevi
 		}
 	}
 	
-	container woongebied := woongebied_en_werk_bedrijventerrein;
+	container Wonen := woongebied_en_werk_bedrijventerrein;
 	
-	container Bedrijventerrein := woongebied_en_werk_bedrijventerrein; // @Bas, volgens mij ging dit fout (zie weggesterde code hieronder). Klopt deze verandering inhoudelijk?
+	container Werken := woongebied_en_werk_bedrijventerrein; // @Bas, volgens mij ging dit fout (zie weggesterde code hieronder). Klopt deze verandering inhoudelijk?
 	container Verblijfsrecreatie := woongebied_en_werk_bedrijventerrein; // @Bas, volgens mij ging dit fout (zie weggesterde code hieronder). Klopt deze verandering inhoudelijk?
 	
 	
