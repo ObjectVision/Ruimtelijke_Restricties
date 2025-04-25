@@ -80,7 +80,7 @@ container Templates : using = "units;classifications;geography"
 						'AMVB/@C@,'
 						'Bevi/@C@,'
 						+AsItemList('PRV/'+Provincie/name+'/@C@')+','+
-						+AsItemList('PMV/'+Provincie/name+'/@C@')+','+
+						//+AsItemList('PMV/'+Provincie/name+'/@C@')+','+//bestaat niet meer
 						'Overigen/@C@'
 					')',
 					'@C@', Actoren/Sector/ref+'/'+HardheidK+'/Totaal'
