@@ -49,7 +49,8 @@ container AMvB2025 : url="http://www.ruimtelijkeplannen.nl/web-roi/index/showMan
 			container Erfgoederen : = VergriddingT
 			(
 				'=Bestandsloc'
-				,'SELECT * FROM ' + OWbestand + ' WHERE layer = ''Droogmakerij_de_Beemster'' OR layer = ''Stelling_van_Amsterdam''OR layer = ''Romeinse_Limes''OR layer = ''Nieuwe_Hollandse_Waterlinie'' '
+				//,'SELECT * FROM ' + OWbestand + ' WHERE layer = ''Droogmakerij_de_Beemster'' OR layer = ''Stelling_van_Amsterdam''OR layer = ''Romeinse_Limes''OR layer = ''Nieuwe_Hollandse_Waterlinie'' '
+				,'SELECT * FROM ' + OWbestand + ' WHERE layer = ''Droogmakerij_de_Beemster'' OR layer = ''Stelling_van_Amsterdam'' '
 				,''
 				'=OGRQuery'
 			);	

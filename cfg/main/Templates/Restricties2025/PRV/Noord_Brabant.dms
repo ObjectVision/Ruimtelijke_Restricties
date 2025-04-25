@@ -32,7 +32,8 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 			attribute<bool> OVR_Reservering_waterberging        				(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Reservering_waterberging/selectie/Result;
 			attribute<bool> Aansluiting_primaire_waterkering 					(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/Aansluiting_primaire_waterkering/selectie/Result;
 			attribute<bool> OVR_Regionale_water_en_Compartimenteringskering		(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Regionale_water_en_Compartimenteringskering/selectie/Result;
-			attribute<bool> OVR_Landelijk_gebied								(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Landelijk_gebied/selectie/Result;
+			//attribute<bool> OVR_Landelijk_gebied								(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Landelijk_gebied/selectie/Result;
+
 
 			attribute<bool> Totaal (domain):= Max_elem
 				(
@@ -41,7 +42,7 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 					, OVR_Reservering_waterberging
 					, Aansluiting_primaire_waterkering
 					, OVR_Regionale_water_en_Compartimenteringskering
-					, OVR_Landelijk_gebied
+					//, OVR_Landelijk_gebied
 				);
 		}
 		

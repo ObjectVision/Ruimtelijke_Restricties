@@ -2,8 +2,16 @@ container Noord_Brabant : url="geen pdf"
 {
 	parameter<string> subpad:='prv_2025/nb';
 	
+	//https://noord-brabant.tercera-ro.nl/MapViewer/Default.aspx?id=NLIMRO9930TAMOvrNBrabantgc-1224
+	
+	//De gebieden Verstedelijking afweegbaar zijn vervallen. Gemeenten zijn daardoor zelf aan zet om gebaseerd op de diep-rond-breed methodiek uit de 
+	//omgevingsvisie een afweging te maken waar stedelijke ontwikkeling het beste een plek kan krijgen. Desgewenst kunnen gemeenten er ook voor 
+	//kiezen om daarbij de eerder opgenomen gebieden aan te wijzen. Dat is aan de gemeente. Vanuit zorgvuldig ruimtegebruik en het tegengaan van 
+	//leegstand in stedelijk gebied, blijft een binnenstedelijke ontwikkeling voorrang hebben. Voor de definitie van stedelijke ontwikkeling sluit de 
+	//verordening aan bij de uitleg van de Raad van State over dit begrip.
+	
 	container akn_nl_act_pv30_2024_omgevingsverordening 
 	:= verwerk_NLIMRObestand_T('akn_nl_act_pv30_2024_omgevingsverordening', 'prv_2025/nb')
-	, url="";
+	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv30-2023-omgevingsverordening-1/overzicht";
 }
 
