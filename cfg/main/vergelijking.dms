@@ -4,10 +4,121 @@ container vergelijking
 			'SourceData/Beleid/OmgRecht/AMvB/NL_IMRO_0000_BZKamGCBarro_5025/Kaart3/kustfundament/Multi/Result',
 			'SourceData/Beleid/OmgRecht/AMvB2025/BKL/kustfundament/Multi/Result'
 			);
+
+	container NoordBrabant
+	{
+		container vergelijk_aardkundigeWaarden := Templates/Combine2bestandenT(
+				'SourceData/Beleid/OmgRecht/PRV/Noord_Brabant/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Aardkundig_waardevol_gebied/selectie/Result',
+				'SourceData/Beleid/OmgRecht/PRV2025/Noord_Brabant/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Aardkundige_waarden/selectie/Result'
+				);	
+
+		container vergelijk_rivierbed := Templates/Combine2bestandenT(
+				'/SourceData/Beleid/OmgRecht/PRV/Noord_Brabant/NL_IMRO_9930_TAMOvrNBrabant_va01_Besluitsubvlak_P/Laag_namen_selectie/rivierbed/selectie/Result',
+				'/SourceData/Beleid/OmgRecht/PRV2025/Noord_Brabant/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Rivierbed/selectie/Result'
+				);	
+	}
+
+
+	container Zeeland
+	{
+		container vergelijk_agrarisch_ecologischewaarden := Templates/Combine2bestandenT(
+				'/SourceData/Beleid/OmgRecht/PRV/Zeeland/NL_IMRO_9929_WijzOVOmgVer2018_VA11_Besluitvlak_P/Laag_namen_selectie/Agrarisch_gebied_van_ecologische_betekenis/selectie/Result',
+				'/SourceData/Beleid/OmgRecht/PRV2025/Zeeland/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/Omgevingsverordening_Agrarisch_gebied_van_ecologische_betekenis/selectie/Result
+'
+				);	
+
+		container vergelijk_waterwingebied := Templates/Combine2bestandenT(
+				'/SourceData/Beleid/OmgRecht/PRV/Zeeland/NL_IMRO_9929_OVOmgVer2018_VA01_Besluitvlak_P/Laag_namen_selectie/waterwingebied/selectie/Result',
+				'/SourceData/Beleid/OmgRecht/PRV2025/Zeeland/akn_nl_act_pv29_2023_omgevingsverordening/Laag_namen_selectie/waterwingebied/selectie/Result'
+				);	
+	}		
+
+
+	container Flevoland: using = "/SourceData/Beleid/OmgRecht/PRV2025/Flevoland/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie"
+	{
+		container vergelijk_stiltegebied := Templates/Combine2bestandenT(
+				'/SourceData/Beleid/OmgRecht/PRV/Flevoland/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result',
+				'/SourceData/Beleid/OmgRecht/PRV2025/Flevoland/akn_nl_act_pv24_2022_omgevingsverordening/Laag_namen_selectie/Stiltegebied_Locatie/selectie/Result'
+				);	
+				
+				 
+		
+		unit<uint32> Flevoland_beschermingsgebied := union_unit(beschermingsgebiedvoorgrondwaterBremerberg2meter_Locatie/selectie,
+																beschermingsgebiedvoorgrondwaterHarderbroek11meter_Locatie/selectie, 
+																beschermingsgebiedvoorgrondwaterHarderbroek14meter_Locatie/selectie, 
+																beschermingsgebiedvoorgrondwaterHarderbroek17meter_Locatie/selectie, 
+																beschermingsgebiedvoorgrondwaterHarderbroek20meter_Locatie/selectie, 
+																beschermingsgebiedvoorgrondwaterHarderbroek8meter_Locatie/selectie
+																)
+		{
+			attribute<rdc_meter>	geometry (poly)	:= union_data(., beschermingsgebiedvoorgrondwaterBremerberg2meter_Locatie/selectie/geometry, 
+																	beschermingsgebiedvoorgrondwaterHarderbroek11meter_Locatie/selectie/geometry, 
+																	beschermingsgebiedvoorgrondwaterHarderbroek14meter_Locatie/selectie/geometry, 
+																	beschermingsgebiedvoorgrondwaterHarderbroek17meter_Locatie/selectie/geometry, 
+																	beschermingsgebiedvoorgrondwaterHarderbroek20meter_Locatie/selectie/geometry, 
+																	beschermingsgebiedvoorgrondwaterHarderbroek8meter_Locatie/selectie/geometry
+																	);
+			attribute<.>         Result_geom          (domain) := poly2grid(Geometry, domain);
+			attribute<bool>      Result               (domain) := Result_geom >= 0;
+			}
+		
+	container vergelijk_bescherming := Templates/Combine2bestandenT(
+					'/SourceData/Beleid/OmgRecht/PRV/Flevoland/NL_IMRO_9924_GeconsOVFlevoland_GV01_Besluitvlak_P/Laag_namen_selectie/Beschermingsgebied/selectie/Result',
+					'/vergelijking/Flevoland/Flevoland_beschermingsgebied/Result'
+					);			
 			
+	}	
+	container Friesland
+	{
+	
+		container vergelijk_Weidevogelkansgebieden := Templates/Combine2bestandenT(
+				'/SourceData/Beleid/OmgRecht/PRV/Fryslân/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Weidevogelkansgebieden/selectie/Result',
+				'SourceData/Beleid/OmgRecht/PRV2025/Fryslân/akn_nl_act_pv21_2023_omgevingsverordening/Laag_namen_selectie/Weidevogelkansgebieden_en_weidevogelparels/selectie/Result'
+				);
+				
+		container vergelijk_reserveringszone := Templates/Combine2bestandenT(
+				'/SourceData/Beleid/OmgRecht/PRV/Fryslân/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/reserveringszones_binnen_aaneengesloten_bebouwd_gebied/selectie/Result',
+				'SourceData/Beleid/OmgRecht/PRV2025/Fryslân/akn_nl_act_pv21_2023_omgevingsverordening/Laag_namen_selectie/Reserveringszones_primaire_waterkeringen_aaneengesloten_bebouwd_gebied/selectie/Result'
+				);
+	}
+	
+	container Groningen
+	{	
+		container vergelijk_stiltegebieden := Templates/Combine2bestandenT(
+				'/SourceData/Beleid/OmgRecht/PRV/Groningen/NL_IMRO_9920_POVgeconsolideerd_GV07_Besluitsubvlak_P/Laag_namen_selectie/Stiltegebieden/selectie/Result',
+				'/SourceData/Beleid/OmgRecht/PRV2025/Groningen/akn_nl_act_pv20_2023_omgevingsverordening/Laag_namen_selectie/Stiltegebieden_Locatie/selectie/Result'
+				);	
+	}	
+	
+	
+	
+	container Utrecht 
+	{	
+		container vergelijk_waterberging := Templates/Combine2bestandenT(
+		'/SourceData/Beleid/OmgRecht/PRV/Utrecht/NL_IMRO_9926_2020InterimVerord_VA02_Besluitsubvlak_P/Laag_namen_selectie/Waterbergingsgebied/selectie/Result' ,
+		'/SourceData/Beleid/OmgRecht/PRV2025/Utrecht/akn_nl_act_pv26_2022_omgevingsverordening/Laag_namen_selectie/Waterbergingsgebied_Locatie/selectie/Result'
+		);
+		}
+		
+		
+	container Limburg: using = "/SourceData/Beleid/OmgRecht/PRV2025/Limburg/akn_nl_act_pv31_2023_omgevingsverordening/Laag_namen_selectie"
+	{ 
+		unit<uint32> Limburg_gwb := union_unit(
+			Grondwaterbeschermingsgebied_Hanik/selectie,
+			Grondwaterbeschermingsgebieden/selectie
+			)
+																
+		{
+			attribute<rdc_meter>	geometry (poly)				:= union_data(.,
+																Grondwaterbeschermingsgebied_Hanik/selectie/geometry,
+																Grondwaterbeschermingsgebieden/selectie/geometry);
+			attribute<.>         Result_geom          (domain) := poly2grid(Geometry, domain);
+			attribute<bool>      Result               (domain) := Result_geom >= 0;
+			}
 			
-	container vergelijk_Weidevogelkansgebieden := Templates/Combine2bestandenT(
-			'/SourceData/Beleid/OmgRecht/PRV/Fryslân/NL_IMRO_9921_PVR2014FryslanGC_GC03_Besluitvlak_P/Laag_namen_selectie/Weidevogelkansgebieden/selectie/Result',
-			'SourceData/Beleid/OmgRecht/PRV2025/Fryslân/akn_nl_act_pv21_2023_omgevingsverordening/Laag_namen_selectie/Weidevogelkansgebieden_en_weidevogelparels/selectie/Result'
-			);
+		container vergelijk_grondwaterbesch := Templates/Combine2bestandenT(
+					'/SourceData/Beleid/OmgRecht/PRV/Limburg/NL_IMRO_9931_GCVOOmgeving2014_GC10_Besluitvlak_P/Laag_namen_selectie/Grondwaterbeschermingsgebieden/selectie/Result',
+					'/vergelijking/Limburg/Limburg_gwb/Result'
+					);			
+	}
 }

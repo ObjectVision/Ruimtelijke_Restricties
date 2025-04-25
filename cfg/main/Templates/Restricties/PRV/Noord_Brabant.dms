@@ -31,7 +31,7 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 			attribute<bool> Reservering_waterberging         (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Reservering_waterberging/selectie/Result;
 			attribute<bool> Aansluiting_primaire_waterkering (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Aansluiting_primaire_waterkering/selectie/Result;
 			attribute<bool> Regionale_waterkering            (domain) := Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Regionale_waterkering/selectie/Result;
-			attribute<bool> Landelijk_gebied_zonder_verstedelijking_afweegbaar (domain) := AND(Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Landelijk_gebied/selectie/Result, !Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Verstedelijking_afweegbaar/selectie/Result);
+	//		attribute<bool> Landelijk_gebied_zonder_verstedelijking_afweegbaar (domain) := AND(Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Landelijk_gebied/selectie/Result, !Src/NL_IMRO_9930_InterimOvrgc_0823_Besluitsubvlak_P/Laag_namen_selectie/Verstedelijking_afweegbaar/selectie/Result);
 
 			attribute<bool> Totaal (domain):= Max_elem
 				(
@@ -39,7 +39,7 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 					, Reservering_waterberging
 					, Aansluiting_primaire_waterkering
 					, Regionale_waterkering
-					, Landelijk_gebied_zonder_verstedelijking_afweegbaar
+	//				, Landelijk_gebied_zonder_verstedelijking_afweegbaar
 				);
 		}
 		

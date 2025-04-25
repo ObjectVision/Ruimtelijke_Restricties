@@ -27,13 +27,13 @@ container Noord_Holland := Templates/Per_Provincie_T('Noord_Holland', Src, domai
 		{
 			attribute<bool> Regionalewaterkeringen_Locatie                       (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Regionalewaterkeringen_Locatie/selectie/Result;
 			attribute<bool> Beperkingengebiedregionalewaterkeringen_Locatie		 (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Beperkingengebiedregionalewaterkeringen_Locatie/selectie/Result;
-			attribute<bool> Natura2000_bufferzone_Locatie 						 (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Natura2000_bufferzone_Locatie/selectie/Result;
+			//attribute<bool> Natura2000_bufferzone_Locatie 						 (domain) := Src/akn_nl_act_pv27_2022_omgevingsverordening/Laag_namen_selectie/Natura2000_bufferzone_Locatie/selectie/Result;
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
 					  Regionalewaterkeringen_Locatie
 					, Beperkingengebiedregionalewaterkeringen_Locatie
-					, Natura2000_bufferzone_Locatie
+					//, Natura2000_bufferzone_Locatie
 				);
 		}
 		
