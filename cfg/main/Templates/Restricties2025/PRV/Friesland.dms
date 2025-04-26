@@ -100,5 +100,26 @@ container Fryslân := Templates/Per_Provincie_T('Fryslân', Src, domain)
 		}
 	}
 	
-	container Zon := Wind;
+	container Zon
+	{
+		container ZeerHard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Hard
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Middel
+		{
+			attribute<bool> Totaal (domain) := const(false, domain);
+		}
+		
+		container Zacht
+		{
+			attribute<bool> Totaal (domain) := Wind/Zacht/Totaal;
+		}
+	}
 }
