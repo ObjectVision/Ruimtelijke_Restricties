@@ -107,7 +107,11 @@ container AMVB
 	{
 		container ZeerHard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			attribute<bool> kustfundament                                                               (domain) := Src/BKL/kustfundament/Multi/Result;
+		
+			attribute<bool> Totaal (domain):= Max_elem(
+				kustfundament
+			);
 		}
 		
 		container Hard
