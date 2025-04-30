@@ -5,4 +5,21 @@ container Fryslân : url="geen pdf"
 	container akn_nl_act_pv21_2023_omgevingsverordening 
 	:= verwerk_NLIMRObestand_T('akn_nl_act_pv21_2023_omgevingsverordening', 'prv_2025/fr')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv21-2023-omgevingsverordening-11/overzicht";
+
+	unit<uint32> uitsluitingsgebied_wind:
+
+		StorageName     = "%RestrictiesDataDir%/Beleid/Ruimte/Prv_2025/fr/Wind_Fryslan.gpkg"
+	,	StorageType     = "gdal.vect"
+	,	StorageReadOnly = "True"
+	,	DialogType      = "Map"
+	,	Source          = "Heel provincie Friesland (CBS), met aftrek van: IBIS bedrijventerreinen in Leeuwarden, Sneek, Drachten en Heerenveen, buffer van 60 meter"
+					// eigen interpretatie van regels omgevingsverordening, waarbij windenergie overal uitgesloten is met een uitzondering voor deze bedrijventerreinen
+	,	url             = ""
+	,	SyncMode        = "Attr"
+	,	SqlString       = "SELECT * FROM Windrestrictie_Fryslan WHERE naam='Uisluitingsgebied wind (100 meter tot bedrijventerrein)'" 
+	{
+		attribute<rdc_meter> Geometry (poly);
+		attribute<uint32> Result_geom (domain) := poly2grid(Geometry, domain);
+		attribute<bool> Result (domain) := Result_geom >= 0;
+	}
 }

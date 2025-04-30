@@ -64,21 +64,20 @@ container Fryslân := Templates/Per_Provincie_T('Fryslân', Src, domain)
 	{
 		container ZeerHard
 		{
-			//in oude verordening nieuwe_windturbines --> gehele provincie
-			attribute<bool> Provincie_Fryslan_zonder_Schiermonnikoog_en_Vlieland	(domain) := Src/akn_nl_act_pv21_2023_omgevingsverordening/Laag_namen_selectie/Provincie_Fryslan_zonder_Schiermonnikoog_en_Vlieland/selectie/Result;
-			attribute<bool> Schiermonnikoog_en_Vlieland								(domain) := Src/akn_nl_act_pv21_2023_omgevingsverordening/Laag_namen_selectie/Schiermonnikoog_en_Vlieland/selectie/Result;
-		
-			attribute<bool> Totaal (domain):= Max_elem
-				(
-					  Provincie_Fryslan_zonder_Schiermonnikoog_en_Vlieland
-					, Schiermonnikoog_en_Vlieland
-				);
+			attribute<bool> Totaal (domain) := const(false, domain);
 		}
 		
 		container Hard
 		{
-			attribute<bool> Totaal (domain) := const(false, domain);
+			//in oude verordening nieuwe_windturbines --> gehele provincie, maar uitzondering voor bedrijventerreinen 
+			attribute<bool> Provincie_excl_bedrijventerrein_100m	(domain) := Src/uitsluitingsgebied_wind/Result;
+					
+			attribute<bool> Totaal (domain):= Max_elem
+				(
+					  Provincie_excl_bedrijventerrein_100m
+				);
 		}
+		
 		
 		container Middel
 		{
