@@ -15,6 +15,114 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 			attribute<bool> OVR_Natuur_Netwerk_Brabant           																			(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Natuur_Netwerk_Brabant/selectie/Result;
 			attribute<bool> OVR_Hollandse_waterlinies      																					(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Hollandse_waterlinies/selectie/Result;
 			
+			attribute<bool> grondwaterbeschermingsgebied  																					(domain) := Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied98/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied9/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied86/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied83/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied8/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied75/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied56/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied42/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied268/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied265/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied256/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied250/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied241/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied223/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied218/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied215/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied204/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied183/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied179/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied170/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied163/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied162/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied159/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied143/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied107/selectie/Result
+																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied100/selectie/Result;
+			attribute<bool> waterwingebied 																									(domain) :=	Src/waterwingebied/Laag_namen_selectie/Waterwingebied4/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied6/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied7/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied13/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied14/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied15/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied19/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied20/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied21/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied25/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied28/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied30/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied38/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied43/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied45/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied46/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied50/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied55/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied59/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied60/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied62/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied64/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied66/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied70/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied81/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied85/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied88/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied90/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied97/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied101/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied111/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied117/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied118/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied119/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied124/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied127/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied128/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied129/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied130/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied131/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied134/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied135/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied137/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied138/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied144/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied145/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied146/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied147/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied149/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied152/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied153/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied155/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied161/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied164/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied165/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied168/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied174/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied176/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied177/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied189/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied191/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied193/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied194/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied197/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied205/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied208/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied210/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied222/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied224/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied229/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied234/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied235/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied236/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied240/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied242/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied246/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied247/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied248/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied252/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied258/selectie/Result
+																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied260/selectie/Result;
+			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
 					  OVR_Rivierbed
@@ -22,6 +130,8 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 					, OVR_Groenblauwe_waarden
 					, OVR_Natuur_Netwerk_Brabant
 					, OVR_Hollandse_waterlinies
+					, grondwaterbeschermingsgebied
+					, waterwingebied
 				);
 		}
 		

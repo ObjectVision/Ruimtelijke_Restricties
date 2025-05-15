@@ -13,5 +13,11 @@ container Noord_Brabant : url="geen pdf"
 	container akn_nl_act_pv30_2024_omgevingsverordening 
 	:= verwerk_NLIMRObestand_T('akn_nl_act_pv30_2024_omgevingsverordening', 'prv_2025/nb')
 	, url="https://omgevingswet.overheid.nl/regels-op-de-kaart/documenten/akn-nl-act-pv30-2023-omgevingsverordening-1/overzicht";
+	
+	container grondwaterbeschermingsgebied
+	:= verwerk_NLIMRObestand_T('Grondwaterbeschermingsgebied','prv_2025/nb');
+	
+	container waterwingebied
+	:= verwerk_NLIMRObestand_T('Waterwingebied','prv_2025/nb');
 }
 
