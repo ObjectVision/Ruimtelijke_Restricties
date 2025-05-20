@@ -10,37 +10,10 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 		container Hard
 		{
 			attribute<bool> OVR_Rivierbed                        																			(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Rivierbed/selectie/Result;
-			attribute<bool> OVR_Waterwinning_voor_menselijke_consumptie_Waterwingebied_Grondwaterbeschermingsgebied_en_Boringsvrije_zone_	(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Waterwinning_voor_menselijke_consumptie_Waterwingebied_Grondwaterbeschermingsgebied_en_Boringsvrije_zone_/selectie/Result;
 			attribute<bool> OVR_Groenblauwe_waarden               																			(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Groenblauwe_waarden/selectie/Result;
 			attribute<bool> OVR_Natuur_Netwerk_Brabant           																			(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Natuur_Netwerk_Brabant/selectie/Result;
 			attribute<bool> OVR_Hollandse_waterlinies      																					(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Hollandse_waterlinies/selectie/Result;
 			
-			attribute<bool> grondwaterbeschermingsgebied  																					(domain) := Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied98/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied9/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied86/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied83/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied8/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied75/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied56/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied42/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied268/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied265/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied256/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied250/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied241/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied223/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied218/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied215/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied204/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied183/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied179/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied170/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied163/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied162/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied159/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied143/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied107/selectie/Result
-																																						|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied100/selectie/Result;
 			attribute<bool> waterwingebied 																									(domain) :=	Src/waterwingebied/Laag_namen_selectie/Waterwingebied4/selectie/Result
 																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied6/selectie/Result
 																																						|| Src/waterwingebied/Laag_namen_selectie/Waterwingebied7/selectie/Result
@@ -126,11 +99,9 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 			attribute<bool> Totaal (domain):= Max_elem
 				(
 					  OVR_Rivierbed
-					, OVR_Waterwinning_voor_menselijke_consumptie_Waterwingebied_Grondwaterbeschermingsgebied_en_Boringsvrije_zone_
 					, OVR_Groenblauwe_waarden
 					, OVR_Natuur_Netwerk_Brabant
 					, OVR_Hollandse_waterlinies
-					, grondwaterbeschermingsgebied
 					, waterwingebied
 				);
 		}
@@ -158,13 +129,42 @@ container Noord_Brabant := Templates/Per_Provincie_T('Noord_Brabant', Src, domai
 		
 		container Zacht
 		{
-			attribute<bool> OVR_Aardkundige_waarden     (domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Aardkundige_waarden/selectie/Result;
-			attribute<bool> OVR_Stiltegebied            (domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Stiltegebied/selectie/Result;
+			attribute<bool> OVR_Aardkundige_waarden     	(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Aardkundige_waarden/selectie/Result;
+			attribute<bool> OVR_Stiltegebied            	(domain) := Src/akn_nl_act_pv30_2024_omgevingsverordening/Laag_namen_selectie/OVR_Stiltegebied/selectie/Result;
+			
+			attribute<bool> grondwaterbeschermingsgebied  	(domain) := Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied98/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied9/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied86/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied83/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied8/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied75/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied56/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied42/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied268/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied265/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied256/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied250/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied241/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied223/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied218/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied215/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied204/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied183/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied179/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied170/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied163/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied162/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied159/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied143/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied107/selectie/Result
+																		|| Src/grondwaterbeschermingsgebied/Laag_namen_selectie/Grondwaterbeschermingsgebied100/selectie/Result;
+
 			
 			attribute<bool> Totaal (domain):= Max_elem
 				(
 					  OVR_Aardkundige_waarden
 					, OVR_Stiltegebied
+					, grondwaterbeschermingsgebied
 				);
 		}
 	}
